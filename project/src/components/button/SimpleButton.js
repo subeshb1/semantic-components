@@ -11,9 +11,10 @@ export default class StandardButton extends Component {
     icon: undefined,
     ficon: undefined,
     bicon: undefined,
-    isBasic: false,
+    basic: false,
     onClick: undefined,
-    state: ""
+    state: "",
+    circular: false
   };
 
   render() {
@@ -24,28 +25,35 @@ export default class StandardButton extends Component {
       text,
       ficon,
       bicon,
-      isBasic,
+      basic,
       onClick,
-      state
+      state,
+      circular,
+      micon,
+      children
     } = this.props;
     const inverted = invert ? "inverted" : "";
-    const basic = isBasic ? "basic" : "";
+    const basicS = basic ? "basic" : "";
+    const circle = circular ? "circular" : "";
     return (
       <button
         className={`
         ${size}
+        ${circle}
         ui
         ${state}
+        ${micon && "icon"}
         ${inverted}
         ${color}
-        ${basic}
+        ${basicS}
         button
       `}
         onClick={evt => onClick && onClick(evt, state)}
       >
-        {ficon && <i className={`${ficon}`}> </i>}
-        {text}
+        {(micon || ficon) && <i className={`${micon || ficon}`}> </i>}
+        {text ? text : ""}
         {bicon && <i className={`right ${bicon}`}> </i>}
+        {children}
       </button>
     );
   }
