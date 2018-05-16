@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 
+const or = <div class="or" />;
 export default class Button extends Component {
   static propTypes = {};
-
+  static Or() {
+    return or;
+  }
   static defaultProps = {
     //color of the button
     color: "",
@@ -37,7 +40,8 @@ export default class Button extends Component {
     htext: "",
     labeled: undefined,
     href: "#",
-    pointed: false
+    pointed: false,
+    attached: undefined
   };
 
   render() {
@@ -63,7 +67,8 @@ export default class Button extends Component {
       htext,
       labeled,
       href,
-      pointed
+      pointed,
+      attached
     } = this.props;
     const inverted = invert ? "inverted" : "";
     const basicS = basic ? "basic" : "";
@@ -90,6 +95,7 @@ export default class Button extends Component {
     ${leftFloatedS}
     ${rightFloatedS}
     ${labeledIconS}
+    ${attached ? attached + " attached" : ""}
     ${compactS}
     ${animateS}
     ${state}
