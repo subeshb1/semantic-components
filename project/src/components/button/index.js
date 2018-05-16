@@ -1,5 +1,5 @@
 
-export  {default as StandardButton} from "./SimpleButton";
+export   {default} from "./button";
 // export  {default as StandardButton} from "./SimpleButton";
 
 
