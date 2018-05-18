@@ -17,7 +17,7 @@ export class IconGroup extends Component {
       <i
         className={className}
         onClick={evt => {
-          if (onClick) onClick(evt);
+          if (onClick) onClick(this.props, evt);
         }}
       >
         {children}
@@ -39,7 +39,7 @@ export default class Icon extends Component {
     color: "",
     inverted: false,
     extra: "",
-    corner:false,
+    corner: false
   };
   render() {
     const {
@@ -55,10 +55,11 @@ export default class Icon extends Component {
       bordered,
       inverted,
       onClick,
-      extra,corner,
+      extra,
+      corner
     } = this.props;
     const className = `
-        ${corner?(typeof corner === "string"?corner:"")+" corner":"" }
+        ${corner ? (typeof corner === "string" ? corner : "") + " corner" : ""}
         ${extra}
         ${fitted ? "fitted" : ""}
         ${size ? size : ""}
@@ -89,7 +90,7 @@ export default class Icon extends Component {
       <i
         className={className}
         onClick={evt => {
-          if (onClick) onClick(evt);
+          if (onClick) onClick(this.props, evt);
         }}
       />
     );

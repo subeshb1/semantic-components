@@ -42,7 +42,7 @@ export default class Button extends Component {
     href: "#",
     pointed: false,
     attached: undefined,
-    extra:"",
+    extra: ""
   };
 
   render() {
@@ -70,7 +70,7 @@ export default class Button extends Component {
       href,
       pointed,
       attached,
-      extra,
+      extra
     } = this.props;
     const invertedS = inverted ? "inverted" : "";
     const basicS = basic ? "basic" : "";
@@ -114,7 +114,7 @@ export default class Button extends Component {
         <div
           className={className}
           tabIndex="0"
-          onClick={evt => onClick && onClick(evt, state)}
+          onClick={evt => onClick && onClick(this.props, evt)}
         >
           <div className="visible content">
             {ficon && <i className={`${ficon} icon`}> </i>}
@@ -141,7 +141,7 @@ export default class Button extends Component {
           )}
           <div
             className={`ui ${color} button`}
-            onClick={evt => onClick && onClick(evt, state)}
+            onClick={evt => onClick && onClick(this.props, evt)}
           >
             <i className={`${ficon} icon`} /> {text}
           </div>
@@ -160,7 +160,7 @@ export default class Button extends Component {
         <div
           className={`ui ${labeled} labeled button`}
           tabIndex="0"
-          onClick={evt => onClick && onClick(evt, state)}
+          onClick={evt => onClick && onClick(this.props, evt)}
         >
           {children}
         </div>
@@ -169,9 +169,11 @@ export default class Button extends Component {
       return (
         <button
           className={className}
-          onClick={evt => onClick && onClick(evt, state)}
+          onClick={evt => onClick && onClick(this.props, evt)}
         >
-          {((micon && typeof micon === 'string') || ficon) && <i className={`${micon || ficon} icon`}> </i>}
+          {((micon && typeof micon === "string") || ficon) && (
+            <i className={`${micon || ficon} icon`}> </i>
+          )}
           {text ? text : ""}
           {bicon && <i className={`right ${bicon} icon`}> </i>}
           {children}

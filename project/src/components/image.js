@@ -10,7 +10,7 @@ export default class Image extends Component {
   static Group = ImageGroup;
   static defaultProps = {
     size: "",
-    src: "",
+    src: undefined,
     wrapped: false,
     as: "img",
     state: "",
@@ -21,7 +21,7 @@ export default class Image extends Component {
     rounded: false,
     spaced: false,
     float: "",
-    fluid: false
+    fluid: false,
   };
   render() {
     const {
@@ -44,7 +44,8 @@ export default class Image extends Component {
       fluid,
       float,
       centered,
-      verticalAlign
+      verticalAlign,
+      onClick
     } = this.props;
     const className = `
         ui
@@ -53,7 +54,7 @@ export default class Image extends Component {
         ${avatar ? "avatar" : ""}
         ${rounded ? "rounded" : ""}
         ${circular ? "circular" : ""}
-        ${spaced ? "spaced" : ""}
+        ${spaced ? (typeof spaced==="string"? spaced:"")+" spaced" : ""}
         ${centered ? "centered" : ""}
         ${fluid ? "fluid" : ""}
         ${bordered ? "bordered" : ""}
@@ -64,17 +65,22 @@ export default class Image extends Component {
 
     if (wrapped || children || as === "div") {
       return (
-        <div className={className}>
-          {children ? (
-            children
-          ) : (
-            <img src={src} alt={alt} srcSet={srcSet} sizes={sizes} />
-          )}
+        <div
+          className={className}
+          onClick={evt => onClick && onClick(this.props, evt)}
+        >
+          {children}
+          <img src={src} alt={alt} srcSet={srcSet} sizes={sizes} />
         </div>
       );
     } else if (as === "a") {
       return (
-        <a href={href} target={target} className={className}>
+        <a
+          href={href}
+          target={target}
+          className={className}
+          onClick={evt => onClick && onClick(this.props, evt)}
+        >
           <img src={src} alt={alt} srcSet={srcSet} sizes={sizes} />
         </a>
       );
@@ -86,6 +92,7 @@ export default class Image extends Component {
         alt={alt}
         srcSet={srcSet}
         sizes={sizes}
+        onClick={evt => onClick && onClick(this.props, evt)}
       />
     );
   }

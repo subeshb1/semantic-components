@@ -14,11 +14,15 @@ import Flag from "./components/flag";
 import Header from "./components/header";
 // eslint-disable-next-line
 import Image from "./components/image";
+import Label from "./components/label";
 class App extends Component {
   render() {
     return (
-        <Container />
-          );
+      <Container>
+      </Container>
+
+
+    );
   }
 }
 export default App;
