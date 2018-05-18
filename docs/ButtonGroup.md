@@ -1,6 +1,6 @@
 # Button Group
 
-``` jsx
+```jsx
  {/* Simple Button Group */}
         <ButtonGroup>
           <Button text={"One"} />
@@ -43,14 +43,14 @@
           <Button text={"Three"} />
         </ButtonGroup>
         {/*  Basic Buttons in Group */}
-        <ButtonGroup invert>
+        <ButtonGroup inverted>
           <Button color="red" text={"One"} />
           <Button color="blue" text={"Two"} />
           <Button color="green" text={"Three"} />
         </ButtonGroup>
         {/*  Size in Group */}
-        <ButtonGroup invert size="massive">
-          <Button invert color="red" text={"One"} />
+        <ButtonGroup inverted size="massive">
+          <Button inverted color="red" text={"One"} />
           <Button color="blue" text={"Two"} />
           <Button color="green" text={"Three"} />
         </ButtonGroup>

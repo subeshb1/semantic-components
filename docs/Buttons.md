@@ -14,8 +14,8 @@
         <Button color="positive" size={"small"} text={"Subesh"} />
         <Button color="" text={"Follow"} />
         <Button color="primary" text={"Save"} />
-        <Button color="red" text={"Save"} invert />
-        <Button color="red" text={"Save"} invert compact />
+        <Button color="red" text={"Save"} inverted />
+        <Button color="red" text={"Save"} inverted compact />
         <Button color="red" text={"Save"} labeledIcon ficon="play" />
         <Button text={"Save"} labeledIcon bicon="arrow" />
         <Button micon="home" />

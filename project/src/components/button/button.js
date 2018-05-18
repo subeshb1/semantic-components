@@ -12,7 +12,7 @@ export default class Button extends Component {
     // size of the button
     size: "",
     //make the button color invert
-    invert: false,
+    inverted: false,
     // pass text as a prop
     text: undefined,
     // The front icon in the button
@@ -41,13 +41,14 @@ export default class Button extends Component {
     labeled: undefined,
     href: "#",
     pointed: false,
-    attached: undefined
+    attached: undefined,
+    extra:"",
   };
 
   render() {
     const {
       size,
-      invert,
+      inverted,
       color,
       text,
       ficon,
@@ -68,9 +69,10 @@ export default class Button extends Component {
       labeled,
       href,
       pointed,
-      attached
+      attached,
+      extra,
     } = this.props;
-    const inverted = invert ? "inverted" : "";
+    const invertedS = inverted ? "inverted" : "";
     const basicS = basic ? "basic" : "";
     const circle = circular ? "circular" : "";
     const compactS = compact ? "compact" : "";
@@ -92,6 +94,7 @@ export default class Button extends Component {
     ${circle}
     ${fluidS}
     ui
+    ${extra}
     ${leftFloatedS}
     ${rightFloatedS}
     ${labeledIconS}
@@ -100,7 +103,7 @@ export default class Button extends Component {
     ${animateS}
     ${state}
     ${micon && "icon"}
-    ${inverted}
+    ${invertedS}
     ${color}
     ${basicS}
     button
@@ -168,7 +171,7 @@ export default class Button extends Component {
           className={className}
           onClick={evt => onClick && onClick(evt, state)}
         >
-          {(micon || ficon) && <i className={`${micon || ficon} icon`}> </i>}
+          {((micon && typeof micon === 'string') || ficon) && <i className={`${micon || ficon} icon`}> </i>}
           {text ? text : ""}
           {bicon && <i className={`right ${bicon} icon`}> </i>}
           {children}
