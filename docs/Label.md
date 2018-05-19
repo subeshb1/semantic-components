@@ -156,5 +156,20 @@
     <Label>three</Label>
     <Label>four</Label>
   </Label.Group>
+
+  <Header>Mesage</Header>
+  <Segment compact>
+    <Label floating size="small" circular color="red">
+      {" "}
+      1
+    </Label>
+    Messages
+  </Segment>
+  <Segment padded="very">
+    <Label attached="bottom  right">Css</Label>Lorem ipsum, dolor sit amet consectetur
+    adipisicing elit. Magnam molestias veritatis at fugit consectetur, commodi ducimus
+    voluptas nemo vel, doloribus tempora natus repellendus quae quo consequuntur
+    earum temporibus illum. Doloribus!
+  </Segment>
 </Container>
 ```

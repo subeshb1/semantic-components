@@ -7,6 +7,8 @@ export default class Loader extends Component {
     inline: "",
     inverted: false,
     indeterminate:false,
+    extra:"",
+    style:{},
   };
   render() {
     const {
@@ -17,10 +19,13 @@ export default class Loader extends Component {
       content,
       children,
       indeterminate,
+      style,
+      extra
       
     } = this.props;
     const className = `
-        ui  
+        ui 
+        ${extra} 
         ${size}
         ${inline ? (typeof inline === "string" ? inline : "") + " inline" : ""}
         ${inverted?"inverted":""}
@@ -31,7 +36,7 @@ export default class Loader extends Component {
     `.replace(/\s+/g, " ");
 
     return (
-      <div className={className} >
+      <div className={className} style={style}>
         {content}
         {children}
       </div>

@@ -18,12 +18,12 @@ import Image from "./components/image";
 import Label from "./components/label";
 // eslint-disable-next-line
 import Loader from "./components/loader";
+// eslint-disable-next-line
+import Segment from "./components/segment";
 class App extends Component {
   render() {
     return (
-      <Container>
-        
-      </Container>
+      <Container></Container>
     );
   }
 }
