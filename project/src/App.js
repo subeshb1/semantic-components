@@ -14,14 +14,16 @@ import Flag from "./components/flag";
 import Header from "./components/header";
 // eslint-disable-next-line
 import Image from "./components/image";
+// eslint-disable-next-line
 import Label from "./components/label";
+// eslint-disable-next-line
+import Loader from "./components/loader";
 class App extends Component {
   render() {
     return (
       <Container>
+        
       </Container>
-
-
     );
   }
 }
