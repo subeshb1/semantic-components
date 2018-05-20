@@ -22,116 +22,134 @@ import Loader from "./components/loader";
 import Segment from "./components/segment";
 // eslint-disable-next-line
 import Input from "./components/input";
+// eslint-disable-next-line
+import List, { ListItem } from "./components/list";
 
 class App extends Component {
   render() {
     return (
-      <Container> <ButtonGroup>
-          <Button text={"One"} />
-          <Button text={"Two"} />
-          <Button text={"Three"} />
-        </ButtonGroup>
-        {/* Button Group to hold Icons */}
-        <ButtonGroup icon>
-          <Button micon={"align left"} />
-          <Button micon={"align center"} />
-          <Button micon={"align right"} />
-        </ButtonGroup>
-        <ButtonGroup icon>
-          <Button micon={"play"} />
-          <Button micon={"pause"} />
-          <Button micon={"shuffle"} />
-        </ButtonGroup>
-        {/* Vertical Button Group */}
-        <ButtonGroup vertical>
-          <Button text={"One"} />
-          <Button text={"Two"} />
-          <Button text={"Three"} />
-        </ButtonGroup>
-        {/*  Labeled Icon Group */}
-        <ButtonGroup vertical>
-          <Button labeledIcon text={"Play"} ficon="play" />
-          <Button labeledIcon text={"Pause"} ficon="pause" />
-          <Button labeledIcon text={"Shuffle"} ficon="shuffle" />
-        </ButtonGroup>
-        {/*  Colored Button Group */}
-        <ButtonGroup color="red">
-          <Button text={"One"} />
-          <Button text={"Two"} />
-          <Button text={"Three"} />
-        </ButtonGroup>
-        {/*  Basic Button Group */}
-        <ButtonGroup basic>
-          <Button text={"One"} />
-          <Button text={"Two"} />
-          <Button text={"Three"} />
-        </ButtonGroup>
-        {/*  Basic Buttons in Group */}
-        <ButtonGroup inverted>
-          <Button color="red" text={"One"} />
-          <Button color="blue" text={"Two"} />
-          <Button color="green" text={"Three"} />
-        </ButtonGroup>
-        {/*  Size in Group */}
-        <ButtonGroup inverted size="massive">
-          <Button inverted color="red" text={"One"} />
-          <Button color="blue" text={"Two"} />
-          <Button color="green" text={"Three"} />
-        </ButtonGroup>
-        {/* Attached Buttona*/}
-        <ButtonGroup>
-          <Button color="red" text={"One"} />
-          <Button color="blue" text={"Two"} />
-          <Button.Or />
-          <Button color="green" text={"Three"} />
-          <Button.Or />
-          <Button color="violet" text={"Three"} />
-          <Button color="pink" text={"Three"} />
-          <Button color="green" text={"Three"} />
-          <Button animate text={"Hello"} bicon={"right arrow"} />
-        </ButtonGroup>
-        {/*  Attached in Group */}
-        <ButtonGroup attached="top" count="three">
-          <Button color="red" text={"One"} />
-          <Button color="blue" text={"Two"} />
-          <Button color="green" text={"Three"} />
-        </ButtonGroup>
-
-        <ButtonGroup attached="bottom" count={"three"}>
-          <Button color="red" text={"One"} />
-          <Button color="blue" text={"Two"} />
-          <Button animate color="green" text={"Three"} bicon={"right arrow"} />
-        </ButtonGroup>
-        {/* Mixed Group */}
-        <ButtonGroup>
-          <Button animate bicon={"left chevron"} text={"Back"} />
-          <Button ficon={"stop"} text={"Stop"} />
-          <Button animate bicon={"right chevron"} text={"Front"} />
-        </ButtonGroup>
-        <ButtonGroup>
-          <Button labeledIcon ficon={"left chevron"} text={"Back"} />
-          <Button ficon={"stop"} text={"Stop"} />
-          <Button labeledIcon bicon={"right chevron"} text={"Front"} />
-        </ButtonGroup>
-        <ButtonGroup >
-          <Button
-            labeled
-            color={"red"}
-            text={"Like"}
-            ficon={"home"}
-            htext={"2048"}
-            href="#"
-            pointed
-          />
-          <Button
-            labeled={"left"}
-            color={"blue"}
-            text={"Like"}
-            ficon={"home"}
-            htext={"2048"}
-            href="#"
-          />
-        </ButtonGroup></Container>
+      <Container>
+        <Header as="h1">Lists</Header>
+        <Header as="h2">Type of Lists</Header>
+        <Header>Simple List</Header>
+        <List>
+          <List.Item>Apples</List.Item>
+          <List.Item>Pears</List.Item>
+          <List.Item>Oranges</List.Item>
+        </List>
+        <Header>
+          Simple List as ul or ol.{" "}
+          {"{use ol or li for bulleted or ordered list}"}
+        </Header>
+        <List as="ul">
+          <List.Item>Apples</List.Item>
+          <List.Item>Pears</List.Item>
+          <List.Item>Oranges</List.Item>
+        </List>
+        <Header>Bulleted List</Header>
+        <List as="ul" bulleted>
+          <List.Item as="li">Apples</List.Item>
+          <List.Item as="li">Pears</List.Item>
+          <List.Item as="li">
+            Oranges
+            <List nested as="ul">
+              <List.Item as="li">Apples</List.Item>
+              <List.Item as="li">Pears</List.Item>
+              <List.Item as="li">Oranges</List.Item>
+            </List>
+          </List.Item>
+          <List.Item>Pears</List.Item>
+        </List>
+        <Header>Ordered List</Header>
+        <List as="ol" ordered>
+          <List.Item>Apples</List.Item>
+          <List.Item>
+            Subesh
+            <List as="ol" nested>
+              <List.Item>Apples</List.Item>
+              <List.Item>Pears</List.Item>
+              <List.Item>Oranges</List.Item>
+            </List>
+          </List.Item>
+          <List.Item>Oranges</List.Item>
+        </List>
+        <Header>List with Links</Header>
+        <List link>
+          <List.Item className="active item">Home</List.Item>
+          <List.Item as="a">About</List.Item>
+          <List.Item as="a">Jobs</List.Item>
+          <List.Item as="a">Team</List.Item>
+        </List>
+        <Header as="h2">List Content</Header>
+        <Header>Item</Header>
+        <List>
+          <List.Item>1</List.Item>
+          <List.Item>2</List.Item>
+          <List.Item>3</List.Item>
+          <List.Item>4</List.Item>
+        </List>
+        <Header>Icon</Header>
+        <List>
+          <List.Item as="a">
+            <Icon name="help" />
+            <List.Content>
+              <List.Header>Floated Icons</List.Header>
+              <List.Description>
+                This text will always have a left margin to make sure it sits
+                alongside your icon
+              </List.Description>
+            </List.Content>
+          </List.Item>
+          <List.Item as="a" active>
+            <Icon name="right triangle" />
+            <List.Content>
+              <List.Header>Floated Icons</List.Header>
+              <List.Description>
+                This text will always have a left margin to make sure it sits
+                alongside your icon
+              </List.Description>
+            </List.Content>
+          </List.Item>
+          <List.Item>
+            <Icon name="help" />
+            Inline Text
+          </List.Item>
+        </List>
+        <Header>Image</Header>
+        <List>
+          <List.Item as="a">
+            <Image src="/img/joe.jpg" avatar />
+            <List.Content>
+              <List.Header>Floated Icons</List.Header>
+              <List.Description data-tooltip="Amazing Image">
+                This text will always have a left margin to make sure it sits
+                alongside your icon
+              </List.Description>
+            </List.Content>
+          </List.Item>
+        </List>
+        <List ordered items={[
+          { as: "div",active:true,children:<List nested items={[
+            { as: "div",active:true,children:"Subesh" },
+            { as: "div",active:true,children:"Subesh" },
+            { as: "div",active:true,children:"Subesh" },
+            { as: "div",active:true,children:"Subesh" },
+            { as: "div",active:true,children:"Subesh" },
+            { as: "div",active:true,children:"Subesh" },
+            { as: "div",active:true,children:"Subesh" },
+            { as: "div",active:true,children:"Subesh" },
+            { as: "div",active:true,children:"Subesh" },
+            ]} /> },
+          { as: "div",active:true,children:"Subesh" },
+          { as: "div",active:true,children:"Subesh" },
+          { as: "div",active:true,children:"Subesh" },
+          { as: "div",active:true,children:"Subesh" },
+          { as: "div",active:true,children:"Subesh" },
+          { as: "div",active:true,children:"Subesh" },
+          { as: "div",active:true,children:"Subesh" },
+          { as: "div",active:true,children:"Subesh" },
+          ]} />
+      </Container>
     );
   }
 }
