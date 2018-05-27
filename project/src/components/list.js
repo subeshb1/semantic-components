@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
+import u4 from "uniqid";
 const simpleComponent = (className, defaultAs = "div") => ({
   as = defaultAs,
   ...otherProps
@@ -46,7 +46,25 @@ export default class List extends Component {
         as: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
           .isRequired
       }).isRequired
-    )
+    ),
+    horizontal: PropTypes.bool,
+    inverted: PropTypes.bool,
+    selection: PropTypes.bool,
+    animated: PropTypes.bool,
+    relaxed: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    celled: PropTypes.bool,
+    size: PropTypes.oneOf([
+      "tiny",
+      "small",
+      "mini",
+      "large",
+      "big",
+      "huge",
+      "massive"
+    ]),
+    divided: PropTypes.bool,
+    extra: PropTypes.string,
+    aligned: PropTypes.oneOf(['bottom','top','middle'])
   };
 
   static defaultProps = {
@@ -54,35 +72,67 @@ export default class List extends Component {
     bulleted: false,
     ordered: false,
     nested: false,
-    link: false
+    link: false,
+    horizontal: false,
+    inverted: false,
+    selection: false,
+    animated: false,
+    relaxed: false,
+    celled: false,
+    size: "",
+    divided: "",
+    extra: "",
+    aligned:"",
   };
 
   render() {
-    const {
+    const { 
       as,
       bulleted,
       ordered,
       nested,
       link,
       items,
+      children,
+      horizontal,
+      inverted,
+      selection,
+      animated,
+      relaxed,
+      celled,
+      size,
+      divided,
+      extra,
+      aligned,
       ...otherProps
     } = this.props;
-    console.log(items);
 
     const className = `
     ${!nested ? "ui" : ""}
+    ${size}
+    ${extra}
+    ${aligned ? aligned + " aligned":""}
+    ${inverted ? "inverted" : ""}
+    ${celled ? "celled" : ""}
+    ${horizontal ? "horizontal" : ""}
+    ${selection ? "selection" : ""}
+    ${animated ? "animated" : ""}
+    ${relaxed ? (typeof relaxed === "string" ? relaxed : "") + " relaxed" : ""}
     ${bulleted ? "bulleted" : ""}
     ${ordered ? "ordered" : ""}
     ${link ? "link" : ""}
+    ${divided ? "divided" : ""}
     list
     `.replace(/\s+/g, " ");
 
     const renderElement = React.createElement(
       as,
       { className, ...otherProps },
-      items && items.map(({ as, children }, ind) => (
-        <ListItem key={ind} as={as}>{children}</ListItem>
-      ))
+      items &&
+        items.map(({ children, id, ...others }) =>
+          React.createElement(ListItem, { ...others, id: id || u4() }, children)
+        ),
+      children
     );
     return renderElement;
   }
