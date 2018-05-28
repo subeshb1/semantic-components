@@ -116,7 +116,7 @@ export default class ListPage extends Component {
         </List>
         <Header>Image</Header>
         <List>
-          <List.Item as="a">
+          <List.Item>
             <Image src="/img/joe.jpg" avatar />
             <List.Content>
               <List.Header as="a">Floated Icons</List.Header>
@@ -152,6 +152,7 @@ export default class ListPage extends Component {
         <List
           items={[
             {
+              as: "div",
               children: (
                 <React.Fragment>
                   <List.Header>New York</List.Header>
@@ -160,6 +161,7 @@ export default class ListPage extends Component {
               )
             },
             {
+              as: "div",
               children: (
                 <React.Fragment>
                   <List.Header>Kathmandu</List.Header>
@@ -168,6 +170,7 @@ export default class ListPage extends Component {
               )
             },
             {
+              as: "div",
               children: (
                 <React.Fragment>
                   <List.Header>Australia </List.Header>
@@ -176,6 +179,7 @@ export default class ListPage extends Component {
               )
             },
             {
+              as: "div",
               children: (
                 <React.Fragment>
                   <List.Header>New York</List.Header>
@@ -190,6 +194,7 @@ export default class ListPage extends Component {
         <List
           items={[
             {
+              as: "div",
               children: (
                 <React.Fragment>
                   <Icon name="map marker" />
@@ -204,6 +209,7 @@ export default class ListPage extends Component {
               )
             },
             {
+              as: "div",
               children: (
                 <React.Fragment>
                   <Icon name="map marker" />
@@ -218,6 +224,7 @@ export default class ListPage extends Component {
               )
             },
             {
+              as: "div",
               children: (
                 <React.Fragment>
                   <Icon name="map marker" />

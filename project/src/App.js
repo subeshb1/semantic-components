@@ -1,13 +1,17 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Header from "./components/header";
 import Container from "./components/container";
 import Element from "./pages";
 import List from "./components/list";
-const simpleComponent = (className = "", defaultAs = "div") => ({
-  as = defaultAs,
-  ...otherProps
-}) => React.createElement(as, { className, ...otherProps });
+import Test from "./tests/TestPage";
+import TestPage from "./tests/TestPage";
+
+const NoContent = () => (
+  <Container textAlign="center">
+    <Header size="large"> No Content Found</Header>
+  </Container>
+);
 
 const Home = () => (
   <Container textAlign="center">
@@ -19,14 +23,17 @@ const Home = () => (
     </List>
   </Container>
 );
+
 class App extends Component {
   render() {
     return (
       <Router>
-        <React.Fragment>
+        <Switch>
           <Route path="/elements" component={Element} />
-          <Route path="/" exact component={Home} />
-        </React.Fragment>
+          <Route exact path="/" component={Home} />
+          <Route path="/test" component={TestPage} />
+          <Route component={NoContent} />
+        </Switch>
       </Router>
     );
   }

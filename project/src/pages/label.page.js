@@ -1,11 +1,10 @@
 import React from "react";
-import Container from '../components/container';
-import Label from '../components/label';
-import Header from '../components/header';
-import Segment from '../components/segment';
-import Image from '../components/image';
-import Icon from '../components/icon';
-import Button from "../components/button";
+import Container from "../components/container";
+import Label from "../components/label";
+import Header from "../components/header";
+import Segment from "../components/segment";
+import Image from "../components/image";
+import Icon from "../components/icon";
 
 export default () => {
   return (

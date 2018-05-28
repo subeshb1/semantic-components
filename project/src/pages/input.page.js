@@ -2,11 +2,8 @@ import React from "react";
 import Label from "../components/label";
 import Container from "../components/container";
 import Header from "../components/header";
-import Segment from "../components/segment";
-import Image from "../components/image";
 import Icon from "../components/icon";
 import Button from "../components/button";
-import Divider from "../components/divider";
 import Input from "../components/input";
 
 const data = {

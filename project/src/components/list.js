@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import u4 from "uniqid";
-const simpleComponent = (className, defaultAs = "div") => ({
-  as = defaultAs,
-  ...otherProps
-}) => React.createElement(as, { className, ...otherProps });
+import { simpleComponent } from "../lib/react-extras";
+
 //List Item Component
 export class ListItem extends Component {
   static propTypes = {
@@ -60,11 +58,12 @@ export default class List extends Component {
       "large",
       "big",
       "huge",
-      "massive"
+      "massive",
+      ""
     ]),
     divided: PropTypes.bool,
     extra: PropTypes.string,
-    aligned: PropTypes.oneOf(['bottom','top','middle'])
+    aligned: PropTypes.oneOf(["bottom", "top", "middle", ""])
   };
 
   static defaultProps = {
@@ -80,13 +79,13 @@ export default class List extends Component {
     relaxed: false,
     celled: false,
     size: "",
-    divided: "",
+    divided: false,
     extra: "",
-    aligned:"",
+    aligned: ""
   };
 
   render() {
-    const { 
+    const {
       as,
       bulleted,
       ordered,
@@ -111,7 +110,7 @@ export default class List extends Component {
     ${!nested ? "ui" : ""}
     ${size}
     ${extra}
-    ${aligned ? aligned + " aligned":""}
+    ${aligned ? aligned + " aligned" : ""}
     ${inverted ? "inverted" : ""}
     ${celled ? "celled" : ""}
     ${horizontal ? "horizontal" : ""}
@@ -130,10 +129,15 @@ export default class List extends Component {
       { className, ...otherProps },
       items &&
         items.map(({ children, id, ...others }) =>
-          React.createElement(ListItem, { ...others, id: id || u4() }, children)
+          React.createElement(
+            ListItem,
+            { ...others, key: id || u4() },
+            children
+          )
         ),
       children
     );
     return renderElement;
   }
 }
+// TO-DO -- Add reimplementation for List.Content
