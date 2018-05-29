@@ -14,7 +14,7 @@ const DropDownTitle = props => {
 };
 
 // The DropDownMenu
-const DropDownMenu = ({ children, active, left, selected,...otherProps }) => {
+const DropDownMenu = ({ children, active, left, selected, ...otherProps }) => {
   return (
     <div
       tabIndex="-1"
@@ -23,11 +23,22 @@ const DropDownMenu = ({ children, active, left, selected,...otherProps }) => {
       }`}
       {...otherProps}
     >
-      {React.Children.map( children, (child,index) => {
-        if(index === selected)
-          return React.cloneElement(child,{className:"selected item"});
-        return React.cloneElement(child,{className:"item"});
-      } )}
+      {React.Children.map(children, (child, index) => {
+        // if(child.type.name ==="DropDown")
+        // console.log(child);
+        if (index === selected) {
+          let chi = React.cloneElement(child, {
+            className: "item active selected",
+            selected: true
+          });
+          console.log(chi);
+          return chi;
+        }
+        return React.cloneElement(child, {
+          className: "item",
+          selected: false
+        });
+      })}
     </div>
   );
 };
@@ -37,14 +48,14 @@ export default class DropDown extends Component {
     super(props);
     const { open, close } = props;
     this.state = {
-      active: true,
+      active: false,
       open: [...open],
       close: [...close],
       selected: -1
     };
     //ref to the dropdown
     this.dropDown = React.createRef();
-    this.dataCount = 2;
+    this.dataCount = 8;
   }
   //DropDown.Menu
   static Menu = DropDownMenu;
@@ -52,7 +63,8 @@ export default class DropDown extends Component {
   static propTypes = {
     as: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     text: PropTypes.string,
-    nested: PropTypes.bool
+    nested: PropTypes.bool,
+    fluid: PropTypes.bool
   };
   //defaultProps
   static defaultProps = {
@@ -62,7 +74,9 @@ export default class DropDown extends Component {
     nested: false,
     selection: false,
     open: [],
-    close: []
+    close: [],
+    fluid: false,
+    selected: false
   };
 
   componentDidMount() {
@@ -77,9 +91,17 @@ export default class DropDown extends Component {
         )
           this.setState(({ active }) => ({ active: false }));
       });
+
+      document.addEventListener("keyup", e => {
+        console.log(e);
+        let code = e.keyCode ? e.keyCode : e.which;
+        if (code == 9 && document.activeElement === this.dropDown.current)
+          this.setState(({ active }) => ({ active: true }));
+      });
+
       //Adding open listeners
       for (let event of open) {
-        this.dropDown.current.addEventListener(event, () => {
+        this.dropDown.current.addEventListener(event, e => {
           this.setState(({ active }) => ({ active: true }));
         });
       }
@@ -90,10 +112,18 @@ export default class DropDown extends Component {
         });
       }
 
-      if (this.props.selection) {
-        this.dropDown.current.addEventListener("keyup", e => {
+      if (this.props.selection || true) {
+        this.dropDown.current.addEventListener("keydown", e => {
           if (this.state.active) {
-            if (this.state.selected === -1) {
+            if (e.keyCode === 27 || e.keyCode === 9) {
+              this.dropDown.current.blur();
+              this.setState(({ selected }) => ({
+                active: false,
+                selected: -1
+              }));
+              return;
+            }
+            if (this.state.selected === -1 && e.keyCode !== 9) {
               this.setState({ selected: 0 });
             } else {
               if (e.keyCode === 40) {
@@ -102,7 +132,12 @@ export default class DropDown extends Component {
                 }));
               } else if (e.keyCode === 38) {
                 this.setState(({ selected }) => ({
-                  selected: (selected - 1) % this.dataCount
+                  selected: (this.dataCount + selected - 1) % this.dataCount
+                }));
+              } else if (e.keyCode === 13) {
+                this.setState(({ selected }) => ({
+                  active: false,
+                  selected: -1
                 }));
               }
             }
@@ -113,11 +148,20 @@ export default class DropDown extends Component {
   }
 
   render() {
-    const { as, children, text, nested, selection } = this.props;
+    const {
+      as,
+      children,
+      text,
+      nested,
+      selection,
+      fluid,
+      selected
+    } = this.props;
     const className = nested
-      ? "item"
+      ? `${selected ? "active selected" : ""}  item`
       : `
     ui
+    ${fluid ? "fluid" : ""}
     ${selection ? "selection" : ""}
     dropdown
     ${this.state.active ? "active visible" : ""}
@@ -125,7 +169,8 @@ export default class DropDown extends Component {
     if (!selection) {
       const cloneChildren = React.Children.map(children, child => {
         return React.cloneElement(child, {
-          active: this.state.active
+          active: this.state.active,
+          selected: this.state.selected
         });
       });
 
@@ -136,7 +181,7 @@ export default class DropDown extends Component {
           //Reference to the Div
           ref: this.dropDown,
           //TO make tab focusable
-          tabIndex: 0,
+          tabIndex: nested ? -1 : 0,
           //default click handlers - Click closes or opens the dropdown
           onClick: e => {
             if (nested) e.stopPropagation();
@@ -169,6 +214,7 @@ export default class DropDown extends Component {
           tabIndex: 0,
           //default click handlers - Click closes or opens the dropdown
           onClick: e => {
+            console.log(document.activeElement === e.currentTarget);
             if (nested) e.stopPropagation();
             this.setState(({ active }) => ({
               active: !active
