@@ -6,6 +6,7 @@ export class LabelGroup extends Component {
     size: "",
     circular:"",
     tag:"",color:"",
+    extraPorps:{}
   };
   render() {
     const { children, extra, size, onClick,circular,tag,color } = this.props;
@@ -50,6 +51,7 @@ export default class Label extends Component {
     floating:false,
     circular:false,
     size:"",
+    
   };
   render() {
     const {
@@ -69,6 +71,7 @@ export default class Label extends Component {
       horizontal,
       floating,
       circular,
+      ...otherProps
     } = this.props;
 
     const className = `
@@ -102,6 +105,7 @@ export default class Label extends Component {
         <a
           className={className}
           onClick={evt => onClick && onClick(this.props, evt)}
+          {...otherProps}
         >
           {children}
         </a>
@@ -111,6 +115,7 @@ export default class Label extends Component {
         <div
           className={className}
           onClick={evt => onClick && onClick(this.props, evt)}
+              {...otherProps}
         >
           {children}
         </div>

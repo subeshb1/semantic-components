@@ -6,10 +6,11 @@ import Element from "./pages";
 import List from "./components/list";
 import Test from "./tests/TestPage";
 import TestPage from "./tests/TestPage";
-
+import TopRepos from './pages/implementations/TopRepos';
 const NoContent = () => (
   <Container textAlign="center">
     <Header size="large"> No Content Found</Header>
+    
   </Container>
 );
 
@@ -32,6 +33,8 @@ class App extends Component {
           <Route path="/elements" component={Element} />
           <Route exact path="/" component={Home} />
           <Route path="/test" component={TestPage} />
+          <Route path="/implementations/top-repos" component={TopRepos} />
+
           <Route component={NoContent} />
         </Switch>
       </Router>

@@ -45,7 +45,8 @@ export default class Image extends Component {
       float,
       centered,
       verticalAlign,
-      onClick
+      onClick,
+      ...otherProps
     } = this.props;
     const className = `
         ui
@@ -68,6 +69,8 @@ export default class Image extends Component {
         <div
           className={className}
           onClick={evt => onClick && onClick(this.props, evt)}
+           
+          {...otherProps}
         >
           {children}
           <img src={src} alt={alt} srcSet={srcSet} sizes={sizes} />
@@ -79,14 +82,16 @@ export default class Image extends Component {
           href={href}
           target={target}
           className={className}
-          onClick={evt => onClick && onClick(this.props, evt)}
+          onClick={evt => onClick && onClick(this.props, evt)} 
+          {...otherProps}
         >
           <img src={src} alt={alt} srcSet={srcSet} sizes={sizes} />
         </a>
       );
     }
     return (
-      <img
+      <img 
+      {...otherProps}
         className={className}
         src={src}
         alt={alt}
