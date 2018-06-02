@@ -20,8 +20,8 @@ export default class Loader extends Component {
       children,
       indeterminate,
       style,
-      extra
-      
+      extra,
+      ...otherProps,      
     } = this.props;
     const className = `
         ui 
@@ -36,7 +36,7 @@ export default class Loader extends Component {
     `.replace(/\s+/g, " ");
 
     return (
-      <div className={className} style={style}>
+      <div className={className} style={style} {...otherProps}>
         {content}
         {children}
       </div>

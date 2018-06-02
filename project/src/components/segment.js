@@ -19,7 +19,8 @@ export class SegmentGroup extends Component {
       stacked,
       piled,
       compact,
-      extra
+      extra,
+      ...otherProps
     } = this.props;
     const className = `
         ui
@@ -33,7 +34,7 @@ export class SegmentGroup extends Component {
         segments
         `.replace(/\s+/g, " ");
     return (
-      <div className={className} style={style}>
+      <div className={className} style={style} {...otherProps}>
         {content}
         {children}
       </div>
@@ -42,7 +43,7 @@ export class SegmentGroup extends Component {
 }
 
 export default class Segment extends Component {
-static Group = SegmentGroup;
+  static Group = SegmentGroup;
   static defaultProps = {
     //types
     raised: false, //to raise the segment
@@ -89,7 +90,8 @@ static Group = SegmentGroup;
       textAlign,
       basic,
       extra,
-      style
+      style,
+      ...otherProps
     } = this.props;
     //class Name default `ui segment`
     const className = `
@@ -121,7 +123,7 @@ static Group = SegmentGroup;
       segment
       `.replace(/\s+/g, " ");
     return (
-      <div className={className} style={style}>
+      <div className={className} style={style} {...otherProps}>
         {content}
         {children}
       </div>
