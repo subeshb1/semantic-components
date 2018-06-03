@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-const Or = () => <div class="or" />;
+const Or = () => <div className="or" />;
 
 export class ButtonGroup extends Component {
   static propTypes = {
@@ -35,7 +35,6 @@ export class ButtonGroup extends Component {
     labeled: PropTypes.bool,
     basic: PropTypes.bool,
     icon: PropTypes.bool,
-    inverted: PropTypes.bool,
     size: PropTypes.oneOf([
       "mini",
       "tiny",
@@ -53,6 +52,7 @@ export class ButtonGroup extends Component {
     attached: PropTypes.oneOf(["left", "right", "bottom", "top", ""]),
     vertical: PropTypes.bool,
     width: PropTypes.string,
+    extra: PropTypes.string,
   };
   static defaultProps = {
     as: "div",
@@ -60,7 +60,6 @@ export class ButtonGroup extends Component {
     labeled: false,
     basic: false,
     icon: false,
-    inverted: false,
     size: "",
     float: "",
     compact: false,
@@ -77,7 +76,6 @@ export class ButtonGroup extends Component {
       color,
       basic,
       children,
-      inverted,
       icon,
       compact,
       float,
@@ -85,6 +83,7 @@ export class ButtonGroup extends Component {
       fluid,
       vertical,
       width,
+      extra,
       ...otherProps
     } = this.props;
     const className = `
@@ -94,13 +93,13 @@ export class ButtonGroup extends Component {
     ${vertical?"vertical":""}
     ${attached ? attached + " attached" : "s"}
     ${compact ? "compact" : ""}
-    ${inverted ? "inverted" : ""}
     ${basic ? "basic" : ""}
     ${color}
     ${fluid ? "fluid" : ""}
     ${float ? float + " floated" : ""}
     ${labeled ? "labeled" : ""}
     ${icon ? "icon" : ""}
+    ${extra}
     buttons
     `.replace(/\s+/g, " ");
 
@@ -195,7 +194,8 @@ export default class Button extends Component {
     toggle: PropTypes.bool,
     fluid: PropTypes.bool,
     circular: PropTypes.bool,
-    attached: PropTypes.oneOf(["left", "right", "bottom", "top", ""])
+    attached: PropTypes.oneOf(["left", "right", "bottom", "top", ""]),
+    extra: PropTypes.string,
   };
   static defaultProps = {
     as: "button",
@@ -215,7 +215,8 @@ export default class Button extends Component {
     compact: false,
     toggle: false,
     fluid: false,
-    attached: ""
+    attached: "",
+    extra:"",
   };
   render() {
     const {
@@ -239,6 +240,7 @@ export default class Button extends Component {
       circular,
       toggle,
       fluid,
+      extra,
       ...otherProps
     } = this.props;
     const className = `
@@ -256,14 +258,15 @@ export default class Button extends Component {
     ${float ? float + " floated" : ""}
     ${
       animated
-        ? (typeof animated === "string" ? animated : "") + " animated"
-        : ""
+      ? (typeof animated === "string" ? animated : "") + " animated"
+      : ""
     }
     ${active ? "active" : ""}
     ${loading ? "loading" : ""}
     ${disabled ? "disabled" : ""}
     ${labeled ? (typeof labeled === "string" ? labeled : "") + " labeled" : ""}
     ${icon ? "icon" : ""}
+    ${extra}
     button
     `.replace(/\s+/g, " ");
 

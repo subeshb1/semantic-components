@@ -233,15 +233,12 @@ export default class extends Component {
           Button
         </Button>
         <Button icon circular>
-          {" "}
           <Icon name="settings" />
         </Button>
         <Button icon circular social="facebook">
-          {" "}
           <Icon name="facebook" />
         </Button>
         <Button icon circular social="instagram">
-          {" "}
           <Icon name="instagram" />
         </Button>
         <Header>Vertically Attached </Header>
@@ -292,7 +289,7 @@ export default class extends Component {
           <Button>Button 3</Button>
         </Button.Group>
         <Header>Labeled Icon Button Group</Header>
-        <Button.Group labeled="left" icon>
+        <Button.Group labeled vertical icon>
           <Button>
             Button 1
             <Icon name="align left" />
@@ -302,6 +299,134 @@ export default class extends Component {
           </Button>
           <Button>
             <Icon name="align right" />Button 3
+          </Button>
+        </Button.Group>
+        <Header>Mixed Button Group</Header>
+        <Button.Group>
+          <Button animated>
+            <Button.Visible>Back</Button.Visible>
+            <Button.Hidden>
+              <Icon name="left chevron" />
+            </Button.Hidden>
+          </Button>
+          <Button>
+            <Icon name="stop" />Stop
+          </Button>
+          <Button animated>
+            <Button.Visible>Front</Button.Visible>
+            <Button.Hidden>
+              <Icon name="right chevron" />
+            </Button.Hidden>
+          </Button>
+        </Button.Group>
+        <Divider />
+        <Button.Group>
+          <Button labeled icon animated>
+            Back
+            <Icon name="left chevron" />
+          </Button>
+          <Button>
+            <Icon name="stop" />Stop
+          </Button>
+          <Button labeled="right" icon>
+            Front
+            <Icon name="right chevron" />
+          </Button>
+        </Button.Group>
+        <Header>Colored Button Group</Header>
+        <Button.Group color="violet">
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3</Button>
+        </Button.Group>
+        <Header>BasicButton Group</Header>
+        <Button.Group color="red" basic>
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3</Button>
+        </Button.Group>
+        <Header>Size Button Group</Header>
+        <Button.Group size="massive">
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3</Button>
+        </Button.Group>
+        <Header>Equal Width Button Group</Header>
+        <Button.Group width="three">
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3 long long long long </Button>
+        </Button.Group>
+        <Header>Fluid Button Group</Header>
+        <Button.Group fluid>
+          <Button>But 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3 long long long long</Button>
+        </Button.Group>
+        <Header>Small Icon Basic Button Group</Header>
+        <Button.Group size="small" icon basic>
+          <Button>
+            <Icon name="align left" />
+          </Button>
+          <Button>
+            <Icon name="align center" />
+          </Button>
+          <Button>
+            <Icon name="align right" />
+          </Button>
+        </Button.Group>
+        <Header>Attached</Header>
+        <Button.Group attached="top">
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+        </Button.Group>
+        <Segment attached>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste sequi
+          laborum odio repellat at, soluta fugiat, reiciendis veniam,
+          repellendus blanditiis obcaecati id quam non praesentium nihil minima
+          sapiente! Maxime, qui?
+        </Segment>
+        <Button.Group attached="bottom">
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+        </Button.Group>
+
+        <Header>Extra</Header>
+        <Button.Group>
+          <Button labeled>
+            <Button animated color="red">
+              <Button.Visible text="Like" />
+              <Button.Hidden>
+                <Icon name="like" />
+              </Button.Hidden>
+            </Button>
+            <Label as="a" basic pointing="left" color="red">
+              2048
+            </Label>
+          </Button>
+
+          <Button labeled>
+            <Button animated="fade" color="blue" basic>
+              <Button.Visible text="Fork" />
+              <Button.Hidden>
+                <Icon name="fork" />
+              </Button.Hidden>
+            </Button>
+            <Label as="a" basic pointing="left" color="blue">
+              2048
+            </Label>
+          </Button>
+
+          <Button labeled>
+            <Button animated="vertical" color="violet">
+              <Button.Visible text="Star" />
+              <Button.Hidden>
+                <Icon name="star" />
+              </Button.Hidden>
+            </Button>
+            <Label as="a" basic pointing="left" color="violet">
+              2048
+            </Label>
           </Button>
         </Button.Group>
       </Container>
