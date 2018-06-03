@@ -5,7 +5,7 @@ import Header from "../components/header";
 import Segment from "../components/segment";
 import Image from "../components/image";
 import Icon from "../components/icon";
-
+import List from "../components/list";
 export default () => {
   return (
     <Container>
@@ -29,13 +29,19 @@ export default () => {
       <Label as="a" image color="yellow">
         <Image src="/img/joe.jpg" />
         Joe
-        <Label.Detail>Friend</Label.Detail>
+        <Label.Detail
+          onClick={() => {
+            alert("click");
+          }}
+        >
+          Friend Click
+        </Label.Detail>
       </Label>
       <Header as="h4">Label with cross Icon</Header>
       <Label image color="yellow">
         <Image src="/img/joe.jpg" />
         Joe
-        <Icon name="delete" />
+        <Icon name="delete" onClick={() => alert()} />
       </Label>
       <Header as="h4">Pointing Label</Header>
       <Label pointing>I am pointed</Label>
@@ -76,7 +82,7 @@ export default () => {
       <Header as="h4">Ribbon</Header>
       <Image.Group size="medium">
         <Image src="/img/flower2.jpg" fluid>
-          <Label as="a" ribbon="left">
+          <Label as="a" ribbon="left" >
             <Icon name="heart" />
           </Label>
         </Image>
@@ -99,17 +105,19 @@ export default () => {
         </Image>
       </Image.Group>
       <Header as="h4">Horizontal Formated label</Header>
-      <Label horizontal>label</Label>
-      <Label horizontal color="violet">
-        label
-      </Label>
-      <Label horizontal color="red">
-        label
-      </Label>
+      <List selection>
+       <List.Item><Label horizontal>label</Label>1</List.Item>
+        <List.Item><Label horizontal color="violet">
+          label
+        </Label>2</List.Item>
+        <List.Item><Label horizontal color="red">
+          label
+        </Label>3</List.Item>
+      </List>
       <Header as="h4">Floating Label</Header>
 
-      <div class="ui compact menu">
-        <a class="item">
+      <div className="ui compact menu">
+        <a className="item">
           Message
           <Label floating color="red">
             22
@@ -140,10 +148,10 @@ export default () => {
         <Label>four</Label>
       </Label.Group>
       <Label.Group circular>
-        <Label>one</Label>
-        <Label>two</Label>
-        <Label>three</Label>
-        <Label>four</Label>
+        <Label as="a">one</Label>
+        <Label as="a">two</Label>
+        <Label as="a">three</Label>
+        <Label as="a">four</Label>
       </Label.Group>
       <Label.Group tag>
         <Label>one</Label>
@@ -172,7 +180,10 @@ export default () => {
         </Label>
         Messages
       </Segment>
-      <Segment padded="very">
+      <Segment
+        padded="very"
+        onMouseOver={() => alert("Somethings about to happen")}
+      >
         <Label attached="bottom  right">Css</Label>Lorem ipsum, dolor sit amet
         consectetur adipisicing elit. Magnam molestias veritatis at fugit
         consectetur, commodi ducimus voluptas nemo vel, doloribus tempora natus

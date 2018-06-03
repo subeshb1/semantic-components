@@ -1,32 +1,38 @@
 import React, { Component } from "react";
-
+import PropTypes from "prop-types";
+import { simpleComponent } from "../lib/react-extras";
+export const LabelDetail = simpleComponent("detail");
 export class LabelGroup extends Component {
   static defaultProps = {
     extra: "",
     size: "",
-    circular:"",
-    tag:"",color:"",
-    extraPorps:{}
+    circular: false,
+    tag: false,
+    color: ""
   };
   render() {
-    const { children, extra, size, onClick,circular,tag,color } = this.props;
+    const {
+      children,
+      extra,
+      size,
+      onClick,
+      circular,
+      tag,
+      color,
+      ...otherProps
+    } = this.props;
     const className = `
         ui
-        ${extra}
+        ${extra}  
         ${size}
         ${circular ? "circular" : ""}
         ${color}
-        ${tag?"tag":""}
+        ${tag ? "tag" : ""}
         labels
         `.replace(/\s+/g, " ");
 
     return (
-      <div
-        className={className}
-        onClick={evt => {
-          if (onClick) onClick(this.props, evt);
-        }}
-      >
+      <div className={className} {...otherProps}>
         {children}
       </div>
     );
@@ -35,7 +41,8 @@ export class LabelGroup extends Component {
 
 export default class Label extends Component {
   static Group = LabelGroup;
-  static Detail = ({ children }) => <div className="detail">{children}</div>;
+  static Detail = LabelDetail;
+
   static defaultProps = {
     as: "div",
     image: false,
@@ -43,15 +50,14 @@ export default class Label extends Component {
     pointing: false,
     basic: false,
     extra: "",
-    corner:"",
-    tag:false,
-    ribbon:"",
-    attached:"",
-    horizontal:false,
-    floating:false,
-    circular:false,
-    size:"",
-    
+    corner: "",
+    tag: false,
+    ribbon: "",
+    attached: "",
+    horizontal: false,
+    floating: false,
+    circular: false,
+    size: ""
   };
   render() {
     const {
@@ -60,7 +66,6 @@ export default class Label extends Component {
       children,
       image,
       color,
-      onClick,
       pointing,
       basic,
       tag,
@@ -75,7 +80,7 @@ export default class Label extends Component {
     } = this.props;
 
     const className = `
-        ${floating?"floating":""}
+        ${floating ? "floating" : ""}
         ui
         ${size}
         ${extra}
@@ -90,36 +95,15 @@ export default class Label extends Component {
               : "pointing"
             : ""
         }
-        ${tag?"tag":""}
-        ${corner?corner + " corner":""}
-        ${attached?attached+" attached":""}
-        ${ribbon?ribbon + " ribbon":""}
+        ${tag ? "tag" : ""}
+        ${corner ? corner + " corner" : ""}
+        ${attached ? attached + " attached" : ""}
+        ${ribbon ? ribbon + " ribbon" : ""}
         ${basic ? "basic" : ""}
         ${circular ? "circular" : ""}
-        ${horizontal?"horizontal":""}
+        ${horizontal ? "horizontal" : ""}
         label
         `.replace(/\s+/g, " ");
-
-    if (as === "a") {
-      return (
-        <a
-          className={className}
-          onClick={evt => onClick && onClick(this.props, evt)}
-          {...otherProps}
-        >
-          {children}
-        </a>
-      );
-    } else {
-      return (
-        <div
-          className={className}
-          onClick={evt => onClick && onClick(this.props, evt)}
-              {...otherProps}
-        >
-          {children}
-        </div>
-      );
-    }
+    return React.createElement(as, { className, ...otherProps }, children);
   }
 }

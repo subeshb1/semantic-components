@@ -16,11 +16,11 @@ export default class InputPage extends React.Component {
         <Header as="h1">Input</Header>
         <Header as="h2">States</Header>
         <Header>Simple Input</Header>
-        <Input placeholder="Name" />
+        <Input placeholder="Name" tabIndex="1"/>
         <Header>Custom Warning Input</Header>
-        <Input placeholder="Name" state="warning" />
+        <Input placeholder="Name" state="warning" tabIndex="3"/>
         <Header>Custom Success Input</Header>
-        <Input placeholder="Name" state="success" />
+        <Input placeholder="Name" state="success" tabIndex="2"/>
         <Header>Default Error Input</Header>
         <Input placeholder="Name" state="error" />
         <Header>Disabled Input</Header>
@@ -92,15 +92,13 @@ export default class InputPage extends React.Component {
         </Input>
         <Input
           value={data.value}
-          extraProps={{
-            onChange: e => {
-              console.log(e.target.value, this);
-              data.value = e.target.value;
-              this.setState({});
-            },
-            onFocus() {
-              console.log("Belzebub");
-            }
+          onChange={e => {
+            console.log(e.target.value, this);
+            data.value = e.target.value;
+            this.setState({});
+          }}
+          onFocus={() => {
+            console.log("Belzebub");
           }}
         />
       </Container>

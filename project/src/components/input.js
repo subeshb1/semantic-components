@@ -15,24 +15,19 @@ export default class Input extends Component {
     labeled: "",
     //Extras
     extra: "",
-    style: {},
-    frontChildren:undefined,
-    extraProps:{}
+    frontChildren: undefined,
+    style: {}
   };
 
   render() {
     const {
       children,
-      placeholder,
-      name,
       extra,
-      style,
       state,
       disabled,
       icon,
       loading,
       readOnly,
-      type,
       iconPosition,
       inverted,
       size,
@@ -41,9 +36,8 @@ export default class Input extends Component {
       labeled,
       action,
       frontChildren,
-      extraProps,
-      value,
-      defaultValue,
+      style,
+      ...otherProps
     } = this.props;
     const className = `
         ui
@@ -56,7 +50,7 @@ export default class Input extends Component {
         
         ${inverted ? "inverted" : ""}
         ${
-            labeled
+          labeled
             ? (typeof labeled === "string" ? labeled : "") + " labeled"
             : ""
         }
@@ -65,7 +59,7 @@ export default class Input extends Component {
         ${loading || icon ? "icon" : ""}
         input
         ${
-            loading
+          loading
             ? (typeof loading === "string" ? loading : "") + " loading"
             : ""
         }
@@ -74,15 +68,10 @@ export default class Input extends Component {
       <div className={className} style={style}>
         {frontChildren}
         <input
-          type={type}
-          placeholder={placeholder}
-          name={name}
           disabled={disabled}
           readOnly={readOnly}
-          {...extraProps}
-          value={value}
-          defaultValue={defaultValue}
-        //   onChange={onChange}
+          {...otherProps}
+          //   onChange={onChange}
         />
         {(typeof icon === "string" || loading) && <Icon name={icon} />}
         {children}

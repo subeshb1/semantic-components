@@ -1,13 +1,16 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-export class ImageGroup extends Component {
-  render() {
-    const { size, children } = this.props;
-    return <div className={`ui ${size} images`}>{children}</div>;
-  }
-}
+export const ImageGroup = ({ size, extra, ...otherProps }) => {
+  return <div className={`ui ${size} ${extra} images`} {...otherProps} />;
+};
+
 export default class Image extends Component {
   static Group = ImageGroup;
+  static propTypes = {
+    src: PropTypes.string.isRequired
+  };
+
   static defaultProps = {
     size: "",
     src: undefined,
@@ -21,21 +24,15 @@ export default class Image extends Component {
     rounded: false,
     spaced: false,
     float: "",
-    fluid: false,
+    fluid: false
   };
   render() {
     const {
       size,
-      alt,
-      src,
       wrapped,
       as,
       children,
-      target,
-      href,
       state,
-      srcSet,
-      sizes,
       avatar,
       bordered,
       spaced,
@@ -45,7 +42,6 @@ export default class Image extends Component {
       float,
       centered,
       verticalAlign,
-      onClick,
       ...otherProps
     } = this.props;
     const className = `
@@ -55,7 +51,7 @@ export default class Image extends Component {
         ${avatar ? "avatar" : ""}
         ${rounded ? "rounded" : ""}
         ${circular ? "circular" : ""}
-        ${spaced ? (typeof spaced==="string"? spaced:"")+" spaced" : ""}
+        ${spaced ? (typeof spaced === "string" ? spaced : "") + " spaced" : ""}
         ${centered ? "centered" : ""}
         ${fluid ? "fluid" : ""}
         ${bordered ? "bordered" : ""}
@@ -64,41 +60,15 @@ export default class Image extends Component {
         image
         `.replace(/\s+/g, " ");
 
-    if (wrapped || children || as === "div") {
-      return (
-        <div
-          className={className}
-          onClick={evt => onClick && onClick(this.props, evt)}
-           
-          {...otherProps}
-        >
-          {children}
-          <img src={src} alt={alt} srcSet={srcSet} sizes={sizes} />
-        </div>
-      );
-    } else if (as === "a") {
-      return (
-        <a
-          href={href}
-          target={target}
-          className={className}
-          onClick={evt => onClick && onClick(this.props, evt)} 
-          {...otherProps}
-        >
-          <img src={src} alt={alt} srcSet={srcSet} sizes={sizes} />
-        </a>
+    if (wrapped || children || as === "div" || as === "a") {
+      let newAs = as === "img" ? "div" : as;
+      return React.createElement(
+        newAs,
+        { className },
+        children,
+        <img {...otherProps} />
       );
     }
-    return (
-      <img 
-      {...otherProps}
-        className={className}
-        src={src}
-        alt={alt}
-        srcSet={srcSet}
-        sizes={sizes}
-        onClick={evt => onClick && onClick(this.props, evt)}
-      />
-    );
+    return <img className={className} {...otherProps} />;
   }
 }

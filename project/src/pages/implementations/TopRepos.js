@@ -73,11 +73,9 @@ export default class TopRepos extends Component {
           action
           disabled={loading}
           value={value}
-          extraProps={{
-            onChange: e => {
-              const payload = e.target.value;
-              this.setState(({ value }) => ({ value: payload }));
-            }
+          onChange={e => {
+            const payload = e.target.value;
+            this.setState(({ value }) => ({ value: payload }));
           }}
         >
           <Button
@@ -97,7 +95,6 @@ export default class TopRepos extends Component {
 
         {loading && <Loader state="active">Loading Repos...</Loader>}
         {data.length > 0 && (
-
           <Segment state={loading ? "disabled" : ""}>
             <Image.Group size="small    ">
               {data.map((item, index) => {
@@ -108,7 +105,6 @@ export default class TopRepos extends Component {
                     alt="avatar"
                     bordered
                     data-tooltip={item.full_name}
-                    
                   >
                     <Label
                       as="a"

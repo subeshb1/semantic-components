@@ -662,7 +662,7 @@ export default class ListPage extends Component {
           <List.Item>
             <Image src="/img/joe.jpg" avatar />
             <List.Content textAlign="bottom">
-              <List.Header>Floated Icons</List.Header>
+              <List.Header onClick={() => alert("ASd")}> Floated Icons Click show</List.Header>
             </List.Content>
           </List.Item>
         </List>
@@ -713,7 +713,7 @@ export default class ListPage extends Component {
               <Button>Add</Button>
             </List.Content>
             <Image src="/img/joe.jpg" avatar />
-            <List.Content textAlign="bottom">Joe</List.Content>
+            <List.Content textAlign="bottom" onMouseOver={() => alert("Sdsd")}>Joe</List.Content>
           </List.Item>
         </List>
       </Container>
