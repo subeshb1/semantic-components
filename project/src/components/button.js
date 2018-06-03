@@ -1,214 +1,280 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+const Or = () => <div className="or" />;
 
-const or = <div class="or" />;
-
-
-export  class ButtonGroup extends Component {
+export class ButtonGroup extends Component {
+  static propTypes = {
+    as: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    color: PropTypes.oneOf([
+      "primary",
+      "secondary",
+      "positive",
+      "negative",
+      "red",
+      "orange",
+      "yellow",
+      "olive",
+      "green",
+      "teal",
+      "blue",
+      "violet",
+      "purple",
+      "pink",
+      "brown",
+      "grey",
+      "black",
+      "facebook",
+      "twitter",
+      "google",
+      "vk",
+      "linkedin",
+      "instagram",
+      "youtube",
+      ""
+    ]),
+    labeled: PropTypes.bool,
+    basic: PropTypes.bool,
+    icon: PropTypes.bool,
+    size: PropTypes.oneOf([
+      "mini",
+      "tiny",
+      "small",
+      "medium",
+      "large",
+      "big",
+      "huge",
+      "massive",
+      ""
+    ]),
+    float: PropTypes.oneOf(["left", "right", ""]),
+    compact: PropTypes.bool,
+    fluid: PropTypes.bool,
+    attached: PropTypes.oneOf(["left", "right", "bottom", "top", ""]),
+    vertical: PropTypes.bool,
+    width: PropTypes.string,
+    extra: PropTypes.string,
+  };
   static defaultProps = {
-    icon: false,
-    vertical: false,
+    as: "div",
     color: "",
-    size: "",
+    labeled: false,
     basic: false,
-    count: "",
-    attached:undefined,
+    icon: false,
+    size: "",
+    float: "",
+    compact: false,
+    fluid: false,
+    attached: "",
+    vertical:false,
+    width:"",
   };
   render() {
-    const { children, icon, vertical, color, size, basic, count,attached } = this.props;
+    const {
+      as,
+      size,
+      labeled,
+      color,
+      basic,
+      children,
+      icon,
+      compact,
+      float,
+      attached,
+      fluid,
+      vertical,
+      width,
+      extra,
+      ...otherProps
+    } = this.props;
     const className = `
-        ${count}
-        ${size}
-        ui
-        ${vertical ? "vertical" : ""}
-        ${basic ? "basic" : ""}
-        ${attached ? attached + " attached" : ""}
-        ${color}
-        ${icon ? "icon" : ""}
-        buttons
-        `.replace(/\s+/g, " ");
-    return <div className={className}>{children}</div>;
+    ${width}  
+    ${size}
+    ui
+    ${vertical?"vertical":""}
+    ${attached ? attached + " attached" : "s"}
+    ${compact ? "compact" : ""}
+    ${basic ? "basic" : ""}
+    ${color}
+    ${fluid ? "fluid" : ""}
+    ${float ? float + " floated" : ""}
+    ${labeled ? "labeled" : ""}
+    ${icon ? "icon" : ""}
+    ${extra}
+    buttons
+    `.replace(/\s+/g, " ");
+
+    return React.createElement(as, { className, ...otherProps }, children);
   }
 }
 
+export const ButtonHidden = ({ children, text }) => (
+  <div className="hidden content">
+    {children}
+    {text}
+  </div>
+);
+export const ButtonVisible = ({ children, text }) => (
+  <div className="visible content">
+    {children}
+    {text}
+  </div>
+);
 export default class Button extends Component {
+  static Hidden = ButtonHidden;
+  static Or = Or;
   static Group = ButtonGroup;
-  static propTypes = {};
-  static Or() {
-    return or;
-  }
-  static defaultProps = {
-    //color of the button
-    color: "",
-    // size of the button
-    size: "",
-    //make the button color invert
-    inverted: false,
-    // pass text as a prop
-    text: undefined,
-    // The front icon in the button
-    ficon: undefined,
-    // The back Icon in the button
-    bicon: undefined,
-    // Toogle basic property
-    basic: false,
-    // define the action to perform on button click
-    onClick: undefined,
-    // State - Active, Disabled, Loading
-    state: "",
-    // circular button
-    circular: false,
-    // is required for circle buttons
-    micon: "",
-    // To make compact
-    compact: false,
-    //To make a labeled Icon Button
-    labeledIcon: false,
-    leftFloated: false,
-    rightFloated: false,
-    fluid: false,
-    animate: undefined,
-    htext: "",
-    labeled: undefined,
-    href: "#",
-    pointed: false,
-    attached: undefined,
-    extra: ""
+  static Visible = ButtonVisible;
+  static propTypes = {
+    as: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    text: PropTypes.string,
+    color: PropTypes.oneOf([
+      "primary",
+      "secondary",
+      "positive",
+      "negative",
+      "red",
+      "orange",
+      "yellow",
+      "olive",
+      "green",
+      "teal",
+      "blue",
+      "violet",
+      "purple",
+      "pink",
+      "brown",
+      "grey",
+      "black",
+      "facebook",
+      "twitter",
+      "google",
+      "vk",
+      "linkedin",
+      "instagram",
+      "youtube",
+      ""
+    ]),
+    animated: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(["horizontal", "vertical", "fade"])
+    ]),
+    labeled: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(["left", "right"])
+    ]),
+    basic: PropTypes.bool,
+    icon: PropTypes.bool,
+    inverted: PropTypes.bool,
+    active: PropTypes.bool,
+    disabled: PropTypes.bool,
+    loading: PropTypes.bool,
+    social: PropTypes.oneOf([
+      "facebook",
+      "twitter",
+      "google plus",
+      "vk",
+      "linkedin",
+      "instagram",
+      "youtube",
+      ""
+    ]),
+    size: PropTypes.oneOf([
+      "mini",
+      "tiny",
+      "small",
+      "medium",
+      "large",
+      "big",
+      "huge",
+      "massive",
+      ""
+    ]),
+    float: PropTypes.oneOf(["left", "right", ""]),
+    compact: PropTypes.bool,
+    toggle: PropTypes.bool,
+    fluid: PropTypes.bool,
+    circular: PropTypes.bool,
+    attached: PropTypes.oneOf(["left", "right", "bottom", "top", ""]),
+    extra: PropTypes.string,
   };
-
+  static defaultProps = {
+    as: "button",
+    text: "",
+    animated: false,
+    color: "",
+    labeled: false,
+    basic: false,
+    icon: false,
+    inverted: false,
+    active: false,
+    loading: false,
+    disabled: false,
+    social: "",
+    size: "",
+    float: "",
+    compact: false,
+    toggle: false,
+    fluid: false,
+    attached: "",
+    extra:"",
+  };
   render() {
     const {
-      size,
-      inverted,
-      color,
+      as,
       text,
-      ficon,
-      bicon,
-      basic,
-      onClick,
-      state,
-      circular,
-      micon,
-      children,
-      compact,
-      labeledIcon,
-      leftFloated,
-      rightFloated,
-      fluid,
-      animate,
-      htext,
+      size,
       labeled,
-      href,
-      pointed,
+      color,
+      animated,
+      basic,
+      children,
+      inverted,
+      icon,
+      active,
+      disabled,
+      social,
+      loading,
+      compact,
+      float,
       attached,
-      extra
+      circular,
+      toggle,
+      fluid,
+      extra,
+      ...otherProps
     } = this.props;
-    const invertedS = inverted ? "inverted" : "";
-    const basicS = basic ? "basic" : "";
-    const circle = circular ? "circular" : "";
-    const compactS = compact ? "compact" : "";
-    const leftFloatedS = leftFloated ? "left floated" : "";
-    const rightFloatedS = rightFloated ? "right floated" : "";
-    const fluidS = fluid ? "fluid" : "";
-    const labeledIconS = labeledIcon
-      ? bicon
-        ? "right labeled icon"
-        : "labeled icon"
-      : "";
-    const animateS = animate
-      ? typeof animate === "string"
-        ? animate + " animated"
-        : "animated"
-      : "";
     const className = `
     ${size}
-    ${circle}
-    ${fluidS}
     ui
-    ${extra}
-    ${leftFloatedS}
-    ${rightFloatedS}
-    ${labeledIconS}
-    ${attached ? attached + " attached" : ""}
-    ${compactS}
-    ${animateS}
-    ${state}
-    ${micon && "icon"}
-    ${invertedS}
+    ${attached ? attached + " attached" : "s"}
+    ${compact ? "compact" : ""}
+    ${inverted ? "inverted" : ""}
+    ${basic ? "basic" : ""}
     ${color}
-    ${basicS}
-    button
-  `.replace(/\s+/g, " ");
-
-    if (animate) {
-      return (
-        <div
-          className={className}
-          tabIndex="0"
-          onClick={evt => onClick && onClick(this.props, evt)}
-        >
-          <div className="visible content">
-            {ficon && <i className={`${ficon} icon`}> </i>}
-            {text ? text : ""}
-          </div>
-          <div className="hidden content">
-            {bicon && <i className={`${bicon} icon`}> </i>}
-            {htext ? htext : ""}
-          </div>
-        </div>
-      );
-    } else if (labeled) {
-      return !children ? (
-        <div className={`ui ${labeled} labeled button`} tabIndex="0">
-          {labeled === "left" && (
-            <a
-              className={`ui ${color} ${
-                pointed ? "right pointing" : ""
-              } basic label`}
-              href={href}
-            >
-              {htext}
-            </a>
-          )}
-          <div
-            className={`ui ${color} button`}
-            onClick={evt => onClick && onClick(this.props, evt)}
-          >
-            <i className={`${ficon} icon`} /> {text}
-          </div>
-          {labeled !== "left" && (
-            <a
-              className={`ui ${color} ${
-                pointed ? "left pointing" : ""
-              } basic label`}
-              href={href}
-            >
-              {htext}
-            </a>
-          )}
-        </div>
-      ) : (
-        <div
-          className={`ui ${labeled} labeled button`}
-          tabIndex="0"
-          onClick={evt => onClick && onClick(this.props, evt)}
-        >
-          {children}
-        </div>
-      );
-    } else {
-      return (
-        <button
-          className={className}
-          onClick={evt => onClick && onClick(this.props, evt)}
-        >
-          {((micon && typeof micon === "string") || ficon) && (
-            <i className={`${micon || ficon} icon`}> </i>
-          )}
-          {text ? text : ""}
-          {bicon && <i className={`right ${bicon} icon`}> </i>}
-          {children}
-        </button>
-      );
+    ${social}
+    ${circular ? "circular" : ""}
+    ${toggle ? "toggle" : ""}
+    ${fluid ? "fluid" : ""}
+    ${float ? float + " floated" : ""}
+    ${
+      animated
+      ? (typeof animated === "string" ? animated : "") + " animated"
+      : ""
     }
+    ${active ? "active" : ""}
+    ${loading ? "loading" : ""}
+    ${disabled ? "disabled" : ""}
+    ${labeled ? (typeof labeled === "string" ? labeled : "") + " labeled" : ""}
+    ${icon ? "icon" : ""}
+    ${extra}
+    button
+    `.replace(/\s+/g, " ");
+
+    return React.createElement(
+      labeled || animated || attached ? "div" : as,
+      { className, tabIndex: 0, ...otherProps },
+      children,
+      text
+    );
   }
 }

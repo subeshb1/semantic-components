@@ -1,201 +1,435 @@
-import React from "react";
-import Button, { ButtonGroup } from "../components/button";
+import React, { Component } from "react";
+// eslint-disable-next-line
+// import Button, { ButtonGroup } from "../components/button";
+// eslint-disable-next-line
 import Container from "../components/container";
-export default () => {
-  return (
-    <Container>
-      <Button
-        color="primary"
-        ficon={"user "}
-        bicon={"home "}
-        text={"Welcome"}
-        lab
-      />
-      <Button color="red" size={"large"} text={"Subesh"} circular />
-      <Button text="Click me" />
-      <Button color="violet" size={"massive"} text={"Subesh"} />
-      <Button color="positive" size={"small"} text={"Subesh"} />
-      <Button color="" text={"Follow"} />
-      <Button color="primary" text={"Save"} />
-      <Button color="red" text={"Save"} inverted />
-      <Button color="red" text={"Save"} inverted compact />
-      <Button color="red" text={"Save"} labeledIcon ficon="play" />
-      <Button text={"Save"} labeledIcon bicon="arrow" />
-      <Button micon="home" />
-      <Button>
-        <i className="stop icon" />
-        Stop
-      </Button>
-      <Button color="teal" text={"Save"} onClick={evt => console.log(evt)} />
-      <Button
-        color="teal"
-        text={"Active"}
-        state={"loading"}
-        onClick={(evt, state) => console.log(evt, state)}
-      />
-      <Button
-        color="teal"
-        text={"Active"}
-        state={"loading"}
-        onClick={(evt, state) => console.log(evt)}
-      />
-      <Button text={"Facebook"} color={"facebook"} ficon={"facebook "} />
-      <Button
-        color="teal"
-        text={"Disabled"}
-        state={"disabled"}
-        onClick={(evt, state) => console.log(evt)}
-      />
-      <Button color={"facebook"} micon={"facebook "} circular />
-      <Button color="teal" text={"Active"} state={"active"} />
-      <Button color="teal" text={"Active"} state={"active"} />
-      <Button color="pink" text={"Active"} rightFloated fluid />
-      <Button animate={"fade"} ficon={"left arrow"} bicon={"right arrow"} />
-      <Button
-        labeled={"left"}
-        text={"Like"}
-        ficon={"heart"}
-        htext={"2048"}
-        href="#"
-      />
-      <Button
-        labeled={"left"}
-        text={"Like"}
-        ficon={"heart"}
-        htext={"2048"}
-        href="#"
-        pointed
-      />
-      <Button
-        labeled
-        text={"Like"}
-        ficon={"heart"}
-        htext={"2048"}
-        href="#"
-        pointed
-      />
-      <Button
-        labeled
-        color={"red"}
-        text={"Like"}
-        ficon={"home"}
-        htext={"2048"}
-        href="#"
-        pointed
-      />
-      {/* Attached Button */}
-      <Button color="brown" attached="left" text="Left" />
-      <Button color="brown" attached="right" text="Right" />
-      <Button color="brown" attached="top" text="Top" />
-      <Button color="brown" attached="bottom" text="Bottom" />
+// eslint-disable-next-line
+import Divider from "../components/divider";
+// eslint-disable-next-line
+import Icon from "../components/icon";
+// eslint-disable-next-line
+import Flag from "../components/flag";
+// eslint-disable-next-line
+import Header from "../components/header";
+// eslint-disable-next-line
+import Image from "../components/image";
+// eslint-disable-next-line
+import Label, { LabelGroup } from "../components/label";
+// eslint-disable-next-line
+import Loader from "../components/loader";
+// eslint-disable-next-line
+import Segment from "../components/segment";
+// eslint-disable-next-line
+import Input from "../components/input";
+// eslint-disable-next-line
+import List, { ListItem } from "../components/list";
+import Button from "../components/button";
+import { toUpper } from "../lib/basic-utils";
+import { social, color, size } from "../lib/react-extras";
 
-      {/* Simple Button Group */}
-      <ButtonGroup>
-        <Button text={"One"} />
-        <Button text={"Two"} />
-        <Button text={"Three"} />
-      </ButtonGroup>
-      {/* Button Group to hold Icons */}
-      <ButtonGroup icon>
-        <Button micon={"align left"} />
-        <Button micon={"align center"} />
-        <Button micon={"align right"} />
-      </ButtonGroup>
-      <ButtonGroup icon>
-        <Button micon={"play"} />
-        <Button micon={"pause"} />
-        <Button micon={"shuffle"} />
-      </ButtonGroup>
-      {/* Vertical Button Group */}
-      <ButtonGroup vertical>
-        <Button text={"One"} />
-        <Button text={"Two"} />
-        <Button text={"Three"} />
-      </ButtonGroup>
-      {/*  Labeled Icon Group */}
-      <ButtonGroup vertical>
-        <Button labeledIcon text={"Play"} ficon="play" />
-        <Button labeledIcon text={"Pause"} ficon="pause" />
-        <Button labeledIcon text={"Shuffle"} ficon="shuffle" />
-      </ButtonGroup>
-      {/*  Colored Button Group */}
-      <ButtonGroup color="red">
-        <Button text={"One"} />
-        <Button text={"Two"} />
-        <Button text={"Three"} />
-      </ButtonGroup>
-      {/*  Basic Button Group */}
-      <ButtonGroup basic>
-        <Button text={"One"} />
-        <Button text={"Two"} />
-        <Button text={"Three"} />
-      </ButtonGroup>
-      {/*  Basic Buttons in Group */}
-      <ButtonGroup inverted>
-        <Button color="red" text={"One"} />
-        <Button color="blue" text={"Two"} />
-        <Button color="green" text={"Three"} />
-      </ButtonGroup>
-      {/*  Size in Group */}
-      <ButtonGroup inverted size="massive">
-        <Button inverted color="red" text={"One"} />
-        <Button color="blue" text={"Two"} />
-        <Button color="green" text={"Three"} />
-      </ButtonGroup>
-      {/* Attached Buttona*/}
-      <ButtonGroup>
-        <Button color="red" text={"One"} />
-        <Button color="blue" text={"Two"} />
-        <Button.Or />
-        <Button color="green" text={"Three"} />
-        <Button.Or />
-        <Button color="violet" text={"Three"} />
-        <Button color="pink" text={"Three"} />
-        <Button color="green" text={"Three"} />
-        <Button animate text={"Hello"} bicon={"right arrow"} />
-      </ButtonGroup>
-      {/*  Attached in Group */}
-      <ButtonGroup attached="top" count="three">
-        <Button color="red" text={"One"} />
-        <Button color="blue" text={"Two"} />
-        <Button color="green" text={"Three"} />
-      </ButtonGroup>
+export default class extends Component {
+  state = {
+    active: false
+  };
+  render() {
+    return (
+      <Container>
+        <Header as="h1">Buttons</Header>
+        <Header as="h2">Types</Header>
+        <Header>1. Standard Button</Header>
+        <Button text="Hello">Button</Button>
+        <Button as="div">Div Button</Button>
+        <Header>
+          2. Emphasis
+          <Header sub as="div">
+            Can be given using color attribute
+          </Header>
+        </Header>
+        <Button color="primary">Primary</Button>
+        <Button color="secondary">Secondary</Button>
+        <Button>Normal</Button>
+        <Header>
+          3. Animated
+          <Header sub as="div">
+            A button can show hidden content using animation. Use Visible and
+            Hidden Components in child
+          </Header>
+        </Header>
+        <Button animated>
+          <Button.Visible text="Next" />
+          <Button.Hidden>
+            <Icon name="right arrow" />
+          </Button.Hidden>
+        </Button>
+        <Button animated="vertical">
+          <Button.Hidden text="shop" />
+          <Button.Visible>
+            <Icon name="shopping cart" />
+          </Button.Visible>
+        </Button>
+        <Button animated="fade">
+          <Button.Hidden text="$12.99 a month" />
+          <Button.Visible text="Sign-up for a Pro account" />
+        </Button>
+        <Header>
+          Labeled Button
+          <Header sub as="div">
+            A Button can appear along side a label.
+          </Header>
+        </Header>
+        <Button as="div" labeled>
+          <Button>
+            <Icon name="heart " /> Like
+          </Button>
+          <Label basic as="a">
+            2,048
+          </Label>
+        </Button>
+        <Button as="div" labeled="left">
+          <Label basic as="a">
+            2,048
+          </Label>
+          <Button>
+            <Icon name="heart " /> Like
+          </Button>
+        </Button>
+        <Button labeled="left">
+          <Label as="a" href="#" basic pointing="right">
+            2,048
+          </Label>
+          <Button>
+            <Icon name="heart" /> Like
+          </Button>
+        </Button>
+        <Button labeled>
+          <Button color="red">
+            <Icon name="heart" /> Like
+          </Button>
+          <Label as="a" pointing="left" basic color="red">
+            2,048
+          </Label>
+        </Button>
+        <Button labeled="left">
+          <Label as="a" pointing="right" basic color="blue">
+            2,048
+          </Label>
+          <Button color="blue" basic>
+            <Icon name="heart" /> Like
+          </Button>
+        </Button>
+        <Header>
+          4. Icon
+          <Header sub as="div">
+            A Button can have only an Icon.
+          </Header>{" "}
+        </Header>
+        <Button icon>
+          <Icon name="cloud" />
+        </Button>
 
-      <ButtonGroup attached="bottom" count={"three"}>
-        <Button color="red" text={"One"} />
-        <Button color="blue" text={"Two"} />
-        <Button animate color="green" text={"Three"} bicon={"right arrow"} />
-      </ButtonGroup>
-      {/* Mixed Group */}
-      <ButtonGroup>
-        <Button animate bicon={"left chevron"} text={"Back"} />
-        <Button ficon={"stop"} text={"Stop"} />
-        <Button animate bicon={"right chevron"} text={"Front"} />
-      </ButtonGroup>
-      <ButtonGroup>
-        <Button labeledIcon ficon={"left chevron"} text={"Back"} />
-        <Button ficon={"stop"} text={"Stop"} />
-        <Button labeledIcon bicon={"right chevron"} text={"Front"} />
-      </ButtonGroup>
-      <ButtonGroup>
+        <Header>
+          5. Labeled Icon{" "}
+          <Header as="div" sub>
+            A Button can use label as well as an Icon
+          </Header>{" "}
+        </Header>
+        <Button labeled icon text="Pause">
+          <Icon name="pause" />
+        </Button>
+        <Button labeled="right" icon text="Next">
+          <Icon name="right arrow" />
+        </Button>
+        <Header>
+          6. Basic{" "}
+          <Header as="div" sub>
+            A basic button is less pronounced.
+          </Header>{" "}
+        </Header>
+        {color.map((x, index) => (
+          <Button color={x} basic key={index}>
+            {x ? x : "Standard"}
+          </Button>
+        ))}
+        <Header>
+          7. Inverted{" "}
+          <Header as="div" sub>
+            A button can be inverted
+          </Header>{" "}
+        </Header>
+        <Segment inverted>
+          {color.map((x, index) => (
+            <Button color={x} inverted key={index}>
+              {x ? x : "Standard"}
+            </Button>
+          ))}
+        </Segment>
+        <Segment inverted>
+          {color.map((x, index) => (
+            <Button color={x} inverted basic key={index}>
+              {x ? x : "Standard"}
+            </Button>
+          ))}
+        </Segment>
+
+        <Header as="h2">States</Header>
+        <Header>Active</Header>
+        <Button active>Active</Button>
+        <Button> Normal</Button>
+        <Header>Disabled</Header>
+        <Button disabled>Disabled</Button>
+        <Header>Loading</Header>
+        <Button loading>Subesh</Button>
+        <Button loading color="primary">
+          Subesh
+        </Button>
+        <Header as="h2">Variation</Header>
+        <Header>Social</Header>
+        <Button social="facebook">
+          <Icon name="facebook" />
+          Facebook
+        </Button>
+
+        {social.map((x, i) => (
+          <Button key={i} social={x}>
+            <Icon name={x} />
+            {toUpper(x[0]) + x.slice(1)}
+          </Button>
+        ))}
+        <Header>Size</Header>
+        {size.map((x, i) => (
+          <Button size={x} key={i}>
+            {x}
+          </Button>
+        ))}
+        <Header>Floated Button</Header>
+        <Button float="left"> Left</Button>
+        <Button float="right"> Right</Button>
+        <Divider clearing />
+        <Header>Colored</Header>
+        {color.map((x, index) => (
+          <Button color={x} key={index}>
+            {x ? x : "Standard"}
+          </Button>
+        ))}
+        <Header>Compact</Header>
+        <Button compact>Button</Button>
+        <Button compact icon>
+          <Icon name="pause" />
+        </Button>
+        <Button compact labeled="right" icon>
+          <Icon name="pause" /> Subesh
+        </Button>
+        <Header>Fluid</Header>
+        <Button fluid>Fluid</Button>
+        <Header>Toggle</Header>
         <Button
-          labeled
-          color={"red"}
-          text={"Like"}
-          ficon={"home"}
-          htext={"2048"}
-          href="#"
-          pointed
+          toggle
+          active={this.state.active}
+          onClick={() => this.setState(({ active }) => ({ active: !active }))}
+          text="Click Me!"
         />
-        <Button
-          labeled={"left"}
-          color={"blue"}
-          text={"Like"}
-          ficon={"home"}
-          htext={"2048"}
-          href="#"
-        />
-      </ButtonGroup>
-    </Container>
-  );
-};
+        <Header>Circular</Header>
+        <Button circular color="red">
+          Button
+        </Button>
+        <Button icon circular>
+          <Icon name="settings" />
+        </Button>
+        <Button icon circular social="facebook">
+          <Icon name="facebook" />
+        </Button>
+        <Button icon circular social="instagram">
+          <Icon name="instagram" />
+        </Button>
+        <Header>Vertically Attached </Header>
+        <Button attached="top">Top</Button>
+        <Segment attached>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste sequi
+          laborum odio repellat at, soluta fugiat, reiciendis veniam,
+          repellendus blanditiis obcaecati id quam non praesentium nihil minima
+          sapiente! Maxime, qui?
+        </Segment>
+        <Button attached="bottom">Bottom</Button>
+
+        <Header>Horizontally Attached</Header>
+        <Button attached="left">Left</Button>
+        <Button attached="right">Right</Button>
+
+        <Header as="h1">ButtonGroup</Header>
+        <Header>Simple Button Group</Header>
+        <Button.Group>
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3</Button>
+        </Button.Group>
+        <Header>Icon Button Group</Header>
+        <Button.Group>
+          <Button>
+            <Icon name="align left" />
+          </Button>
+          <Button>
+            <Icon name="align center" />
+          </Button>
+          <Button>
+            <Icon name="align right" />
+          </Button>
+        </Button.Group>
+        <Header>Either or Button Group</Header>
+        <Button.Group>
+          <Button>Button 1</Button>
+          <Button.Or />
+          <Button>Button 2</Button>
+          <Button.Or />
+          <Button>Button 3</Button>
+        </Button.Group>
+        <Header>Vertical Button Group</Header>
+        <Button.Group vertical>
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3</Button>
+        </Button.Group>
+        <Header>Labeled Icon Button Group</Header>
+        <Button.Group labeled vertical icon>
+          <Button>
+            Button 1
+            <Icon name="align left" />
+          </Button>
+          <Button>
+            <Icon name="align center" />Button 2
+          </Button>
+          <Button>
+            <Icon name="align right" />Button 3
+          </Button>
+        </Button.Group>
+        <Header>Mixed Button Group</Header>
+        <Button.Group>
+          <Button animated>
+            <Button.Visible>Back</Button.Visible>
+            <Button.Hidden>
+              <Icon name="left chevron" />
+            </Button.Hidden>
+          </Button>
+          <Button>
+            <Icon name="stop" />Stop
+          </Button>
+          <Button animated>
+            <Button.Visible>Front</Button.Visible>
+            <Button.Hidden>
+              <Icon name="right chevron" />
+            </Button.Hidden>
+          </Button>
+        </Button.Group>
+        <Divider />
+        <Button.Group>
+          <Button labeled icon animated>
+            Back
+            <Icon name="left chevron" />
+          </Button>
+          <Button>
+            <Icon name="stop" />Stop
+          </Button>
+          <Button labeled="right" icon>
+            Front
+            <Icon name="right chevron" />
+          </Button>
+        </Button.Group>
+        <Header>Colored Button Group</Header>
+        <Button.Group color="violet">
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3</Button>
+        </Button.Group>
+        <Header>BasicButton Group</Header>
+        <Button.Group color="red" basic>
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3</Button>
+        </Button.Group>
+        <Header>Size Button Group</Header>
+        <Button.Group size="massive">
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3</Button>
+        </Button.Group>
+        <Header>Equal Width Button Group</Header>
+        <Button.Group width="three">
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3 long long long long </Button>
+        </Button.Group>
+        <Header>Fluid Button Group</Header>
+        <Button.Group fluid>
+          <Button>But 1</Button>
+          <Button>Button 2</Button>
+          <Button>Button 3 long long long long</Button>
+        </Button.Group>
+        <Header>Small Icon Basic Button Group</Header>
+        <Button.Group size="small" icon basic>
+          <Button>
+            <Icon name="align left" />
+          </Button>
+          <Button>
+            <Icon name="align center" />
+          </Button>
+          <Button>
+            <Icon name="align right" />
+          </Button>
+        </Button.Group>
+        <Header>Attached</Header>
+        <Button.Group attached="top">
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+        </Button.Group>
+        <Segment attached>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste sequi
+          laborum odio repellat at, soluta fugiat, reiciendis veniam,
+          repellendus blanditiis obcaecati id quam non praesentium nihil minima
+          sapiente! Maxime, qui?
+        </Segment>
+        <Button.Group attached="bottom">
+          <Button>Button 1</Button>
+          <Button>Button 2</Button>
+        </Button.Group>
+
+        <Header>Extra</Header>
+        <Button.Group>
+          <Button labeled>
+            <Button animated color="red">
+              <Button.Visible text="Like" />
+              <Button.Hidden>
+                <Icon name="like" />
+              </Button.Hidden>
+            </Button>
+            <Label as="a" basic pointing="left" color="red">
+              2048
+            </Label>
+          </Button>
+
+          <Button labeled>
+            <Button animated="fade" color="blue" basic>
+              <Button.Visible text="Fork" />
+              <Button.Hidden>
+                <Icon name="fork" />
+              </Button.Hidden>
+            </Button>
+            <Label as="a" basic pointing="left" color="blue">
+              2048
+            </Label>
+          </Button>
+
+          <Button labeled>
+            <Button animated="vertical" color="violet">
+              <Button.Visible text="Star" />
+              <Button.Hidden>
+                <Icon name="star" />
+              </Button.Hidden>
+            </Button>
+            <Label as="a" basic pointing="left" color="violet">
+              2048
+            </Label>
+          </Button>
+        </Button.Group>
+      </Container>
+    );
+  }
+}

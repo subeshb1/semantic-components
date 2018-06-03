@@ -17,7 +17,6 @@ import { toLower, curry } from "../lib/basic-utils";
 import LoaderPage from "./loader.page";
 import DividerPage from "./divider.page";
 import ContainerPage from "./container.page";
-import button2Page from "./button2.page";
 const routes = [
   { Button: ButtonPage },
   { Segment: SegmentPage },
@@ -30,7 +29,6 @@ const routes = [
   { Loader: LoaderPage },
   { Divider: DividerPage },
   { Container: ContainerPage },
-  { Button2: button2Page }
 ];
 const mapRoute = (arr, path) =>
   arr.map((obj, index) => {

@@ -26,7 +26,7 @@ import List, { ListItem } from "../components/list";
 import { reactComponent } from "../lib/react-extras";
 import DropDown from "../components/modules/DropDown";
 
-import Button from "../components/button2";
+import Button from "../components/button";
 export default class TestPage extends Component {
   render() {
     return (

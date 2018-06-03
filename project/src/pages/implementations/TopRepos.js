@@ -79,7 +79,7 @@ export default class TopRepos extends Component {
           }}
         >
           <Button
-            state={loading ? `disabled` : ""}
+            disabled={loading}
             onClick={() => {
               this.setState(
                 ({ value }) => ({ loading: true, repo: value }),

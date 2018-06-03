@@ -30,7 +30,7 @@ export default class DividerPage extends Component {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore... Lorem ipsum dolor sit amet, consectetur
         adipiscing elit, sed do eiusmod tempor incididunt ut labore...
-        <Button rightFloated>Floated Button</Button>
+        <Button float="right">Floated Button</Button>
         <Divider clearing />
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore...
