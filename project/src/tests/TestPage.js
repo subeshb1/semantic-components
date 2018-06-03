@@ -27,18 +27,36 @@ import { reactComponent } from "../lib/react-extras";
 import DropDown from "../components/modules/DropDown";
 
 import Button from "../components/button";
+import Reveal from "../components/reveal";
+
 export default class TestPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: false
+    };
+  }
+
+  componentDidMount() {
+    // (() => {
+    //   let lasScroll = document.documentElement.scrollTop;
+    //   window.addEventListener("scroll", event => {
+    //     if (document.documentElement.scrollTop > lasScroll)
+    //       this.setState(({ active }) => ({ active: true }));
+    //     else this.setState(({ active }) => ({ active: false }));
+    //     lasScroll = document.documentElement.scrollTop;
+    //   });
+    // })();
+    window.addEventListener("click", event => {
+      this.setState(({ active }) => ({ active: !active }));
+    });
+  }
   render() {
     return (
       <Container>
-        <div class="ui top attached button" tabindex="0">
-          Top
-        </div>
-        <div class="ui attached segment">
-          <p />
-        </div>
-        <div class="ui bottom attached button" tabindex="0">
-          Bottom
+        <div class="ui small  circular rotate left reveal image">
+          <img class="visible content" src="/img/avatar1.png" />
+          <img class="hidden content" src="/img/avatar2.png" />
         </div>
       </Container>
     );

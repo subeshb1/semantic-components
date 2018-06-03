@@ -17,6 +17,7 @@ import { toLower, curry } from "../lib/basic-utils";
 import LoaderPage from "./loader.page";
 import DividerPage from "./divider.page";
 import ContainerPage from "./container.page";
+import RevealPage from "./reveal.page";
 const routes = [
   { Button: ButtonPage },
   { Segment: SegmentPage },
@@ -29,6 +30,7 @@ const routes = [
   { Loader: LoaderPage },
   { Divider: DividerPage },
   { Container: ContainerPage },
+  { Reveal: RevealPage },
 ];
 const mapRoute = (arr, path) =>
   arr.map((obj, index) => {
@@ -50,7 +52,6 @@ const getLink = curry((url, x) => ({
 
 const mapLinksToListItem = (arr, url) =>
   arr.map(getLink(url)).sort((a, b) => a.children.localeCompare(b.children));
-console.log(mapLinksToListItem(routes, "/"))
 const ElementList = ({ match: { url } }) => {
   return (
     <Container>
