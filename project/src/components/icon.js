@@ -6,23 +6,14 @@ export class IconGroup extends Component {
     size: ""
   };
   render() {
-    const { children, extra, size, onClick } = this.props;
+    const { extra, size, ...otherProps } = this.props;
     const className = `
         ${extra}
         ${size}
         icons
         `.replace(/\s+/g, " ");
 
-    return (
-      <i
-        className={className}
-        onClick={evt => {
-          if (onClick) onClick(this.props, evt);
-        }}
-      >
-        {children}
-      </i>
-    );
+    return <i className={className} {...otherProps} />;
   }
 }
 export default class Icon extends Component {
@@ -54,9 +45,9 @@ export default class Icon extends Component {
       circular,
       bordered,
       inverted,
-      onClick,
       extra,
-      corner
+      corner,
+      ...otherProps
     } = this.props;
     const className = `
         ${corner ? (typeof corner === "string" ? corner : "") + " corner" : ""}
@@ -86,13 +77,6 @@ export default class Icon extends Component {
         ${state}
         icon
         `.replace(/\s+/g, " ");
-    return (
-      <i
-        className={className}
-        onClick={evt => {
-          if (onClick) onClick(this.props, evt);
-        }}
-      />
-    );
+    return <i className={className} {...otherProps} />;
   }
 }

@@ -11,13 +11,48 @@ import LabelPage from "./label.page";
 import SegmentPage from "./segment.page";
 import InputPage from "./input.page";
 import ImagePage from "./image.page";
-import { reactComponent } from "../lib/react-extras";
+import IconPage from "./icon.page";
+import HeaderPage from "./header.page";
+import { toLower, curry } from "../lib/basic-utils";
+import LoaderPage from "./loader.page";
+import DividerPage from "./divider.page";
+import ContainerPage from "./container.page";
+import button2Page from "./button2.page";
+const routes = [
+  { Button: ButtonPage },
+  { Segment: SegmentPage },
+  { List: ListPage },
+  { Input: InputPage },
+  { Image: ImagePage },
+  { Label: LabelPage },
+  { Icon: IconPage },
+  { Header: HeaderPage },
+  { Loader: LoaderPage },
+  { Divider: DividerPage },
+  { Container: ContainerPage },
+  { Button2: button2Page }
+];
+const mapRoute = (arr, path) =>
+  arr.map((obj, index) => {
+    const route = Object.keys(obj)[0];
+    return (
+      <Route
+        key={index}
+        path={`${path}/${toLower(route)}`}
+        component={obj[route]}
+      />
+    );
+  });
 
-const getLink = (x, url) => ({
+const getLink = curry((url, x) => ({
   as: Link,
-  children: x,
-  to: `${url}/${x.toLowerCase()}`.replace(/\/\//, "/")
-});
+  children: Object.keys(x)[0],
+  to: `${url}/${toLower(Object.keys(x)[0])}`.replace(/\/\//, "/")
+}));
+
+const mapLinksToListItem = (arr, url) =>
+  arr.map(getLink(url)).sort((a, b) => a.children.localeCompare(b.children));
+
 const ElementList = ({ match: { url } }) => {
   return (
     <Container>
@@ -31,14 +66,7 @@ const ElementList = ({ match: { url } }) => {
             animated
             selection
             relaxed="very"
-            items={[
-              "Button",
-              "Segment",
-              "List",
-              "Input",
-              "Image",
-              "Label"
-            ].sort((a, b) => a > b).map(x => getLink(x,url))}
+            items={mapLinksToListItem(routes, url)}
           />
         </Segment>
       </Segment.Group>
@@ -49,13 +77,8 @@ const ElementList = ({ match: { url } }) => {
 const Main = ({ match: { path } }) => {
   return (
     <React.Fragment>
-      <Route path={`${path}/list`} component={ListPage} />
-      <Route path={`${path}/label`} component={LabelPage} />
-      <Route path={`${path}/button`} component={ButtonPage} />
-      <Route path={`${path}/segment`} component={SegmentPage} />
-      <Route path={`${path}/input`} component={InputPage} />
-      <Route path={`${path}/image`} component={ImagePage} />
       <Route exact path={`${path}`} component={ElementList} />
+      {mapRoute(routes, path)}
     </React.Fragment>
   );
 };

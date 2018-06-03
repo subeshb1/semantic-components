@@ -152,3 +152,6 @@ export default class List extends Component {
     return renderElement;
   }
 }
+List.Description.displayName = "List.Description";
+List.Header.displayName = "List.Header";
+List.Content.displayName = "List.Content";

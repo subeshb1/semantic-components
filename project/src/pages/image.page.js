@@ -8,9 +8,7 @@ import Input from "../components/input";
 import Image from "../components/image";
 import Divider from "../components/divider";
 
-const data = {
-  value: ""
-};
+
 export default class ImagePage extends React.Component {
   render() {
     return (

@@ -23,39 +23,25 @@ import Segment from "../components/segment";
 import Input from "../components/input";
 // eslint-disable-next-line
 import List, { ListItem } from "../components/list";
-import { reactComponent } from "../lib/react-extras";
-import DropDown from "../components/modules/DropDown";
-
 import Button from "../components/button2";
-export default class TestPage extends Component {
+
+export default class extends Component {
   render() {
     return (
       <Container>
-        <Button animated="vertical">
-          <div class="visible content">Next</div>
-          <div class="hidden content">
-            <i class="right arrow icon" />
-          </div>
-        </Button>
-        <div class="ui animated button" tabindex="0">
-  <div class="visible content">Next</div>
-  <div class="hidden content">
-    <i class="right arrow icon"></i>
-  </div>
-</div>
-<div class="ui vertical animated button" tabindex="0">
-  <div class="hidden content">Shasdasdop</div>
-<div class="visible content">
-    <i class="shop icon"></i>
-  </div>
-  
-</div>
-<div class="ui animated fade button" tabindex="0">
-  <div class="visible content">Sign-up for a Pro account</div>
-  <div class="hidden content">
-    $12.99 a month
-  </div>
-</div>
+        <Header as="h1">Buttons</Header>
+        <Header as="h2">Types</Header>
+        <Header>1. Standard Button</Header>
+        <Button text="Hello">Button</Button>
+        <Button as="div">Div Button</Button>
+        <Header>
+          2. Emphasis
+          <Header sub>Can be given using color attribute</Header>
+        </Header>
+        <Button color="primary">Primary</Button>
+        <Button color="secondary">Secondary</Button>
+        <Button >Normal</Button>
+        <Header>3. Animated</Header>
       </Container>
     );
   }

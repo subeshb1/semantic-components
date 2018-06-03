@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import { simpleComponent } from "../lib/react-extras";
 
+export const HeaderContent = simpleComponent("content");
+HeaderContent.displayName = "HeaderContent";
 export default class Header extends Component {
-  static Content = ({ children }) => <div className="content">{children}</div>;
+  static Content = HeaderContent;
   static defaultProps = {
     as: "h4",
     size: "",
@@ -20,7 +23,6 @@ export default class Header extends Component {
   render() {
     const {
       as,
-      children,
       size,
       sub,
       icon,
@@ -32,12 +34,12 @@ export default class Header extends Component {
       textAlign,
       float,
       attached,
-      inverted
+      inverted,
+      ...otherProps
     } = this.props;
     const className = `
-        ui 
+        ${sub?"sub":"ui"}
         ${size}
-        ${sub ? "sub" : ""}
         ${icon ? "icon" : ""}
         ${extra}
         ${disabled ? "disabled" : ""}
@@ -57,27 +59,9 @@ export default class Header extends Component {
         header
     `.replace(/\s+/g, " ");
 
-    return getAs(as, className, children);
+    return React.createElement(as,{className,...otherProps});
   }
 }
 
 // const h1 = ({children,className}) => <h1></h2>
 
-function getAs(as, className, children) {
-  switch (as) {
-    case "h1":
-      return <h1 className={className}>{children}</h1>;
-    case "h2":
-      return <h2 className={className}>{children}</h2>;
-    case "h3":
-      return <h3 className={className}>{children}</h3>;
-    case "h4":
-      return <h4 className={className}>{children}</h4>;
-    case "h5":
-      return <h5 className={className}>{children}</h5>;
-    case "h6":
-      return <h6 className={className}>{children}</h6>;
-    default:
-      return <div className={className}>{children}</div>;
-  }
-}

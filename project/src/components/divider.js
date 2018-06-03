@@ -22,7 +22,8 @@ export default class Divider extends Component {
       clearing,
       fitted,
       hidden,
-      inverted
+      inverted,
+      ...otherProps
     } = this.props;
     const className = `
     ui 
@@ -38,7 +39,7 @@ export default class Divider extends Component {
     `.replace(/\s+/g, " ");
 
     return (
-      <div className={className}>
+      <div className={className}{...otherProps}>
         {icon && <i className={`${icon} icon`} />}
         {text}
       </div>
