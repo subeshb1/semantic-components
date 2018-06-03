@@ -4,6 +4,18 @@ import u4 from "uniqid";
 import { simpleComponent } from "../lib/react-extras";
 
 //List Item Component
+
+const ListContent = ({ as, textAlign, right, ...otherProps }) =>
+  React.createElement(as, {
+    className: `${textAlign ? textAlign + " aligned" : ""} ${
+      right ? "right floated" : ""
+    } content`,
+    ...otherProps
+  });
+ListContent.defaultProps = {
+  as: "div"
+};
+
 export class ListItem extends Component {
   static propTypes = {
     as: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
@@ -30,7 +42,7 @@ export class ListItem extends Component {
 export default class List extends Component {
   static Item = ListItem;
   static Description = simpleComponent("description");
-  static Content = simpleComponent("content");
+  static Content = ListContent;
   static Header = simpleComponent("header");
 
   static propTypes = {
@@ -140,4 +152,3 @@ export default class List extends Component {
     return renderElement;
   }
 }
-// TO-DO -- Add reimplementation for List.Content

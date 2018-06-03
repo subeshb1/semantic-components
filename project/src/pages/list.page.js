@@ -649,7 +649,7 @@ export default class ListPage extends Component {
         <List celled horizontal size="massive">
           <List.Item>
             <Image src="/img/joe.jpg" avatar />
-            <List.Content>
+            <List.Content textAlign="top">
               <List.Header>Floated Icons</List.Header>
             </List.Content>
           </List.Item>
@@ -661,7 +661,7 @@ export default class ListPage extends Component {
           </List.Item>
           <List.Item>
             <Image src="/img/joe.jpg" avatar />
-            <List.Content>
+            <List.Content textAlign="bottom">
               <List.Header>Floated Icons</List.Header>
             </List.Content>
           </List.Item>
@@ -671,21 +671,21 @@ export default class ListPage extends Component {
         <Header>Float Content</Header>
         <List divided aligned="middle">
           <List.Item>
-            <List.Content className="right floated content">
+            <List.Content right>
               <Button>Add</Button>
             </List.Content>
             <Image src="/img/joe.jpg" avatar />
             <List.Content>Joe</List.Content>
           </List.Item>
           <List.Item>
-            <List.Content className="right floated content">
+            <List.Content right>
               <Button>Add</Button>
             </List.Content>
             <Image src="/img/joe.jpg" avatar />
             <List.Content>Joe</List.Content>
           </List.Item>
           <List.Item>
-            <List.Content className="right floated content">
+            <List.Content right>
               <Button>Add</Button>
             </List.Content>
             <Image src="/img/joe.jpg" avatar />
@@ -693,27 +693,27 @@ export default class ListPage extends Component {
           </List.Item>
         </List>
         <Header>Float Content</Header>
-        <List divided aligned="top">
+        <List divided>
           <List.Item>
-            <List.Content className="right floated content">
+            <List.Content right>
               <Button>Add</Button>
             </List.Content>
             <Image src="/img/joe.jpg" avatar />
-            <List.Content className="top aligned content">Joe</List.Content>
+            <List.Content textAlign="middle">Joe</List.Content>
           </List.Item>
           <List.Item>
-            <List.Content className="right floated content">
+            <List.Content right>
               <Button>Add</Button>
             </List.Content>
             <Image src="/img/joe.jpg" avatar />
-            <List.Content className="middle aligned content">Joe</List.Content>
+            <List.Content textAlign="middle">Joe</List.Content>
           </List.Item>
           <List.Item>
-            <List.Content className="right floated content">
+            <List.Content right>
               <Button>Add</Button>
             </List.Content>
             <Image src="/img/joe.jpg" avatar />
-            <List.Content className="bottom aligned content">Joe</List.Content>
+            <List.Content textAlign="bottom">Joe</List.Content>
           </List.Item>
         </List>
       </Container>
