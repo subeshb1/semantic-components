@@ -33,7 +33,7 @@ export default class InputPage extends React.Component {
 
         <Container>
           <Icon.Group size="huge">
-            <Icon name="dont" color="red" loading size="big" />
+            <Icon name="dont" color="red"  size="big" />
             <Icon name="user" color="black" />
           </Icon.Group>
           <Icon.Group size="huge">

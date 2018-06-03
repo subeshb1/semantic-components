@@ -18,7 +18,7 @@ ListContent.defaultProps = {
 
 export class ListItem extends Component {
   static propTypes = {
-    as: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    as: PropTypes.oneOfType([PropTypes.string, PropTypes.element,PropTypes.func]),
     active: PropTypes.bool
   };
 
@@ -46,14 +46,14 @@ export default class List extends Component {
   static Header = simpleComponent("header");
 
   static propTypes = {
-    as: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    as: PropTypes.oneOfType([PropTypes.string, PropTypes.element,PropTypes.func]),
     bulleted: PropTypes.bool,
     ordered: PropTypes.bool,
     nested: PropTypes.bool,
     link: PropTypes.bool,
     items: PropTypes.arrayOf(
       PropTypes.shape({
-        as: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+        as: PropTypes.oneOfType([PropTypes.string, PropTypes.element,PropTypes.func])
           .isRequired
       }).isRequired
     ),
@@ -155,3 +155,5 @@ export default class List extends Component {
 List.Description.displayName = "List.Description";
 List.Header.displayName = "List.Header";
 List.Content.displayName = "List.Content";
+
+//TO-DO - Remove u4()

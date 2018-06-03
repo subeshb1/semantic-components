@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { simpleComponent } from "../lib/react-extras";
 export const LabelDetail = simpleComponent("detail");
 export class LabelGroup extends Component {

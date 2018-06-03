@@ -24,7 +24,8 @@ export default class Image extends Component {
     rounded: false,
     spaced: false,
     float: "",
-    fluid: false
+    fluid: false,
+    alt:"",
   };
   render() {
     const {
@@ -42,6 +43,7 @@ export default class Image extends Component {
       float,
       centered,
       verticalAlign,
+      alt,
       ...otherProps
     } = this.props;
     const className = `
@@ -66,9 +68,9 @@ export default class Image extends Component {
         newAs,
         { className },
         children,
-        <img {...otherProps} />
+        <img {...otherProps} alt={alt}/>
       );
     }
-    return <img className={className} {...otherProps} />;
+    return <img className={className} {...otherProps} alt={alt}/>;
   }
 }

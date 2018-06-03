@@ -6,7 +6,8 @@ export class SegmentGroup extends Component {
     raised: false, //Raised Segments
     stacked: false, //Stacked Segments
     piled: false, //Piled Segments
-    compact: false //Compact Segments
+    compact: false, //Compact Segments
+    extra:""
   };
 
   render() {

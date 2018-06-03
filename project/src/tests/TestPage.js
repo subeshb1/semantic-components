@@ -31,31 +31,15 @@ export default class TestPage extends Component {
   render() {
     return (
       <Container>
-        <Button animated="vertical">
-          <div class="visible content">Next</div>
-          <div class="hidden content">
-            <i class="right arrow icon" />
-          </div>
-        </Button>
-        <div class="ui animated button" tabindex="0">
-  <div class="visible content">Next</div>
-  <div class="hidden content">
-    <i class="right arrow icon"></i>
-  </div>
-</div>
-<div class="ui vertical animated button" tabindex="0">
-  <div class="hidden content">Shasdasdop</div>
-<div class="visible content">
-    <i class="shop icon"></i>
-  </div>
-  
-</div>
-<div class="ui animated fade button" tabindex="0">
-  <div class="visible content">Sign-up for a Pro account</div>
-  <div class="hidden content">
-    $12.99 a month
-  </div>
-</div>
+        <div class="ui top attached button" tabindex="0">
+          Top
+        </div>
+        <div class="ui attached segment">
+          <p />
+        </div>
+        <div class="ui bottom attached button" tabindex="0">
+          Bottom
+        </div>
       </Container>
     );
   }

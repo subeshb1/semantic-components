@@ -14,3 +14,45 @@ export const simpleComponent = (className, defaultAs = "div") => ({
 export const reactComponent = curry((as, props) => ({ ...otherProps }) =>
   React.createElement(as, { ...props, ...otherProps })
 );
+
+export const color = [
+  "",
+  "primary",
+  "secondary",
+  "positive",
+  "negative",
+  "red",
+  "orange",
+  "yellow",
+  "olive",
+  "green",
+  "teal",
+  "blue",
+  "violet",
+  "purple",
+  "pink",
+  "brown",
+  "grey",
+  "black",
+];
+export const social = [
+  "facebook",
+  "twitter",
+  "google plus",
+  "vk",
+  "linkedin",
+  "instagram",
+  "youtube"
+];
+
+export const size = 
+  [
+    "mini",
+    "tiny",
+    "small",
+    "medium",
+    "large",
+    "big",
+    "huge",
+    "massive",
+  ]
