@@ -53,10 +53,40 @@ export default class TestPage extends Component {
   }
   render() {
     return (
-      <Container>
-        <div class="ui small  circular rotate left reveal image">
-          <img class="visible content" src="/img/avatar1.png" />
-          <img class="hidden content" src="/img/avatar2.png" />
+      <Container fluid>
+        <div class="ui attached stackable menu">
+          <a class="item">Name</a>
+          <div class="ui container">
+            <a class="item">
+              <i class="home icon" /> Home
+            </a>
+            <a class="item">
+              <i class="grid layout icon" /> Browse
+            </a>
+            <a class="item">
+              <i class="mail icon" /> Messages
+            </a>
+            <div class="ui simple dropdown item">
+              More
+              <i class="dropdown icon" />
+              <div class="menu">
+                <a class="item">
+                  <i class="edit icon" /> Edit Profile
+                </a>
+                <a class="item">
+                  <i class="globe icon" /> Choose Language
+                </a>
+                <a class="item">
+                  <i class="settings icon" /> Account Settings
+                </a>
+              </div>
+            </div>
+            <div class="right item">
+              <div class="ui input">
+                <input type="text" placeholder="Search..." />
+              </div>
+            </div>
+          </div>
         </div>
       </Container>
     );

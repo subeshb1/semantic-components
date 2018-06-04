@@ -18,7 +18,11 @@ ListContent.defaultProps = {
 
 export class ListItem extends Component {
   static propTypes = {
-    as: PropTypes.oneOfType([PropTypes.string, PropTypes.element,PropTypes.func]),
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
+      PropTypes.func
+    ]),
     active: PropTypes.bool
   };
 
@@ -46,15 +50,22 @@ export default class List extends Component {
   static Header = simpleComponent("header");
 
   static propTypes = {
-    as: PropTypes.oneOfType([PropTypes.string, PropTypes.element,PropTypes.func]),
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
+      PropTypes.func
+    ]),
     bulleted: PropTypes.bool,
     ordered: PropTypes.bool,
     nested: PropTypes.bool,
     link: PropTypes.bool,
     items: PropTypes.arrayOf(
       PropTypes.shape({
-        as: PropTypes.oneOfType([PropTypes.string, PropTypes.element,PropTypes.func])
-          .isRequired
+        as: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.element,
+          PropTypes.func
+        ]).isRequired
       }).isRequired
     ),
     horizontal: PropTypes.bool,
@@ -140,10 +151,10 @@ export default class List extends Component {
       as,
       { className, ...otherProps },
       items &&
-        items.map(({ children, id, ...others }) =>
+        items.map(({ children, key, ...others }) =>
           React.createElement(
             ListItem,
-            { ...others, key: id || u4() },
+            { ...others, key: key || u4(), },
             children
           )
         ),

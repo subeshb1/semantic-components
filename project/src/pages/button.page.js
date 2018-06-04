@@ -429,6 +429,14 @@ export default class extends Component {
             </Label>
           </Button>
         </Button.Group>
+        <Header>Passing as Array</Header>
+        <Button.Group
+          items={[
+            { as: "button", text: "One", color: "red",key:"name" },
+            { as: "button",  labeled:true, children:<React.Fragment><Button text="Subesh"/> <Label text="2048" as="a" basic pointing="left"/> </React.Fragment>},
+            { as: "button", key:"name2", text: "Three", children:<Icon name="home"/> }
+          ]}
+        />
       </Container>
     );
   }

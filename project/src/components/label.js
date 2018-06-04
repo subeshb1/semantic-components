@@ -56,7 +56,8 @@ export default class Label extends Component {
     horizontal: false,
     floating: false,
     circular: false,
-    size: ""
+    size: "",
+    text:"",
   };
   render() {
     const {
@@ -75,6 +76,7 @@ export default class Label extends Component {
       horizontal,
       floating,
       circular,
+      text,
       ...otherProps
     } = this.props;
 
@@ -103,6 +105,6 @@ export default class Label extends Component {
         ${horizontal ? "horizontal" : ""}
         label
         `.replace(/\s+/g, " ");
-    return React.createElement(as, { className, ...otherProps }, children);
+    return React.createElement(as, { className, ...otherProps }, children,text);
   }
 }

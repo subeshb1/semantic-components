@@ -251,6 +251,20 @@ export default () => {
           </Segment.Group>
           <Segment>Bottom</Segment>
         </Segment.Group>
+
+        <Header>Segment as a Container</Header>
+        <Segment raised padded="very" extra="justified text container">
+          <Header as="h2">Dog Roles with Humans</Header>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
+            tempora nihil fugiat in doloribus. Minus deserunt ipsum, sed iste
+            distinctio explicabo excepturi molestiae vel id a officiis deleniti
+            maiores? Reiciendis? Lorem ipsum dolor sit amet consectetur,
+            adipisicing elit. Explicabo, id? Nihil quaerat quia est architecto
+            officia hic, minima, dolor quasi doloremque incidunt, deserunt quas
+            dicta amet sit sunt voluptatum quod?
+          </p>
+        </Segment>
       </Container>
     </div>
   );

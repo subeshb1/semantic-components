@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
+import u4 from 'uniqid'
 const Or = () => <div className="or" />;
 
 export class ButtonGroup extends Component {
@@ -53,6 +55,15 @@ export class ButtonGroup extends Component {
     vertical: PropTypes.bool,
     width: PropTypes.string,
     extra: PropTypes.string,
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        as: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.element,
+          PropTypes.func
+        ]).isRequired
+      }).isRequired
+    )
   };
   static defaultProps = {
     as: "div",
@@ -65,8 +76,8 @@ export class ButtonGroup extends Component {
     compact: false,
     fluid: false,
     attached: "",
-    vertical:false,
-    width:"",
+    vertical: false,
+    width: ""
   };
   render() {
     const {
@@ -84,13 +95,14 @@ export class ButtonGroup extends Component {
       vertical,
       width,
       extra,
+      items,
       ...otherProps
     } = this.props;
     const className = `
     ${width}  
     ${size}
     ui
-    ${vertical?"vertical":""}
+    ${vertical ? "vertical" : ""}
     ${attached ? attached + " attached" : "s"}
     ${compact ? "compact" : ""}
     ${basic ? "basic" : ""}
@@ -103,7 +115,13 @@ export class ButtonGroup extends Component {
     buttons
     `.replace(/\s+/g, " ");
 
-    return React.createElement(as, { className, ...otherProps }, children);
+    return React.createElement(
+      as,
+      { className, ...otherProps },
+      children,
+      items &&
+        items.map(({key,...otherProps}, index) => React.createElement(Button, { key:key || u4() ,...otherProps }))
+    );
   }
 }
 
@@ -195,7 +213,7 @@ export default class Button extends Component {
     fluid: PropTypes.bool,
     circular: PropTypes.bool,
     attached: PropTypes.oneOf(["left", "right", "bottom", "top", ""]),
-    extra: PropTypes.string,
+    extra: PropTypes.string
   };
   static defaultProps = {
     as: "button",
@@ -216,7 +234,7 @@ export default class Button extends Component {
     toggle: false,
     fluid: false,
     attached: "",
-    extra:"",
+    extra: ""
   };
   render() {
     const {
@@ -258,8 +276,8 @@ export default class Button extends Component {
     ${float ? float + " floated" : ""}
     ${
       animated
-      ? (typeof animated === "string" ? animated : "") + " animated"
-      : ""
+        ? (typeof animated === "string" ? animated : "") + " animated"
+        : ""
     }
     ${active ? "active" : ""}
     ${loading ? "loading" : ""}
