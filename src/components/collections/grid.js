@@ -186,6 +186,7 @@ export default class Grid extends Component {
     centered: PropTypes.bool,
     textAlign: PropTypes.oneOf(["center", "left", "right", "justified"]),
     verticalAlign: PropTypes.oneOf(['middle',"top",'bottom']),
+    stackable: PropTypes.bool,
   };
   static defaultProps = {
     as: "div"
@@ -205,12 +206,14 @@ export default class Grid extends Component {
       padded,
       equal,
       textAlign,
+      stackable,
       centered,
       ...otherProps
     } = this.props;
     const className = `
     ui
     ${column ? column + " column" : ""}
+    ${stackable?"stackable":""}
     ${divided ? (typeof divided === "string" ? divided : "") + " divided" : ""}
     ${verticalAlign?verticalAlign+" aligned":""}
     ${celled ? (typeof celled === "string" ? celled : "") + " celled" : ""}

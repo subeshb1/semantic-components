@@ -10,7 +10,8 @@ import {
   Input,
   Label,
   Loader,
-  Segment
+  Segment,
+  Grid
 } from "../../components";
 import { compose, trace } from "../../lib/basic-utils";
 export default class TopRepos extends Component {
@@ -94,15 +95,16 @@ export default class TopRepos extends Component {
 
         {loading && <Loader state="active">Loading Repos...</Loader>}
         {data.length > 0 && (
-          <Segment state={loading ? "disabled" : ""}>
-            <Image.Group size="small    ">
-              {data.map((item, index) => {
-                return (
+          <Grid column="four" stackable padded>
+            {data.map((item, index) => {
+              return (
+                <Grid.Column>
                   <Image
                     key={index}
                     src={item.owner.avatar_url}
                     alt="avatar"
                     bordered
+                    fluid
                     data-tooltip={item.full_name}
                   >
                     <Label
@@ -114,10 +116,10 @@ export default class TopRepos extends Component {
                       <Icon name=" like" />
                     </Label>
                   </Image>
-                );
-              })}
-            </Image.Group>
-          </Segment>
+                </Grid.Column>
+              );
+            })}
+          </Grid>
         )}
       </Container>
     );
