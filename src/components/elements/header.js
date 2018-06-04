@@ -6,7 +6,7 @@ HeaderContent.displayName = "HeaderContent";
 export default class Header extends Component {
   static Content = HeaderContent;
   static defaultProps = {
-    as: "h4",
+    as: "h3",
     size: "",
     sub: false,
     icon: false,

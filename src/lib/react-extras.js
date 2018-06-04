@@ -2,12 +2,7 @@ import { toLower, curry, join, split, compose, replace } from "./basic-utils";
 
 import React from "react";
 import { Route, Link } from "react-router-dom";
-import {
-  Container,
-  Header,
-  List,
-  Segment
-} from "../components";
+import { Container, Header, List, Segment } from "../components";
 
 /** This function returns a function that makes a simple React Component
  *
@@ -43,6 +38,41 @@ export const color = [
   "brown",
   "grey",
   "black"
+];
+export const colorDef = [
+  "red",
+  "orange",
+  "yellow",
+  "olive",
+  "green",
+  "teal",
+  "blue",
+  "violet",
+  "purple",
+  "pink",
+  "brown",
+  "grey",
+  "black"
+];
+
+export const wide = [
+  "one",
+  "two",
+  "three",
+  "four",
+  "five",
+  "six",
+  "seven",
+  "eight",
+  "nine",
+  "ten",
+  "eleven",
+  "twelve",
+  "thirteen",
+  "fourteen",
+  "fifteen",
+  "sixteen",
+  
 ];
 export const social = [
   "facebook",
@@ -88,12 +118,12 @@ export const mapPagesToLinks = (pages, url) =>
       children: toDisplay(page)
     }));
 
-export const DisplayList = ({ pages, url }) => {
+export const DisplayList = ({ pages, url, name }) => {
   return (
     <Container>
       <Segment.Group>
         <Segment color="yellow">
-          <Header as="h1">Element Lists</Header>
+          <Header as="h1">{splitUpper(name)} Lists</Header>
         </Segment>
 
         <Segment color="red">

@@ -28,49 +28,25 @@ import {
   // eslint-disable-next-line
   Segment
 } from "../../components";
+import { color } from "../../lib/react-extras";
+console.log(color.length);
 export default class TestPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      active: false
-    };
-  }
-
-  componentDidMount() {
-    // (() => {
-    //   let lasScroll = document.documentElement.scrollTop;
-    //   window.addEventListener("scroll", event => {
-    //     if (document.documentElement.scrollTop > lasScroll)
-    //       this.setState(({ active }) => ({ active: true }));
-    //     else this.setState(({ active }) => ({ active: false }));
-    //     lasScroll = document.documentElement.scrollTop;
-    //   });
-    // })();
-    window.addEventListener("click", event => {
-      this.setState(({ active }) => ({ active: !active }));
-    });
-  }
   render() {
     return (
-      <Container fluid>
-        <div
-          class=" ui bordered image "
-          data-tooltip="d3/d3"
-          data-position="bottom center"
-          data-inverted
-        >
-          <a
-            class=" ui left corner label "
-            href="https://github.com/d3/d3"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i class=" like icon " />
-          </a>
-          <img
-            src="https://avatars1.githubusercontent.com/u/1562726?v=4"
-            alt="avatar"
-          />
+      <Container>
+        <div class="ui middle aligned four column centered padded grid">
+          <div class="row">
+            <div class="column">
+              <Image src="/img/avatar6.png" size="tiny" />
+            </div>
+            <div class="column">
+              <Image src="/img/avatar6.png"  size="tiny"/>
+              <Image src="/img/avatar6.png" size="tiny" />
+            </div>
+            <div class="column">
+              <Image src="/img/avatar6.png" size="tiny" />
+            </div>
+          </div>
         </div>
       </Container>
     );

@@ -10,7 +10,9 @@ const NoContent = () => (
   </Container>
 );
 
-const Home = ({ match: { url } }) => <DisplayList pages={Pages} url={url} />;
+const Home = ({ match: { url } }) => (
+  <DisplayList pages={Pages} url={url} name="App" />
+);
 
 class App extends Component {
   render() {

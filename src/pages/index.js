@@ -5,7 +5,7 @@ import { DisplayList, mapPagesToRoutes } from "../lib/react-extras";
 
 const NavMenu = Object.entries(Pages).reduce((acc, item, index) => {
   const View = ({ match: { url } }) => (
-    <DisplayList pages={item[1]} url={url} />
+    <DisplayList pages={item[1]} url={url} name={item[0]} />
   );
   return {
     ...acc,
