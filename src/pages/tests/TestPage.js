@@ -27,7 +27,7 @@ import {
   Reveal,
   // eslint-disable-next-line
   Segment
-} from "../components";
+} from "../../components";
 export default class TestPage extends Component {
   constructor(props) {
     super(props);
