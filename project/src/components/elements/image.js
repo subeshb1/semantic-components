@@ -25,7 +25,7 @@ export default class Image extends Component {
     spaced: false,
     float: "",
     fluid: false,
-    alt:"",
+    alt: ""
   };
   render() {
     const {
@@ -64,13 +64,25 @@ export default class Image extends Component {
 
     if (wrapped || children || as === "div" || as === "a") {
       let newAs = as === "img" ? "div" : as;
+      const {
+        "data-tooltip": dataTooltip,
+        "data-position": dataPosition,
+        "data-inverted": dataInverted,
+        ...remainingProps
+      } = otherProps;
       return React.createElement(
         newAs,
-        { className },
+        {
+          className,
+          "data-tooltip": dataTooltip,
+          "data-position": dataPosition,
+          "data-inverted": dataInverted
+        },
         children,
-        <img {...otherProps} alt={alt}/>
+
+        <img {...remainingProps} alt={alt} />
       );
     }
-    return <img className={className} {...otherProps} alt={alt}/>;
+    return <img className={className} {...otherProps} alt={alt} />;
   }
 }

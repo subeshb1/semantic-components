@@ -1,11 +1,6 @@
 import React from "react";
-import Container from "../components/container";
-import Label from "../components/label";
-import Header from "../components/header";
-import Segment from "../components/segment";
-import Image from "../components/image";
-import Icon from "../components/icon";
-import List from "../components/list";
+// eslint-disable-next-line
+import {Button,Container,Divider,Flag,Header,Icon,Image,Input,Label,List,Loader,Reveal,Segment} from '../../components';
 export default () => {
   return (
     <Container>

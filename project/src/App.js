@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import Header from "./components/header";
-import Container from "./components/container";
-import Element from "./pages";
-import List from "./components/list";
-import Test from "./tests/TestPage";
+import { ElementPage,ImplementationPage } from "./pages";
 import TestPage from "./tests/TestPage";
-import TopRepos from './pages/implementations/TopRepos';
+
+import { Container, Header, List } from "./components";
+// import TopRepos from './pages/implementations/TopRepos';
 const NoContent = () => (
   <Container textAlign="center">
     <Header size="large"> No Content Found</Header>
-    
   </Container>
 );
 
@@ -30,10 +27,10 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route path="/elements" component={Element} />
+          <Route path="/elements" component={ElementPage} />
           <Route exact path="/" component={Home} />
           <Route path="/test" component={TestPage} />
-          <Route path="/implementations/top-repos" component={TopRepos} />
+          <Route path="/implementations" component={ImplementationPage} />
 
           <Route component={NoContent} />
         </Switch>

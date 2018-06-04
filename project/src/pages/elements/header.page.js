@@ -1,12 +1,6 @@
 import React from "react";
-import Label from "../components/label";
-import Container from "../components/container";
-import Header from "../components/header";
-import Icon from "../components/icon";
-import Button from "../components/button";
-import Input from "../components/input";
-import Image from "../components/image";
-import Divider from "../components/divider";
+// eslint-disable-next-line
+import {Button,Container,Divider,Flag,Header,Icon,Image,Input,Label,List,Loader,Reveal,Segment} from '../../components';
 
 export default class HeaderPage extends React.Component {
   render() {

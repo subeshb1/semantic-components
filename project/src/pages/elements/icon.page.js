@@ -1,12 +1,6 @@
 import React from "react";
-import Label from "../components/label";
-import Container from "../components/container";
-import Header from "../components/header";
-import Icon from "../components/icon";
-import Button from "../components/button";
-import Input from "../components/input";
-import Flag from "../components/flag";
-
+// eslint-disable-next-line
+import {Button,Container,Divider,Flag,Header,Icon,Image,Input,Label,List,Loader,Reveal,Segment} from '../../components';
 export default class InputPage extends React.Component {
   render() {
     return (

@@ -1,18 +1,21 @@
 import React, { Component } from "react";
-import Container from "../../components/container";
-import Image from "../../components/image";
-import Button from "../../components/button";
-import input from "../../components/input";
-import { curry, compose, trace } from "../../lib/basic-utils";
-import List from "../../components/list";
-import Input from "../../components/input";
-import Segment from "../../components/segment";
-import Loader from "../../components/loader";
-import Header from "../../components/header";
-import Divider from "../../components/divider";
-import Label from "../../components/label";
-import data from "./data.json";
-import Icon from "../../components/icon";
+// eslint-disable-next-line
+import {
+  Button,
+  Container,
+  Divider,
+  Flag,
+  Header,
+  Icon,
+  Image,
+  Input,
+  Label,
+  List,
+  Loader,
+  Reveal,
+  Segment
+} from "../../components";
+import { compose, trace } from "../../lib/basic-utils";
 export default class TopRepos extends Component {
   constructor(props) {
     super(props);
@@ -63,7 +66,6 @@ export default class TopRepos extends Component {
         </Container>
       );
     }
-    const { match } = this.props;
     const { loading, data, value } = this.state;
 
     return (

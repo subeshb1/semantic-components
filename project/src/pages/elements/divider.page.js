@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import Divider from "../components/divider";
-import Container from '../components/container';
-import Button from "../components/button";
-
+// eslint-disable-next-line
+import {Button,Container,Divider,Flag,Header,Icon,Image,Input,Label,List,Loader,Reveal,Segment} from '../../components';
 
 export default class DividerPage extends Component {
   render() {
