@@ -4,15 +4,12 @@ import {
   Button,
   Container,
   Divider,
-  Flag,
   Header,
   Icon,
   Image,
   Input,
   Label,
-  List,
   Loader,
-  Reveal,
   Segment
 } from "../../components";
 import { compose, trace } from "../../lib/basic-utils";
