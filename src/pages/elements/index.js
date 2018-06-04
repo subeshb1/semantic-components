@@ -11,4 +11,3 @@ export { default as LoaderPage } from "./loader.page";
 export { default as RevealPage } from "./reveal.page";
 export { default as SegmentPage } from "./segment.page";
 
-export  {default } from "./element.page";
