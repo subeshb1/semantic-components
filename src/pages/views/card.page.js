@@ -7,7 +7,8 @@ import {
   Image,
   Icon,
   Input,
-  Button
+  Button,
+  Reveal
 } from "../../components";
 
 export default class extends Component {
@@ -151,6 +152,28 @@ export default class extends Component {
             </Card.Content>
           </Card>
         </Card.Group>
+        <Card>
+          <Reveal animation="slide masked" >
+            <Reveal.Visible>
+              <Image src="/img/avatar1.png" fluid alt="Avatar" />
+            </Reveal.Visible>
+            <Reveal.Hidden>
+              <Image src="/img/avatar2.png" fluid alt="Avatar" />
+            </Reveal.Hidden>
+          </Reveal>
+          <Card.Content>
+            <Card.Header as="a">Subesh Bhandari</Card.Header>
+            <Card.Meta>20 yrs old</Card.Meta>
+            <Card.Description>
+              He is an average programmer with zero salary.
+            </Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+            <span className="right floated">Joined 2014</span>
+            <Icon name="users" />
+            151 Friends
+          </Card.Content>
+        </Card>
       </Container>
     );
   }

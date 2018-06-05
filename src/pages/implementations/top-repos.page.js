@@ -102,47 +102,48 @@ export default class TopRepos extends Component {
           </Button>
         </Input>
         <Divider />
-        {loading && <Loader state="active">Loading Repos...</Loader>}
-        {data.length > 0 && (
-          <Card.Group column="four" stackable doubling>
-            {data.map((item, index) => {
-              return (
-                <Card link fluid raised color={"red"} key={index}>
-                  <Card.Content extra># {index + 1}</Card.Content>
-                  <Image
-                    key={index}
-                    src={item.owner.avatar_url}
-                    alt="avatar"
-                    data-tooltip={item.full_name}
-                    wrapped
-                    as="a"
-                    target="_blank"
-                    href={item.html_url}
-                  />
-                  <Card.Content>
-                    <Card.Header>{item.name}</Card.Header>
-                    <Card.Meta>{item.owner.login}</Card.Meta>
-                    <Card.Description>
-                      {item.description.slice(0, 50)}...
-                    </Card.Description>
-                  </Card.Content>
-                  <Card.Content extra>
-                    <Card.Meta textAlign="center">
-                      <span className="right floated">
-                        <Icon name="fork" />
-                        {item.forks}
-                      </span>
-                      <span className="left floated">
-                        <Icon name="star" />{" "}
-                        {item.stargazers_count}
-                      </span>
-                    </Card.Meta>
-                  </Card.Content>
-                </Card>
-              );
-            })}
-          </Card.Group>
-        )}
+        <Segment color="red">
+          {loading && <Loader state="active">Loading Repos...</Loader>}
+          {data.length > 0 && (
+            <Card.Group column="four" stackable doubling>
+              {data.map((item, index) => {
+                return (
+                  <Card link fluid raised color={"red"} key={index}>
+                    <Card.Content extra># {index + 1}</Card.Content>
+                    <Image
+                      key={index}
+                      src={item.owner.avatar_url}
+                      alt="avatar"
+                      data-tooltip={item.full_name}
+                      wrapped
+                      as="a"
+                      target="_blank"
+                      href={item.html_url}
+                    />
+                    <Card.Content>
+                      <Card.Header>{item.name}</Card.Header>
+                      <Card.Meta>{item.owner.login}</Card.Meta>
+                      <Card.Description>
+                        {item.description.slice(0, 50)}...
+                      </Card.Description>
+                    </Card.Content>
+                    <Card.Content extra>
+                      <Card.Meta textAlign="center">
+                        <span className="right floated">
+                          <Icon name="fork" />
+                          {item.forks}
+                        </span>
+                        <span className="left floated">
+                          <Icon name="star" /> {item.stargazers_count}
+                        </span>
+                      </Card.Meta>
+                    </Card.Content>
+                  </Card>
+                );
+              })}
+            </Card.Group>
+          )}
+        </Segment>
       </Container>
     );
   }

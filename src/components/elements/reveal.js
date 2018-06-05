@@ -14,16 +14,17 @@ export default class Reveal extends Component {
       PropTypes.element,
       PropTypes.func
     ]),
-    animation: PropTypes.oneOf(["move", "fade", "rotate",'move right','move up','move down','rotate left']),
+    animation: PropTypes.oneOf(["move", "fade", "rotate",'move right','move up','move down','rotate left','slide',"slide masked"]),
     instant: PropTypes.bool,
-    show: PropTypes.oneOf([undefined, true, false])
+    show: PropTypes.oneOf([undefined, true, false]),
+    extra: PropTypes.string,
   };
   static defaultProps = {
     as: "div",
     animation: "fade",
     instant: false,
     show: undefined,
-    style:{width:"fit-content"}
+    extra: "",
   };
   static Hidden = RevealHidden;
   static Visible = RevealVisible;
@@ -34,6 +35,7 @@ export default class Reveal extends Component {
       show,
       animation,
       instant,
+      extra,
       ...otherProps
     } = this.props;
     const className = `
@@ -41,6 +43,7 @@ export default class Reveal extends Component {
     ${show !== undefined ? (show ? "active" : "disabled") : ""}
     ${instant ? "instant" : ""}
     ${animation}
+    ${extra}
     reveal
     `.replace(/\s+/g, " ");
 

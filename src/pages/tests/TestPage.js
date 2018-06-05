@@ -36,21 +36,18 @@ export default class TestPage extends Component {
     return (
       <Container>
         <Card>
-          <Image src="/img/avatar8.png" wrapped />
+         
           <Card.Content>
-            <Card.Header textAlign="center" as="a" href="#">
-              Kristy
-            </Card.Header>
-            <Card.Meta textAlign="right">Joined in 2013</Card.Meta>
+            <Card.Header as="a">Subesh Bhandari</Card.Header>
+            <Card.Meta>20 yrs old</Card.Meta>
             <Card.Description>
-              Kristy is an art director living in New York.
+              He is an average programmer with zero salary.
             </Card.Description>
           </Card.Content>
-          <Card.Content extra textAlign="center">
-            <a>
-              <Icon name="user" />
-              22 Friends
-            </a>
+          <Card.Content extra>
+            <span className="right floated">Joined 2014</span>
+            <Icon name="users" />
+            151 Friends
           </Card.Content>
         </Card>
       </Container>
