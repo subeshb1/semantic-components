@@ -11,9 +11,11 @@ import {
   Label,
   Loader,
   Segment,
-  Grid
+  Grid,
+  Card
 } from "../../components";
 import { compose, trace } from "../../lib/basic-utils";
+import { colorDef } from "../../lib/react-extras";
 export default class TopRepos extends Component {
   constructor(props) {
     super(props);
@@ -52,6 +54,7 @@ export default class TopRepos extends Component {
     send(data)
       .then(res => res.json())
       .then(res => {
+        console.log(res);
         if (this.mount)
           this.setState(() => ({ data: res.items, loading: false }));
       })
@@ -98,34 +101,47 @@ export default class TopRepos extends Component {
             Search
           </Button>
         </Input>
-
+        <Divider />
         {loading && <Loader state="active">Loading Repos...</Loader>}
         {data.length > 0 && (
-          <Grid column="four" stackable padded>
+          <Card.Group column="four" stackable doubling>
             {data.map((item, index) => {
               return (
-                <Grid.Column key={index}>
+                <Card link fluid raised color={"red"} key={index}>
+                  <Card.Content extra># {index + 1}</Card.Content>
                   <Image
                     key={index}
                     src={item.owner.avatar_url}
                     alt="avatar"
-                    bordered
-                    fluid
                     data-tooltip={item.full_name}
-                  >
-                    <Label
-                      as="a"
-                      corner="left"
-                      href={item.html_url}
-                      target="_blank"
-                    >
-                      <Icon name=" like" />
-                    </Label>
-                  </Image>
-                </Grid.Column>
+                    wrapped
+                    as="a"
+                    target="_blank"
+                    href={item.html_url}
+                  />
+                  <Card.Content>
+                    <Card.Header>{item.name}</Card.Header>
+                    <Card.Meta>{item.owner.login}</Card.Meta>
+                    <Card.Description>
+                      {item.description.slice(0, 50)}...
+                    </Card.Description>
+                  </Card.Content>
+                  <Card.Content extra>
+                    <Card.Meta textAlign="center">
+                      <span className="right floated">
+                        <Icon name="fork" />
+                        {item.forks}
+                      </span>
+                      <span className="left floated">
+                        <Icon name="star" />{" "}
+                        {item.stargazers_count}
+                      </span>
+                    </Card.Meta>
+                  </Card.Content>
+                </Card>
               );
             })}
-          </Grid>
+          </Card.Group>
         )}
       </Container>
     );

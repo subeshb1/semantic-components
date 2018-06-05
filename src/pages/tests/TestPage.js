@@ -26,7 +26,8 @@ import {
   // eslint-disable-next-line
   Reveal,
   // eslint-disable-next-line
-  Segment
+  Segment,
+  Card
 } from "../../components";
 // eslint-disable-next-line
 import { color } from "../../lib/react-extras";
@@ -34,71 +35,24 @@ export default class TestPage extends Component {
   render() {
     return (
       <Container>
-        <div class="ui grid">
-          <div class="two  row">
-            <div class="column">
-              <div class="ui segment">Large Screen2</div>
-            </div>
-            <div class="column">
-              <div class="ui segment">Large Screen1</div>
-            </div>
-          </div>
-          <div class="two column large screen only row">
-            <div class="column">
-              <div class="ui segment">Widescreen</div>
-            </div>
-            <div class="column">
-              <div class="ui segment">Widescreen</div>
-            </div>
-          </div>
-          <div class="two column mobile only row">
-            <div class="column">
-              <div class="ui segment">Mobile</div>
-            </div>
-            <div class="column">
-              <div class="ui segment">Mobile</div>
-            </div>
-          </div>
-          <div class="three column row">
-            <div class="computer only column">
-              <div class="ui segment">Computer</div>
-            </div>
-            <div class="tablet mobile only column">
-              <div class="ui segment">Tablet and Mobile</div>
-            </div>
-            <div class="column">
-              <div class="ui segment">All Sizes</div>
-            </div>
-            <div class="column">
-              <div class="ui segment">All Sizes</div>
-            </div>
-          </div>
-          <div class="four column computer only row">
-            <div class="column">
-              <div class="ui segment">Computer</div>
-            </div>
-            <div class="column">
-              <div class="ui segment">Computer</div>
-            </div>
-            <div class="column">
-              <div class="ui segment">Computer</div>
-            </div>
-            <div class="column">
-              <div class="ui segment">Computer</div>
-            </div>
-          </div>
-          <div class="three column tablet only row">
-            <div class="column">
-              <div class="ui segment">Tablet</div>
-            </div>
-            <div class="column">
-              <div class="ui segment">Tablet</div>
-            </div>
-            <div class="column">
-              <div class="ui segment">Tablet</div>
-            </div>
-          </div>
-        </div>
+        <Card>
+          <Image src="/img/avatar8.png" wrapped />
+          <Card.Content>
+            <Card.Header textAlign="center" as="a" href="#">
+              Kristy
+            </Card.Header>
+            <Card.Meta textAlign="right">Joined in 2013</Card.Meta>
+            <Card.Description>
+              Kristy is an art director living in New York.
+            </Card.Description>
+          </Card.Content>
+          <Card.Content extra textAlign="center">
+            <a>
+              <Icon name="user" />
+              22 Friends
+            </a>
+          </Card.Content>
+        </Card>
       </Container>
     );
   }

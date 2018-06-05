@@ -14,7 +14,6 @@ export default class Image extends Component {
   static defaultProps = {
     size: "",
     src: undefined,
-    wrapped: false,
     as: "img",
     state: "",
     avatar: false,
@@ -30,8 +29,8 @@ export default class Image extends Component {
   render() {
     const {
       size,
-      wrapped,
       as,
+      wrapped,
       children,
       state,
       avatar,
@@ -64,23 +63,41 @@ export default class Image extends Component {
 
     if (wrapped || children || as === "div" || as === "a") {
       let newAs = as === "img" ? "div" : as;
+
       const {
-        "data-tooltip": dataTooltip,
-        "data-position": dataPosition,
-        "data-inverted": dataInverted,
+        alt,
+        src,
+        crossOrigin,
+        height,
+        width,
+        sizes,
+        srcSet,
+        useMap,
+        ismap,
         ...remainingProps
       } = otherProps;
       return React.createElement(
         newAs,
         {
           className,
-          "data-tooltip": dataTooltip,
-          "data-position": dataPosition,
-          "data-inverted": dataInverted
+          ...remainingProps
         },
         children,
 
-        <img {...remainingProps} alt={alt} />
+        <img
+          {...{
+            alt,
+            src,
+            crossOrigin,
+            height,
+            width,
+            sizes,
+            srcSet,
+            useMap,
+            ismap
+          }}
+          alt={alt}
+        />
       );
     }
     return <img className={className} {...otherProps} alt={alt} />;
