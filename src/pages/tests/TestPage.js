@@ -35,21 +35,13 @@ export default class TestPage extends Component {
   render() {
     return (
       <Container>
-        <Card>
-         
-          <Card.Content>
-            <Card.Header as="a">Subesh Bhandari</Card.Header>
-            <Card.Meta>20 yrs old</Card.Meta>
-            <Card.Description>
-              He is an average programmer with zero salary.
-            </Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-            <span className="right floated">Joined 2014</span>
-            <Icon name="users" />
-            151 Friends
-          </Card.Content>
-        </Card>
+        <div class="ui dimmable dimmed segment">
+  <div class="ui simple inverted dimmer">
+    <div class="ui text loader">Loading</div>
+  </div>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error similique earum, magnam corrupti obcaecati maxime a autem delectus beatae nemo natus nihil, veritatis quibusdam, ab ipsum eligendi deleniti molestias! Nulla! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate error nulla eius quos asperiores incidunt reiciendis enim laborum ut dolores alias vel ipsa voluptatem, sed expedita tempora, delectus odit? Nihil.</p>
+  <p></p>
+</div>
       </Container>
     );
   }

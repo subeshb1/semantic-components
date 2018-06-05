@@ -18,7 +18,8 @@ export default class Header extends Component {
     color: "",
     textAlign: "",
     float: "",
-    attached: ""
+    attached: "",
+
   };
   render() {
     const {
@@ -34,7 +35,9 @@ export default class Header extends Component {
       textAlign,
       float,
       attached,
+      text,
       inverted,
+      children,
       ...otherProps
     } = this.props;
     const className = `
@@ -55,11 +58,11 @@ export default class Header extends Component {
         }
         ${float ? float + " floated" : ""}
         ${attached ? attached + " attached" : ""}
-        ${inverted ? inverted + " inverted" : ""}
+        ${inverted ?  " inverted" : ""}
         header
     `.replace(/\s+/g, " ");
 
-    return React.createElement(as,{className,...otherProps});
+    return React.createElement(as,{className,...otherProps},text,children);
   }
 }
 

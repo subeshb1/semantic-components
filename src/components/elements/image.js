@@ -24,7 +24,9 @@ export default class Image extends Component {
     spaced: false,
     float: "",
     fluid: false,
-    alt: ""
+    alt: "",
+
+    extra:"",
   };
   render() {
     const {
@@ -40,6 +42,7 @@ export default class Image extends Component {
       circular,
       fluid,
       float,
+      extra,
       centered,
       verticalAlign,
       alt,
@@ -58,6 +61,7 @@ export default class Image extends Component {
         ${bordered ? "bordered" : ""}
         ${verticalAlign ? verticalAlign + " aligned" : ""}
         ${float ? float + " floated" : ""}
+        ${extra}
         image
         `.replace(/\s+/g, " ");
 

@@ -135,7 +135,7 @@ export default class Card extends Component {
     ui
     ${extra}
     ${link ? "link" : ""}
-    ${color}
+    ${color?color:""}
     ${fluid ? "fluid" : ""}
     ${raised ? "raised" : ""}
     ${centered ? "centered" : ""}

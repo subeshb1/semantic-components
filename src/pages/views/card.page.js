@@ -8,7 +8,8 @@ import {
   Icon,
   Input,
   Button,
-  Reveal
+  Reveal,
+  Dimmer
 } from "../../components";
 
 export default class extends Component {
@@ -16,6 +17,7 @@ export default class extends Component {
     active: false
   };
   render() {
+    const { active } = this.state;
     return (
       <Container>
         <Header as="h1">Card</Header>
@@ -153,7 +155,7 @@ export default class extends Component {
           </Card>
         </Card.Group>
         <Card>
-          <Reveal animation="slide masked" >
+          <Reveal animation="slide masked">
             <Reveal.Visible>
               <Image src="/img/avatar1.png" fluid alt="Avatar" />
             </Reveal.Visible>
@@ -161,6 +163,72 @@ export default class extends Component {
               <Image src="/img/avatar2.png" fluid alt="Avatar" />
             </Reveal.Hidden>
           </Reveal>
+          <Card.Content>
+            <Card.Header as="a">Subesh Bhandari</Card.Header>
+            <Card.Meta>20 yrs old</Card.Meta>
+            <Card.Description>
+              He is an average programmer with zero salary.
+            </Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+            <span className="right floated">Joined 2014</span>
+            <Icon name="users" />
+            151 Friends
+          </Card.Content>
+        </Card>
+        <Card>
+          <Dimmer.Dimmable
+            as={Image}
+            wrapped
+            blurring
+            src="/img/avatar3.png"
+            onMouseOver={() =>
+              this.setState(({ active }) => ({ active: true }))
+            }
+            onMouseOut={() =>
+              this.setState(({ active }) => ({ active: false }))
+            }
+            show={active}
+          >
+            <Dimmer show={active}>
+              <Dimmer.Content>
+                <Button inverted>Add </Button>
+              </Dimmer.Content>
+            </Dimmer>
+          </Dimmer.Dimmable>
+          <Card.Content>
+            <Card.Header as="a">Subesh Bhandari</Card.Header>
+            <Card.Meta>20 yrs old</Card.Meta>
+            <Card.Description>
+              He is an average programmer with zero salary.
+            </Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+            <span className="right floated">Joined 2014</span>
+            <Icon name="users" />
+            151 Friends
+          </Card.Content>
+        </Card>
+        <Card>
+          <Dimmer.Dimmable
+            as={Image}
+            wrapped
+            blurring
+            src="/img/avatar7.png"
+            onMouseOver={() =>
+              this.setState(({ active }) => ({ active: true }))
+            }
+            onMouseOut={() =>
+              this.setState(({ active }) => ({ active: false }))
+            }
+            show={active}
+          >
+            <Dimmer show={active} inverted>
+              <Dimmer.Content>
+                <Button color="blue">Add</Button>
+              </Dimmer.Content>
+            </Dimmer>
+          </Dimmer.Dimmable>
           <Card.Content>
             <Card.Header as="a">Subesh Bhandari</Card.Header>
             <Card.Meta>20 yrs old</Card.Meta>
