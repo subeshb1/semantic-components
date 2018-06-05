@@ -66,7 +66,7 @@ export default class extends Component {
         <Header>Divided</Header>
         <Header as="h5"> Divided</Header>
 
-        <Grid column="three" divided="vertically">
+        <Grid column={3} divided="vertically">
           <Grid.Row>
             <Grid.Column>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -111,7 +111,7 @@ export default class extends Component {
         <Header sub as="h5">
           Vertically Divided
         </Header>
-        <Grid column="three" divided>
+        <Grid column={3} divided>
           <Grid.Row>
             <Grid.Column>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -157,7 +157,7 @@ export default class extends Component {
         <Header>Celled</Header>
         <Grid celled>
           <Grid.Row>
-            <Grid.Column width="three">
+            <Grid.Column width={3}>
               <Image src="/img/avatar8.png" />
             </Grid.Column>
             <Grid.Column width="thirteen">
@@ -182,7 +182,7 @@ export default class extends Component {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column width="three">
+            <Grid.Column width={3}>
               <Image src="/img/avatar7.png" />
             </Grid.Column>
             <Grid.Column width="ten">
@@ -205,7 +205,7 @@ export default class extends Component {
               dolore, reiciendis blanditiis recusandae pariatur ipsum vitae amet
               provident soluta unde?
             </Grid.Column>
-            <Grid.Column width="three">
+            <Grid.Column width={3}>
               <Image src="/img/avatar6.png" />
             </Grid.Column>
           </Grid.Row>
@@ -213,7 +213,7 @@ export default class extends Component {
         <Header>Internally Celled</Header>
         <Grid celled="internally">
           <Grid.Row>
-            <Grid.Column width="three">
+            <Grid.Column width={3}>
               <Image src="/img/avatar5.png" />
             </Grid.Column>
             <Grid.Column width="ten">
@@ -236,12 +236,12 @@ export default class extends Component {
               dolore, reiciendis blanditiis recusandae pariatur ipsum vitae amet
               provident soluta unde?
             </Grid.Column>
-            <Grid.Column width="three">
+            <Grid.Column width={3}>
               <Image src="/img/avatar4.png" />
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column width="three">
+            <Grid.Column width={3}>
               <Image src="/img/avatar3.png" />
             </Grid.Column>
             <Grid.Column width="ten">
@@ -271,7 +271,7 @@ export default class extends Component {
               dolore, reiciendis blanditiis recusandae pariatur ipsum vitae amet
               provident soluta unde?
             </Grid.Column>
-            <Grid.Column width="three">
+            <Grid.Column width={3}>
               <Image src="/img/avatar2.png" />
             </Grid.Column>
           </Grid.Row>
@@ -283,7 +283,7 @@ export default class extends Component {
             A row is a horizontal grouping of columns
           </Header>
         </Header>
-        <Grid column="three">
+        <Grid column={3}>
           <Grid.Row>
             <Grid.Column>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus
@@ -395,7 +395,7 @@ export default class extends Component {
           </Header>
         </Header>
         <Grid>
-          <Grid.Column width="three">
+          <Grid.Column width={3}>
             <Image src="/img/avatar-3.png" size="small" />
           </Grid.Column>
           <Grid.Column width="nine">
@@ -406,7 +406,7 @@ export default class extends Component {
               tempora, cupiditate similique possimus cumque?
             </p>
           </Grid.Column>
-          <Grid.Column width="three">
+          <Grid.Column width={3}>
             <Image src="/img/snake.jpg" size="small" />
           </Grid.Column>
         </Grid>
@@ -417,7 +417,7 @@ export default class extends Component {
           </Header>
         </Header>
         <Grid>
-          <Grid.Row column="three">
+          <Grid.Row column={3}>
             <Grid.Column>
               <Image src="/img/avatar1.png" />{" "}
             </Grid.Column>
@@ -521,7 +521,7 @@ export default class extends Component {
             A row can stretch its contents to take up the entire column height
           </Header>
         </Header>
-        <Grid column="three" divided>
+        <Grid column={3} divided>
           <Grid.Row stretched>
             <Grid.Column>
               <Segment>1</Segment>
@@ -538,7 +538,7 @@ export default class extends Component {
           </Grid.Row>
         </Grid>
         <Header as="h4">Not Stretched</Header>
-        <Grid column="three" divided>
+        <Grid column={3} divided>
           <Grid.Row>
             <Grid.Column>
               <Segment>1</Segment>
@@ -834,7 +834,354 @@ export default class extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
+        <Header as="h4">Using Rows</Header>
+        <Grid column={"four"} centered>
+          <Header as="h4">Top</Header>
+          <Grid.Row verticalAlign="top">
+            <Grid.Column>
+              <Image src="/img/snake.jpg" />
+            </Grid.Column>
+            <Grid.Column>
+              <Image src="/img/snake.jpg" />
+              <Image src="/img/snake.jpg" />
+            </Grid.Column>
+            <Grid.Column>
+              <Image src="/img/snake.jpg" />
+            </Grid.Column>
+          </Grid.Row>
+          <Header as="h4">Middle</Header>
+          <Grid.Row verticalAlign="middle">
+            <Grid.Column>
+              <Image src="/img/snake.jpg" />
+            </Grid.Column>
+            <Grid.Column>
+              <Image src="/img/snake.jpg" />
+              <Image src="/img/snake.jpg" />
+            </Grid.Column>
+            <Grid.Column>
+              <Image src="/img/snake.jpg" />
+            </Grid.Column>
+          </Grid.Row>
+          <Header as="h4">Bottom</Header>
+          <Grid.Row verticalAlign="bottom">
+            <Grid.Column>
+              <Image src="/img/snake.jpg" />
+            </Grid.Column>
+            <Grid.Column>
+              <Image src="/img/snake.jpg" />
+              <Image src="/img/snake.jpg" />
+            </Grid.Column>
+            <Grid.Column>
+              <Image src="/img/snake.jpg" />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <Header as="h2">Responsive</Header>
+        <Header>
+          Doubling{" "}
+          <Header as="div" sub>
+            A grid can double its column width on tablet and mobile sizes
+          </Header>
+        </Header>
+        <Grid doubling column="four" textAlign="justified">
+          <Grid.Column>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab non
+              aperiam fugiat architecto alias exercitationem explicabo, iste rem
+              incidunt, nihil beatae excepturi minima ex quis quas possimus quo
+              molestiae perspiciatis. Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Itaque ad repudiandae quae delectus enim, sint,
+              perferendis error, vel aperiam obcaecati architecto similique
+              laborum sit molestias qui dolorum rem pariatur harum.
+            </p>
+          </Grid.Column>
+          <Grid.Column>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab non
+              aperiam fugiat architecto alias exercitationem explicabo, iste rem
+              incidunt, nihil beatae excepturi minima ex quis quas possimus quo
+              molestiae perspiciatis. Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Itaque ad repudiandae quae delectus enim, sint,
+              perferendis error, vel aperiam obcaecati architecto similique
+              laborum sit molestias qui dolorum rem pariatur harum.
+            </p>
+          </Grid.Column>
+          <Grid.Column>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab non
+              aperiam fugiat architecto alias exercitationem explicabo, iste rem
+              incidunt, nihil beatae excepturi minima ex quis quas possimus quo
+              molestiae perspiciatis. Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Itaque ad repudiandae quae delectus enim, sint,
+              perferendis error, vel aperiam obcaecati architecto similique
+              laborum sit molestias qui dolorum rem pariatur harum.
+            </p>
+          </Grid.Column>
+          <Grid.Column>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab non
+              aperiam fugiat architecto alias exercitationem explicabo, iste rem
+              incidunt, nihil beatae excepturi minima ex quis quas possimus quo
+              molestiae perspiciatis. Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Itaque ad repudiandae quae delectus enim, sint,
+              perferendis error, vel aperiam obcaecati architecto similique
+              laborum sit molestias qui dolorum rem pariatur harum.
+            </p>
+          </Grid.Column>
+          <Grid.Column>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab non
+              aperiam fugiat architecto alias exercitationem explicabo, iste rem
+              incidunt, nihil beatae excepturi minima ex quis quas possimus quo
+              molestiae perspiciatis. Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Itaque ad repudiandae quae delectus enim, sint,
+              perferendis error, vel aperiam obcaecati architecto similique
+              laborum sit molestias qui dolorum rem pariatur harum.
+            </p>
+          </Grid.Column>
+        </Grid>
+        <Header as="h2">
+          Stackable{" "}
+          <Header as="div" sub>
+            A grid can have its columns stack on-top of each other after
+            reaching mobile breakpoints
+          </Header>
+        </Header>
+        <Grid doubling column="four" divided stackable textAlign="justified">
+          <Grid.Column>
+            <Segment>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab non
+                aperiam fugiat architecto alias exercitationem explicabo, iste
+                rem incidunt, nihil beatae excepturi minima ex quis quas
+                possimus quo molestiae perspiciatis. Lorem, ipsum dolor sit amet
+                consectetur adipisicing elit. Itaque ad repudiandae quae
+                delectus enim, sint, perferendis error, vel aperiam obcaecati
+                architecto similique laborum sit molestias qui dolorum rem
+                pariatur harum.
+              </p>
+            </Segment>
+          </Grid.Column>
+          <Grid.Column>
+            <Segment>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab non
+                aperiam fugiat architecto alias exercitationem explicabo, iste
+                rem incidunt, nihil beatae excepturi minima ex quis quas
+                possimus quo molestiae perspiciatis. Lorem, ipsum dolor sit amet
+                consectetur adipisicing elit. Itaque ad repudiandae quae
+                delectus enim, sint, perferendis error, vel aperiam obcaecati
+                architecto similique laborum sit molestias qui dolorum rem
+                pariatur harum.
+              </p>
+            </Segment>
+          </Grid.Column>
+          <Grid.Column>
+            <Segment>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab non
+                aperiam fugiat architecto alias exercitationem explicabo, iste
+                rem incidunt, nihil beatae excepturi minima ex quis quas
+                possimus quo molestiae perspiciatis. Lorem, ipsum dolor sit amet
+                consectetur adipisicing elit. Itaque ad repudiandae quae
+                delectus enim, sint, perferendis error, vel aperiam obcaecati
+                architecto similique laborum sit molestias qui dolorum rem
+                pariatur harum.
+              </p>
+            </Segment>
+          </Grid.Column>
+          <Grid.Column>
+            <Segment>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab non
+                aperiam fugiat architecto alias exercitationem explicabo, iste
+                rem incidunt, nihil beatae excepturi minima ex quis quas
+                possimus quo molestiae perspiciatis. Lorem, ipsum dolor sit amet
+                consectetur adipisicing elit. Itaque ad repudiandae quae
+                delectus enim, sint, perferendis error, vel aperiam obcaecati
+                architecto similique laborum sit molestias qui dolorum rem
+                pariatur harum.
+              </p>
+            </Segment>
+          </Grid.Column>
+        </Grid>
+        <Header>
+          Reverese{" "}
+          <Header as="div" sub>
+            A grid or row can specify that its columns should reverse order at
+            different device sizes
+          </Header>
+        </Header>
+        <Grid reversed="computer" equal>
+          <Grid.Row>
+            <Grid.Column>Computer A 4</Grid.Column>
+            <Grid.Column>Computer A 3</Grid.Column>
+            <Grid.Column>Computer A 2</Grid.Column>
+            <Grid.Column>Computer A 1</Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column>Computer B 4</Grid.Column>
+            <Grid.Column>Computer B 3</Grid.Column>
+            <Grid.Column>Computer B 2</Grid.Column>
+            <Grid.Column>Computer B 1</Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <Grid reversed="tablet" equal>
+          <Grid.Column>Tablet A 4</Grid.Column>
+          <Grid.Column>Tablet A 3</Grid.Column>
+          <Grid.Column>Tablet A 2</Grid.Column>
+          <Grid.Column>Tablet A 1</Grid.Column>
+        </Grid>
+
+        <Grid reversed="mobile" equal>
+          <Grid.Row>
+            <Grid.Column>Mobile A 4</Grid.Column>
+            <Grid.Column>Mobile A 3</Grid.Column>
+            <Grid.Column>Mobile A 2</Grid.Column>
+            <Grid.Column>Mobile A 1</Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <Header as="h4">Vertically</Header>
+        <Grid reversed="computer vertically" equal>
+          <Grid.Row>
+            <Grid.Column>Comuter A 4</Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column>Comuter A 3</Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column>Comuter A 2</Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column>Comuter A 1</Grid.Column>
+          </Grid.Row>
+        </Grid>
+
+        <Header>Visibility</Header>
+        <Grid>
+          <Grid.Row column="two" visibility="large screen">
+            <Grid.Column>
+              <div className="ui segment">Large Screen</div>
+            </Grid.Column>
+            <Grid.Column>
+              <div className="ui segment">Large Screen</div>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row column={"two"} visibility="mobile">
+            <div className="column">
+              <div className="ui segment">Mobile</div>
+            </div>
+            <div className="column">
+              <div className="ui segment">Mobile</div>
+            </div>
+          </Grid.Row>
+          <Grid.Row column={"four"}>
+            <Grid.Column visibility="computer">
+              <div className="ui segment">Computer</div>
+            </Grid.Column>
+            <Grid.Column visibility="tablet">
+              <div className="ui segment">Tablet</div>
+            </Grid.Column>
+            <div className="column">
+              <div className="ui segment">All Sizes</div>
+            </div>
+            <div className="column">
+              <div className="ui segment">All Sizes</div>
+            </div>
+          </Grid.Row>
+          <Grid.Row visibility="computer" column={"four"}>
+            <div className="column">
+              <div className="ui segment">Computer</div>
+            </div>
+            <div className="column">
+              <div className="ui segment">Computer</div>
+            </div>
+            <div className="column">
+              <div className="ui segment">Computer</div>
+            </div>
+            <div className="column">
+              <div className="ui segment">Computer</div>
+            </div>
+          </Grid.Row>
+          <Grid.Row column={3} visibility="tablet">
+            <div className="column">
+              <div className="ui segment">Tablet</div>
+            </div>
+            <div className="column">
+              <div className="ui segment">Tablet</div>
+            </div>
+            <div className="column">
+              <div className="ui segment">Tablet</div>
+            </div>
+          </Grid.Row>
+        </Grid>
+
+        <Header>
+          Responsive Width{" "}
+          <Header as="div" sub>
+            A column can specify a width for a specific device
+          </Header>
+        </Header>
+        <Grid>
+          <Grid.Column mobile="sixteen" computer="four" tablet="eight">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+              deserunt ut, dolorum magnam esse quas quo rerum itaque molestiae!
+              Fuga, ducimus. Debitis ad provident ea distinctio aliquam itaque,
+              praesentium temporibus. Lorem ipsum dolor sit amet consectetur,
+              adipisicing elit. Ipsum sunt fuga excepturi repellendus quos dicta
+              eius facere possimus, ab odit. Neque voluptas corporis
+              necessitatibus nesciunt deserunt vitae consequatur sit debitis.
+            </p>
+          </Grid.Column>
+          <Grid.Column mobile="sixteen" computer="four" tablet="eight">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+              deserunt ut, dolorum magnam esse quas quo rerum itaque molestiae!
+              Fuga, ducimus. Debitis ad provident ea distinctio aliquam itaque,
+              praesentium temporibus. Lorem ipsum dolor sit amet consectetur,
+              adipisicing elit. Ipsum sunt fuga excepturi repellendus quos dicta
+              eius facere possimus, ab odit. Neque voluptas corporis
+              necessitatibus nesciunt deserunt vitae consequatur sit debitis.
+            </p>
+          </Grid.Column>
+          <Grid.Column mobile="sixteen" computer="four" tablet="eight">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+              deserunt ut, dolorum magnam esse quas quo rerum itaque molestiae!
+              Fuga, ducimus. Debitis ad provident ea distinctio aliquam itaque,
+              praesentium temporibus. Lorem ipsum dolor sit amet consectetur,
+              adipisicing elit. Ipsum sunt fuga excepturi repellendus quos dicta
+              eius facere possimus, ab odit. Neque voluptas corporis
+              necessitatibus nesciunt deserunt vitae consequatur sit debitis.
+            </p>
+          </Grid.Column>
+          <Grid.Column mobile="sixteen" computer="four" tablet="eight">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+              deserunt ut, dolorum magnam esse quas quo rerum itaque molestiae!
+              Fuga, ducimus. Debitis ad provident ea distinctio aliquam itaque,
+              praesentium temporibus. Lorem ipsum dolor sit amet consectetur,
+              adipisicing elit. Ipsum sunt fuga excepturi repellendus quos dicta
+              eius facere possimus, ab odit. Neque voluptas corporis
+              necessitatibus nesciunt deserunt vitae consequatur sit debitis.
+            </p>
+          </Grid.Column>
+        </Grid>
+        <Header>You can aslo use numbers in specifying width</Header>
+      <Grid column={3} >
+        <Grid.Column >
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis maxime corrupti libero qui nisi explicabo perspiciatis cumque, mollitia dolorem obcaecati ut pariatur sint, voluptates iure laudantium. Nostrum repellendus ex amet.</p>
+        </Grid.Column>
+        <Grid.Column>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis maxime corrupti libero qui nisi explicabo perspiciatis cumque, mollitia dolorem obcaecati ut pariatur sint, voluptates iure laudantium. Nostrum repellendus ex amet.</p>
+        </Grid.Column>
+        <Grid.Column>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis maxime corrupti libero qui nisi explicabo perspiciatis cumque, mollitia dolorem obcaecati ut pariatur sint, voluptates iure laudantium. Nostrum repellendus ex amet.</p>
+        </Grid.Column>
+      </Grid>
       </Container>
+    
     );
   }
 }

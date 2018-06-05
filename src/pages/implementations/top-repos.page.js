@@ -24,11 +24,14 @@ export default class TopRepos extends Component {
       hasError: false,
       value: ""
     };
+    this.mount = true;
   }
   componentDidMount() {
     this.getData("javascript");
   }
-
+  componentWillUnmount() {
+    this.mount = false;
+  }
   getData(data) {
     //Impure Function
     const Impure = {
@@ -42,15 +45,18 @@ export default class TopRepos extends Component {
       `?q=stars:>1 language:${l}&sort=stars&order=desc&type=Repositories`;
     const url = l => `https://${host}${path}${query(l)}`;
     //Impure
-    const send = compose(Impure.get, url);
+    const send = compose(
+      Impure.get,
+      url
+    );
     send(data)
       .then(res => res.json())
       .then(res => {
-        this.setState(() => ({ data: res.items, loading: false }));
+        if (this.mount)
+          this.setState(() => ({ data: res.items, loading: false }));
       })
       .catch(err => {
-        console.log(err);
-        this.setState({ hasError: err });
+        if (this.mount) this.setState({ hasError: err });
       });
   }
   render() {
@@ -98,7 +104,7 @@ export default class TopRepos extends Component {
           <Grid column="four" stackable padded>
             {data.map((item, index) => {
               return (
-                <Grid.Column>
+                <Grid.Column key={index}>
                   <Image
                     key={index}
                     src={item.owner.avatar_url}
