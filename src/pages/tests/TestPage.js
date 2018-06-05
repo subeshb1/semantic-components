@@ -27,7 +27,7 @@ import {
   Reveal,
   // eslint-disable-next-line
   Segment,
-  Card
+  
 } from "../../components";
 // eslint-disable-next-line
 import { color } from "../../lib/react-extras";

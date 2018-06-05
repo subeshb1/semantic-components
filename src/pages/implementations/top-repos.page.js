@@ -11,7 +11,7 @@ import {
   Label,
   Loader,
   Segment,
-  Grid,
+  Dimmer,
   Card
 } from "../../components";
 import { compose, trace } from "../../lib/basic-utils";
@@ -103,7 +103,13 @@ export default class TopRepos extends Component {
         </Input>
         <Divider />
         <Segment color="red">
-          {loading && <Loader state="active">Loading Repos...</Loader>}
+          <Dimmer show={loading} page>
+            <Dimmer.Content>
+              <Loader state="active" inline>
+                <Header inverted>Loading Repos...</Header>
+              </Loader>
+            </Dimmer.Content>
+          </Dimmer>
           {data.length > 0 && (
             <Card.Group column="four" stackable doubling>
               {data.map((item, index) => {
@@ -124,7 +130,7 @@ export default class TopRepos extends Component {
                       <Card.Header>{item.name}</Card.Header>
                       <Card.Meta>{item.owner.login}</Card.Meta>
                       <Card.Description>
-                        {item.description.slice(0, 50)}...
+                        {item.description && item.description.slice(0, 50)}...
                       </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
