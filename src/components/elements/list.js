@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import u4 from "uniqid";
-import { simpleComponent } from "../../lib/react-extras";
+import { simpleComponent } from "../lib/react-extras";
 
 //List Item Component
 

@@ -1,0 +1,30 @@
+.ui.warning.input > input {
+
+  border-color: rgb(221, 219, 73);
+
+  background-color: rgba(255, 255, 154, 0.151);
+
+}
+
+.ui.success.input > input {
+
+  border-color: rgb(73, 221, 93);
+
+  background-color: rgba(154, 255, 167, 0.151);
+
+}
+
+.ui.success.input > input:focus {
+
+  border-color: rgb(0, 146, 20);
+
+  background-color: rgba(154, 255, 167, 0.151);
+
+}
+
+.ui.warning.input > input:focus {
+
+  border-color: rgb(132, 146, 0);
+
+}
+

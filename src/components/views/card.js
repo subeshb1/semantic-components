@@ -5,7 +5,7 @@ import {
   colorDef,
   widthArray,
   widthMapper
-} from "../../lib/react-extras";
+} from "../lib/react-extras";
 
 const Meta = ({ as, right, textAlign, ...otherProps }) =>
   React.createElement(as, {

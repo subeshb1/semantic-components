@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import {colorDef,widthArray,widthMapper} from '../../lib/react-extras';
+import {colorDef,widthArray,widthMapper} from '../lib/react-extras';
 
 export class GridColumn extends Component {
   static propTypes = {

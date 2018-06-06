@@ -1,6 +1,6 @@
 {
     "env": {
-        "compiler": "none",
+        "compiler": "bit.envs/compilers/react@0.0.13",
         "tester": "none"
     },
     "dependencies": {},

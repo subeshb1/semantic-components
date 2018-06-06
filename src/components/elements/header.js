@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { simpleComponent } from "../../lib/react-extras";
+import { simpleComponent } from "../lib/react-extras";
 
 export const HeaderContent = simpleComponent("content");
 HeaderContent.displayName = "HeaderContent";
