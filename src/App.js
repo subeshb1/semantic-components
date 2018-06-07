@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {
   BrowserRouter as Router,
   Route,
@@ -20,6 +21,7 @@ const NoContent = () => (
   </Container>
 );
 
+console.log(PropTypes.checkPropTypes(NoContent));
 const Home = ({ match: { url } }) => (
   <DisplayList pages={Pages} url={url} name="App" />
 );
@@ -32,10 +34,15 @@ const NavBar = () => {
       pointing
       size="huge"
       items={mapPagesToLinks(Pages, "/", NavLink, {
-        style: { transition: "all 0.3s ease-in" }
+        style: { transition: "all 0.3s ease-in", padding: 30 }
       })}
       children={
-        <Menu.Item as={NavLink} exact to="/">
+        <Menu.Item
+          as={NavLink}
+          exact
+          to="/"
+          style={{ transition: "all 0.3s ease-in", padding: 30 }}
+        >
           Home
         </Menu.Item>
       }

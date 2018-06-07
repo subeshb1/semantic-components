@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import {colorDef,widthArray,widthMapper} from '../lib/react-extras';
+import { colorDef, widthArray, widthMapper } from "../lib/react-extras";
 
 export class GridColumn extends Component {
   static propTypes = {
@@ -45,7 +45,7 @@ export class GridColumn extends Component {
       ...otherProps
     } = this.props;
     const className = `
-    ${color}
+    ${color?color:""}
     ${width ? width + " wide" : ""}
     ${float ? float + " floated" : ""}
     ${visibility ? visibility + " only" : ""}
@@ -90,7 +90,8 @@ export class GridRow extends Component {
     extra: PropTypes.string
   };
   static defaultProps = {
-    as: "div"
+    as: "div",
+    extra:"",
   };
   render() {
     const {
@@ -107,7 +108,7 @@ export class GridRow extends Component {
       ...otherProps
     } = this.props;
     const className = `
-    ${color}
+    ${color?color:""}
     ${stretched ? "stretched" : ""}
     ${column ? widthMapper(column) + " column" : ""}
     ${verticalAlign ? verticalAlign + " aligned" : ""}
@@ -165,7 +166,8 @@ export default class Grid extends Component {
     extra: PropTypes.string
   };
   static defaultProps = {
-    as: "div"
+    as: "div",
+    extra:""
   };
 
   static Column = GridColumn;

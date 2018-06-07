@@ -26,20 +26,43 @@ import {
   // eslint-disable-next-line
   Reveal,
   // eslint-disable-next-line
-  Segment
+  Segment,
+  Display
 } from "../../components";
 // eslint-disable-next-line
 import { color } from "../../lib/react-extras";
 
 export default class TestPage extends Component {
+  state = {
+    toggle: true
+  }
   render() {
+    const {toggle} = this.state;
     return (
       <Container>
-        <div class="ui  item menu">
-          <a class="active item">Editorials</a>
-          <a class="item">Reviews</a>
-          <a class="item">Upcoming Events</a>
-        </div>
+        <Button
+          toggle
+          active={toggle}
+          onClick={() => this.setState(({ toggle }) => ({ toggle: !toggle }))}
+        />
+        <Display  show={toggle}>
+          <Segment color="red">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
+              expedita harum at fuga delectus corrupti quasi, consequuntur
+              dolores eligendi, error vero, cupiditate odit. Error eaque,
+              aliquid tempora nulla obcaecati placeat.
+            </p>
+          </Segment>
+          <Segment>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
+              expedita harum at fuga delectus corrupti quasi, consequuntur
+              dolores eligendi, error vero, cupiditate odit. Error eaque,
+              aliquid tempora nulla obcaecati placeat.
+            </p>
+          </Segment>
+        </Display>
       </Container>
     );
   }

@@ -4,5 +4,6 @@ import * as TestPage from "./tests";
 import * as CollectionsPage from "./collections";
 import * as ViewsPage from "./views";
 import * as ModulesPage from "./modules";
+import * as AddonsPage from "./addons";
 
-export { ElementsPage, ImplementationsPage, TestPage, CollectionsPage , ViewsPage,ModulesPage};
+export { ElementsPage, ImplementationsPage, TestPage, CollectionsPage , ViewsPage,ModulesPage,AddonsPage};

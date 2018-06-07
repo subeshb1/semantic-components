@@ -6,7 +6,7 @@ import {
   mapPagesToLinks,
   mapPagesToRoutes
 } from "../lib/react-extras";
-import { Menu, Container, Segment } from "../components";
+import { Menu, Segment } from "../components";
 
 const NavBar = ({ pages, url }) => {
   return (

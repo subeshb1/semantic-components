@@ -77,7 +77,8 @@ export class ButtonGroup extends Component {
     fluid: false,
     attached: "",
     vertical: false,
-    width: ""
+    width: "",
+    extra:"",
   };
   render() {
     const {
@@ -103,7 +104,7 @@ export class ButtonGroup extends Component {
     ${size}
     ui
     ${vertical ? "vertical" : ""}
-    ${attached ? attached + " attached" : "s"}
+    ${attached ? attached + " attached" : ""}
     ${compact ? "compact" : ""}
     ${basic ? "basic" : ""}
     ${color}
