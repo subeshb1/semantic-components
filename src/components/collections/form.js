@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { simpleComponent } from "../lib/react-extras";
 
 export class FormField extends Component {
   static propTypes = {

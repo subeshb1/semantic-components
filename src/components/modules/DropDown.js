@@ -31,7 +31,7 @@ const DropDownMenu = ({ children, active, left, selected, ...otherProps }) => {
             className: "item active selected",
             selected: true
           });
-          console.log(chi);
+          // console.log(chi);
           return chi;
         }
         return React.cloneElement(child, {
@@ -76,7 +76,8 @@ export default class DropDown extends Component {
     open: [],
     close: [],
     fluid: false,
-    selected: false
+    selected: false,
+    extra:""
   };
 
   componentDidMount() {
@@ -93,7 +94,7 @@ export default class DropDown extends Component {
       });
 
       document.addEventListener("keyup", e => {
-        console.log(e);
+        // console.log(e);
         let code = e.keyCode ? e.keyCode : e.which;
         if (code == 9 && document.activeElement === this.dropDown.current)
           this.setState(({ active }) => ({ active: true }));
@@ -155,7 +156,9 @@ export default class DropDown extends Component {
       nested,
       selection,
       fluid,
-      selected
+      selected,
+      extra,
+      ...otherProps
     } = this.props;
     const className = nested
       ? `${selected ? "active selected" : ""}  item`
@@ -164,6 +167,7 @@ export default class DropDown extends Component {
     ${fluid ? "fluid" : ""}
     ${selection ? "selection" : ""}
     dropdown
+    ${extra}
     ${this.state.active ? "active visible" : ""}
     `.replace(/\s+/g, " ");
     if (!selection) {
@@ -188,7 +192,8 @@ export default class DropDown extends Component {
             this.setState(({ active }) => ({
               active: !active
             }));
-          }
+          },
+          ...otherProps
         },
         <DropDownTitle text={text} nested={nested} left />,
         cloneChildren
@@ -196,7 +201,7 @@ export default class DropDown extends Component {
       return renderElement;
     } else {
       const cloneChildren = React.Children.map(children, child => {
-        console.log(typeof child);
+        // console.log(typeof child);
         if (typeof child === "object" && child.type.name === "DropDownMenu")
           return React.cloneElement(child, {
             active: this.state.active,
@@ -214,12 +219,13 @@ export default class DropDown extends Component {
           tabIndex: 0,
           //default click handlers - Click closes or opens the dropdown
           onClick: e => {
-            console.log(document.activeElement === e.currentTarget);
+            // console.log(document.activeElement === e.currentTarget);
             if (nested) e.stopPropagation();
             this.setState(({ active }) => ({
               active: !active
             }));
-          }
+          },
+          ...otherProps
         },
         cloneChildren
       );

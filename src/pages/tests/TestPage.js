@@ -26,22 +26,20 @@ import {
   // eslint-disable-next-line
   Reveal,
   // eslint-disable-next-line
-  Segment,
-  
+  Segment
 } from "../../components";
 // eslint-disable-next-line
 import { color } from "../../lib/react-extras";
+
 export default class TestPage extends Component {
   render() {
     return (
       <Container>
-        <div class="ui dimmable dimmed segment">
-  <div class="ui simple inverted dimmer">
-    <div class="ui text loader">Loading</div>
-  </div>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error similique earum, magnam corrupti obcaecati maxime a autem delectus beatae nemo natus nihil, veritatis quibusdam, ab ipsum eligendi deleniti molestias! Nulla! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate error nulla eius quos asperiores incidunt reiciendis enim laborum ut dolores alias vel ipsa voluptatem, sed expedita tempora, delectus odit? Nihil.</p>
-  <p></p>
-</div>
+        <div class="ui  item menu">
+          <a class="active item">Editorials</a>
+          <a class="item">Reviews</a>
+          <a class="item">Upcoming Events</a>
+        </div>
       </Container>
     );
   }

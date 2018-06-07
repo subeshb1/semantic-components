@@ -8,14 +8,12 @@ import {
   Icon,
   Image,
   Input,
-  Label,
   Loader,
   Segment,
   Dimmer,
   Card
 } from "../../components";
 import { compose, trace } from "../../lib/basic-utils";
-import { colorDef } from "../../lib/react-extras";
 export default class TopRepos extends Component {
   constructor(props) {
     super(props);
