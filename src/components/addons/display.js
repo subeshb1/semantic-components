@@ -29,9 +29,16 @@ const checkRange = (range, res) =>
     //return value
     .fold(x => true, x => x);
 
+const getInnerWidth = () =>
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  )
+    ? window.screen.width
+    : window.innerWidth;
+
 export default class Display extends Component {
   state = {
-    res: window.innerWidth
+    res: getInnerWidth()
   };
 
   static propTypes = {
@@ -39,23 +46,27 @@ export default class Display extends Component {
     visibleRange: PropTypes.shape({
       min: PropTypes.number.isRequired,
       max: PropTypes.number.isRequired
-    })
+    }),
+    computer: PropTypes.object
   };
   static defaultProps = {};
-
+  static Mobile = Mobile;
+  static Computer = Computer;
+  static Tablet = Tablet;
+  static LargeScreen = LargeScreen;
+  resizeHandler = () => {
+    this.setState(() => ({ res: getInnerWidth() }));
+  };
   componentDidMount = () => {
-    this.listener = window.addEventListener("resize", () =>
-      this.setState(() => ({ res: window.innerWidth }))
-    );
+    window.addEventListener("resize", this.resizeHandler, true);
   };
   componentWillUnmount = () => {
-    window.removeEventListener("resize", this.listener, false);
+    window.removeEventListener("resize", this.resizeHandler, true);
   };
 
   render() {
-    const { children, show, visibleRange } = this.props;
+    const { children, show, visibleRange, computer } = this.props;
     const { res } = this.state;
-    console.log(visibleRange);
     //checking nullable
     const display = fromNullable(show)
       // if undefined return true
@@ -65,8 +76,16 @@ export default class Display extends Component {
       //return value
       .fold(x => x, x => x);
 
-    console.log(display);
+    let newChild = children;
+    if (computer && inRange({min:Computer.min,max:Infinity },res))
+      newChild = React.Children.map(children, child => {
+        return React.createElement(
+          child.type,
+          { ...computer },
+          child.props.children
+        );
+      });
 
-    return display ? children : "";
+    return display ? newChild : "";
   }
 }
