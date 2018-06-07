@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as UI from "../../components";
 import { DropDown } from "../../components";
 import { colorDef, size } from "../../components/lib/react-extras";
+import { NavLink } from "react-router-dom";
 
 export default class MenuPage extends Component {
   state = {
@@ -585,6 +586,21 @@ export default class MenuPage extends Component {
           <UI.Menu.Item>4</UI.Menu.Item>
           <UI.Menu.Item>5</UI.Menu.Item>
         </UI.Menu>
+        <UI.Menu
+          secondary
+          pointing
+          items={[
+            {
+              as: NavLink,
+              to: "/collections/menu",
+              exact: true,
+              text: "Home",
+              color: "red"
+            },
+            { as: "a", text: "Contact", color: "red" },
+            { as: "a", text: "About", color: "red" }
+          ]}
+        />
       </UI.Container>
     );
   }

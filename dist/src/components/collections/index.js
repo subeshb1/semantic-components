@@ -13,6 +13,15 @@ Object.defineProperty(exports, "Grid", {
   }
 });
 
+var _menu = require("./menu");
+
+Object.defineProperty(exports, "Menu", {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_menu).default;
+  }
+});
+
 var _form = require("./form");
 
 Object.defineProperty(exports, "Form", {

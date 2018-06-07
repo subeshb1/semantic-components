@@ -552,5 +552,20 @@
     <UI.Menu.Item>4</UI.Menu.Item>
     <UI.Menu.Item>5</UI.Menu.Item>
   </UI.Menu>
+  <UI.Menu
+    secondary
+    pointing
+    items={[
+      {
+        as: NavLink,
+        to: "/collections/menu",
+        exact: true,
+        text: "Home",
+        color: "red"
+      },
+      { as: "a", text: "Contact", color: "red" },
+      { as: "a", text: "About", color: "red" }
+    ]}
+  />
 </UI.Container>
 ```

@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { widthArray } from "../lib/react-extras";
+import { Container } from "..";
 import {
+  widthArray,
   widthMapper,
   colorDef,
   simpleComponent,
   size
-} from "../../lib/react-extras";
+} from "../lib/react-extras";
 
 const Header = simpleComponent("header");
 Header.displayName = "Menu.Header";
@@ -15,6 +16,7 @@ const Item = props => {
     active,
     as,
     color,
+    text,
     children,
     extra,
     header,
@@ -35,7 +37,8 @@ const Item = props => {
   const renderElement = React.createElement(
     as,
     { className, ...otherProps },
-    children
+    children,
+    text
   );
   return renderElement;
 };
@@ -94,6 +97,16 @@ export default class Menu extends Component {
     compact: PropTypes.bool,
     icon: PropTypes.bool,
     labeled: PropTypes.bool,
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        as: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.element,
+          PropTypes.func
+        ]).isRequired
+      }).isRequired
+    ),
+    container: PropTypes.bool
   };
   static defaultProps = {
     as: "div",
@@ -108,6 +121,7 @@ export default class Menu extends Component {
       children,
       text,
       inverted,
+      container,
       color,
       extra,
       secondary,
@@ -124,6 +138,7 @@ export default class Menu extends Component {
       size,
       compact,
       fluid,
+      items,
       labeled,
       icon,
       ...otherProps
@@ -155,11 +170,21 @@ export default class Menu extends Component {
     menu
     `.replace(/\s+/g, " ");
 
-    const renderElement = React.createElement(
-      as,
-      { className, ...otherProps },
-      children
-    );
+    const mappedItems =
+      items &&
+      items.map((item, i) => {
+        return React.createElement(Item, {
+          ...item,
+          key: item.key || item.id || i
+        });
+      });
+    let child;
+    if (container) {
+      child = [<Container>{children}{mappedItems}</Container>];
+    } else {
+      child = [children,mappedItems]
+    }
+    const renderElement = React.createElement(as, { className, ...otherProps },...child);
     return renderElement;
   }
 }

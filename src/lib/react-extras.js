@@ -109,13 +109,16 @@ export const mapPagesToRoutes = (pages, path) =>
       />
     ));
 
-export const mapPagesToLinks = (pages, url) =>
+export const mapPagesToLinks = (pages, url,as=Link,extraProps={}) =>
   Object.keys(pages)
     .filter(x => x !== "default")
     .map((page, index) => ({
-      as: Link,
+      
+      as,
       to: `${url}/${toUrlSlug(page)}`.replace(/\/\//, "/"),
-      children: toDisplay(page)
+      children: toDisplay(page),
+      ...extraProps
+
     }));
 
 export const DisplayList = ({ pages, url, name }) => {

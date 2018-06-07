@@ -76,7 +76,7 @@ var DropDownMenu = function DropDownMenu(_ref) {
           className: "item active selected",
           selected: true
         });
-        console.log(chi);
+        // console.log(chi);
         return chi;
       }
       return _react2.default.cloneElement(child, {
@@ -136,7 +136,7 @@ var DropDown = (_temp = _class = function (_Component) {
         });
 
         document.addEventListener("keyup", function (e) {
-          console.log(e);
+          // console.log(e);
           var code = e.keyCode ? e.keyCode : e.which;
           if (code == 9 && document.activeElement === _this2.dropDown.current) _this2.setState(function (_ref3) {
             var active = _ref3.active;
@@ -264,9 +264,11 @@ var DropDown = (_temp = _class = function (_Component) {
           nested = _props.nested,
           selection = _props.selection,
           fluid = _props.fluid,
-          selected = _props.selected;
+          selected = _props.selected,
+          extra = _props.extra,
+          otherProps = _objectWithoutProperties(_props, ["as", "children", "text", "nested", "selection", "fluid", "selected", "extra"]);
 
-      var className = nested ? (selected ? "active selected" : "") + "  item" : ("\n    ui\n    " + (fluid ? "fluid" : "") + "\n    " + (selection ? "selection" : "") + "\n    dropdown\n    " + (this.state.active ? "active visible" : "") + "\n    ").replace(/\s+/g, " ");
+      var className = nested ? (selected ? "active selected" : "") + "  item" : ("\n    ui\n    " + (fluid ? "fluid" : "") + "\n    " + (selection ? "selection" : "") + "\n    dropdown\n    " + extra + "\n    " + (this.state.active ? "active visible" : "") + "\n    ").replace(/\s+/g, " ");
       if (!selection) {
         var cloneChildren = _react2.default.Children.map(children, function (child) {
           return _react2.default.cloneElement(child, {
@@ -275,7 +277,7 @@ var DropDown = (_temp = _class = function (_Component) {
           });
         });
 
-        var renderElement = _react2.default.createElement(as, {
+        var renderElement = _react2.default.createElement(as, Object.assign({
           className: className,
           //Reference to the Div
           ref: this.dropDown,
@@ -291,18 +293,18 @@ var DropDown = (_temp = _class = function (_Component) {
               };
             });
           }
-        }, _react2.default.createElement(DropDownTitle, { text: text, nested: nested, left: true }), cloneChildren);
+        }, otherProps), _react2.default.createElement(DropDownTitle, { text: text, nested: nested, left: true }), cloneChildren);
         return renderElement;
       } else {
         var _cloneChildren = _react2.default.Children.map(children, function (child) {
-          console.log(typeof child === "undefined" ? "undefined" : _typeof(child));
+          // console.log(typeof child);
           if ((typeof child === "undefined" ? "undefined" : _typeof(child)) === "object" && child.type.name === "DropDownMenu") return _react2.default.cloneElement(child, {
             active: _this3.state.active,
             selected: _this3.state.selected
           });
           return child;
         });
-        return _react2.default.createElement(as, {
+        return _react2.default.createElement(as, Object.assign({
           className: className,
           //Reference to the Div
           ref: this.dropDown,
@@ -310,7 +312,7 @@ var DropDown = (_temp = _class = function (_Component) {
           tabIndex: 0,
           //default click handlers - Click closes or opens the dropdown
           onClick: function onClick(e) {
-            console.log(document.activeElement === e.currentTarget);
+            // console.log(document.activeElement === e.currentTarget);
             if (nested) e.stopPropagation();
             _this3.setState(function (_ref11) {
               var active = _ref11.active;
@@ -319,7 +321,7 @@ var DropDown = (_temp = _class = function (_Component) {
               };
             });
           }
-        }, _cloneChildren);
+        }, otherProps), _cloneChildren);
       }
     }
   }]);
@@ -339,7 +341,8 @@ var DropDown = (_temp = _class = function (_Component) {
   open: [],
   close: [],
   fluid: false,
-  selected: false
+  selected: false,
+  extra: ""
 }, _temp);
 exports.default = DropDown;
 

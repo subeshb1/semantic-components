@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import u4 from 'uniqid'
+import u4 from "uniqid";
 const Or = () => <div className="or" />;
 
 export class ButtonGroup extends Component {
@@ -120,7 +120,9 @@ export class ButtonGroup extends Component {
       { className, ...otherProps },
       children,
       items &&
-        items.map(({key,...otherProps}, index) => React.createElement(Button, { key:key || u4() ,...otherProps }))
+        items.map(({ key, ...otherProps }, index) =>
+          React.createElement(Button, { key: key || u4(), ...otherProps })
+        )
     );
   }
 }

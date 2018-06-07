@@ -87,6 +87,7 @@ export default class DropDown extends Component {
     if (this.dropDown.current) {
       document.addEventListener("click", e => {
         if (
+          this.dropDown.current&&
           !this.dropDown.current.contains(e.target) &&
           !this.dropDown.current !== e.target
         )
