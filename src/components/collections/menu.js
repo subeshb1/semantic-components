@@ -87,7 +87,7 @@ export default class Menu extends Component {
     pagination: PropTypes.bool,
     //Variations
     fixed: PropTypes.oneOf(["top", "bottom", "left", "right"]),
-    attached: PropTypes.oneOf(["top", "bottom", "left", "right"]),
+    attached: PropTypes.oneOf(["top", "bottom", "left", "right",true]),
     color: PropTypes.oneOf(colorDef),
     inverted: PropTypes.bool,
     stackable: PropTypes.bool,

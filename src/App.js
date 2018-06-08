@@ -7,15 +7,7 @@ import {
   Redirect
 } from "react-router-dom";
 import Pages from "./pages";
-import {
-  Container,
-  Header,
-  Menu,
-  Display,
-  Button,
-  Icon,
-  Label
-} from "./components";
+import { Container, Header, Menu, Display, Button, Icon } from "./components";
 import {
   DisplayList,
   mapPagesToRoutes,
@@ -38,42 +30,65 @@ class NavBar extends React.Component {
   state = {
     active: false
   };
+  constructor(props) {
+    super(props);
+    this.close = this.close.bind(this);
+  }
+
+  close = () => this.setState(({ active }) => ({ active: false }));
   render() {
     const { active } = this.state;
     return (
-      <Display computer={{
-        tabular: true
-      }} >
-        <Menu container fluid stackable secondary pointing size="huge">
-          <Menu.Item
-            as="div"
-            style={{ transition: "all 0.3s ease-in", padding: 30 }}
-          >
-            <Button
-              icon
-              float="right"
-              onClick={() => {
-                this.setState(({ active }) => ({ active: !active }));
-              }}
-            >
-              <Icon name="right settings" />
-            </Button>
-          </Menu.Item>
-
-          <Display
-            // visibleRange={{ min: Display.Tablet.max, max: Infinity }}
-            show={active}
-          >
+      <Display
+        computer={{
+          secondary: true,
+          pointing: true,
+          size: "huge",
+          vertical: false,
+          fluid: false,
+          container: true,
+          inverted: false,
+          attached: undefined
+        }}
+      >
+        <Menu vertical inverted color="red" fluid size="huge" style={{borderRadius:0}}>
+          <Display visibleRange={{ min: 0, max: Display.Tablet.max }}>
             <Menu.Item
-              as={NavLink}
-              exact
-              to="/"
-              style={{ transition: "all 0.3s ease-in", padding: 30 }}
+              header
+              as="div"
+              style={{ transition: "all 0.3s ease-in" }}
             >
+              Semantic-UI
+              <Icon
+                name="sidebar"
+                link
+                onClick={() => {
+                  this.setState(({ active }) => ({ active: !active }));
+                }}
+              />
+            </Menu.Item>
+          </Display>
+          <Display
+            showRange={[
+              {
+                range: { min: 0, max: Display.Tablet.max },
+                show: active
+              },
+              {
+                range: { min: Display.Tablet.max, max: Infinity },
+                show: true
+              }
+            ]}
+            computer={{
+              style: { transition: "all 0.3s ease-in", padding: 30 }
+            }}
+          >
+            <Menu.Item as={NavLink} exact to="/" onClick={this.close}>
               Home
             </Menu.Item>
             {mapPagesToLinks(Pages, "/", NavLink, {
-              style: { transition: "all 0.3s ease-in", padding: 30 }
+              // style: { transition: "all 0.3s ease-in", padding: 30 },
+              onClick: this.close
             }).map((props, i) => <Menu.Item key={i} {...props} />)}
           </Display>
         </Menu>

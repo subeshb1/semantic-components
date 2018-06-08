@@ -1,27 +1,28 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Left, Right, fromNullable } from "../lib/react-extras";
+import { Right, fromNullable } from "../lib/react-extras";
 
-const Mobile = {
+export const Mobile = {
   min: 0,
   max: 768
 };
-const Tablet = {
+export const Tablet = {
   min: 768,
   max: 991
 };
-const Computer = {
+export const Computer = {
   min: 992,
   max: 1200
 };
-const LargeScreen = {
+export const LargeScreen = {
   min: 1200,
   max: Infinity
 };
 
-const inRange = (res, value) => value >= res.min && value <= res.max;
+export const inRange = (range, value) =>
+  value >= range.min && value <= range.max;
 
-const checkRange = (range, res) =>
+export const checkRange = (range, res) =>
   //if null
   fromNullable(range)
     // is un Range
@@ -29,12 +30,24 @@ const checkRange = (range, res) =>
     //return value
     .fold(x => true, x => x);
 
-const getInnerWidth = () =>
+export const shouldDisplay = (show, visibleRange, res) =>
+  fromNullable(show)
+    // if undefined return true
+    .fold(x => Right(true), x => Right(x))
+    // check whether to display or not
+    .map(x => x && checkRange(visibleRange, res))
+    //return value
+    .fold(x => x, x => x);
+
+export const getInnerWidth = () =>
   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
     navigator.userAgent
   )
     ? window.screen.width
     : window.innerWidth;
+
+export const filterRanges = (ranges, res) =>
+  ranges.filter(x => inRange(x.range, res));
 
 export default class Display extends Component {
   state = {
@@ -47,7 +60,24 @@ export default class Display extends Component {
       min: PropTypes.number.isRequired,
       max: PropTypes.number.isRequired
     }),
-    computer: PropTypes.object
+    render: PropTypes.arrayOf(
+      PropTypes.shape({
+        range: PropTypes.shape({
+          min: PropTypes.number.isRequired,
+          max: PropTypes.number.isRequired
+        }).isRequired,
+        render: PropTypes.func.isRequired
+      })
+    ),
+    showRange: PropTypes.arrayOf(
+      PropTypes.shape({
+        range: PropTypes.shape({
+          min: PropTypes.number.isRequired,
+          max: PropTypes.number.isRequired
+        }).isRequired,
+        show: PropTypes.bool
+      })
+    )
   };
   static defaultProps = {};
   static Mobile = Mobile;
@@ -65,27 +95,37 @@ export default class Display extends Component {
   };
 
   render() {
-    const { children, show, visibleRange, computer } = this.props;
+    const {
+      children,
+      show,
+      visibleRange,
+      showRange,
+      computer,
+      mobile
+    } = this.props;
     const { res } = this.state;
     //checking nullable
-    const display = fromNullable(show)
-      // if undefined return true
-      .fold(x => Right(true), x => Right(x))
-      // check whether to display or not
-      .map(x => x && checkRange(visibleRange, res))
-      //return value
-      .fold(x => x, x => x);
-
-    let newChild = children;
-    if (computer && inRange({min:Computer.min,max:Infinity },res))
-      newChild = React.Children.map(children, child => {
-        return React.createElement(
-          child.type,
-          { ...computer },
-          child.props.children
-        );
-      });
-
-    return display ? newChild : "";
+    const mainDisplay = { range: visibleRange, show };
+    const visibilityArray = fromNullable(showRange).fold(
+      x => [mainDisplay],
+      x => [...filterRanges(x, res), mainDisplay]
+    );
+    const display = visibilityArray.reduce(
+      (acc, dis) => acc && shouldDisplay(dis.show, dis.range, res),
+      true
+    );
+    if (display) {
+      let newChild = children;
+      if (computer && inRange({ min: Computer.min, max: Infinity }, res))
+        newChild = React.Children.map(children, child => {
+          return React.cloneElement(child, { ...computer });
+        });
+      if (mobile && inRange(Mobile, res))
+        newChild = React.Children.map(children, child => {
+          return React.cloneElement(child, { ...mobile });
+        });
+      return newChild;
+    }
+    return "";
   }
 }
