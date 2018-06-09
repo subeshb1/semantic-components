@@ -29,7 +29,9 @@ import {
   Reveal,
   // eslint-disable-next-line
   Segment,
+  // eslint-disable-next-line
   Display,
+  // eslint-disable-next-line
   Menu
 } from "../../components";
 // eslint-disable-next-line
@@ -40,43 +42,9 @@ export default class TestPage extends Component {
     toggle: true
   };
   render() {
-    const { toggle } = this.state;
     return (
       <Container>
-        <Button
-          toggle
-          active={toggle}
-          onClick={() => this.setState(({ toggle }) => ({ toggle: !toggle }))}
-        />
-        <Display
-          show={toggle}
-          visibleRange={{ min: Display.Tablet.max, max: Infinity }}
-        >
-          <Menu
-            secondary
-            pointing
-            items={[
-              {
-                as: "a",
-                text: "Home",
-                color: colorDef[Math.floor(Math.random() * 13)],
-                active: "true"
-              },
-              {
-                as: "a",
-                text: "Contact",
-                color: colorDef[Math.floor(Math.random() * 13)],
-                active: "true"
-              },
-              {
-                as: "a",
-                text: "About",
-                color: colorDef[Math.floor(Math.random() * 13)],
-                active: "true"
-              }
-            ]}
-          />
-        </Display>
+        
       </Container>
     );
   }

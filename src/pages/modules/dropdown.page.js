@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Container,DropDown,Icon,Button} from '../../components';
+import {Container,DropDown,Button} from '../../components';
 export default class DropDownPage extends Component {
   render() {
     return (
@@ -14,7 +14,7 @@ export default class DropDownPage extends Component {
             >
               <DropDown.Menu right>
                 <div
-                  class="item"
+                  className="item"
                   onClick={e => {
                     e.cancelBubble = true;
                     e.stopPropagation();
@@ -25,8 +25,8 @@ export default class DropDownPage extends Component {
                   New
                 </div>
 
-                <div class="divider" />
-                <div class="item">Download As...</div>
+                <div className="divider" />
+                <div className="item">Download As...</div>
                 <DropDown
                   text="File"
                   open={["focus", "mouseover"]}
@@ -35,7 +35,7 @@ export default class DropDownPage extends Component {
                 >
                   <DropDown.Menu right>
                     <div
-                      class="item"
+                      className="item"
                       onClick={e => {
                         e.cancelBubble = true;
                         e.stopPropagation();
@@ -46,31 +46,31 @@ export default class DropDownPage extends Component {
                       New
                     </div>
 
-                    <div class="divider" />
-                    <div class="item">Download As...</div>
+                    <div className="divider" />
+                    <div className="item">Download As...</div>
                   </DropDown.Menu>
                 </DropDown>
               </DropDown.Menu>
             </DropDown>
-            <a class="item" tabIndex="0" href="">
-              <span class="description">ctrl + o</span>
+            <a className="item" tabIndex="0" href="">
+              <span className="description">ctrl + o</span>
               Open...
             </a>
-            <div class="item">
-              <span class="description">ctrl + s</span>
+            <div className="item">
+              <span className="description">ctrl + s</span>
               Save as...
             </div>
-            <div class="item">
-              <span class="description">ctrl + r</span>
+            <div className="item">
+              <span className="description">ctrl + r</span>
               Rename
             </div>
-            <div class="item">Make a copy</div>
-            <div class="item">
-              <i class="folder icon" />
+            <div className="item">Make a copy</div>
+            <div className="item">
+              <i className="folder icon" />
               Move to folder
             </div>
-            <div class="item">
-              <i class="trash icon" />
+            <div className="item">
+              <i className="trash icon" />
               Move to trash
             </div>
             <DropDown
@@ -81,7 +81,7 @@ export default class DropDownPage extends Component {
             >
               <DropDown.Menu left>
                 <div
-                  class="item"
+                  className="item"
                   onClick={e => {
                     e.cancelBubble = true;
                     e.stopPropagation();
@@ -92,8 +92,8 @@ export default class DropDownPage extends Component {
                   New
                 </div>
 
-                <div class="divider" />
-                <div class="item">Download As...</div>
+                <div className="divider" />
+                <div className="item">Download As...</div>
                 <DropDown
                   text="File"
                   open={["focus", "mouseover"]}
@@ -102,7 +102,7 @@ export default class DropDownPage extends Component {
                 >
                   <DropDown.Menu right>
                     <div
-                      class="item"
+                      className="item"
                       onClick={e => {
                         e.cancelBubble = true;
                         e.stopPropagation();
@@ -113,8 +113,8 @@ export default class DropDownPage extends Component {
                       New
                     </div>
 
-                    <div class="divider" />
-                    <div class="item">Download As...</div>
+                    <div className="divider" />
+                    <div className="item">Download As...</div>
                   </DropDown.Menu>
                 </DropDown>
               </DropDown.Menu>
@@ -126,45 +126,51 @@ export default class DropDownPage extends Component {
           <Button>SUbeh</Button>
           <DropDown selection fluid close={["blur"]}>
             <input type="hidden" name="gender" />
-            <i class="dropdown icon" />
-            <div class="default text">Gender</div>
+            <i className="dropdown icon" />
+            <div className="default text">Gender</div>
             <DropDown.Menu>
-              <div class="item" data-value="jenny">
-                <img class="ui mini avatar image" src="/img/avatar-3.png" />
+              <div className="item" data-value="jenny">
+                <img className="ui mini avatar image" src="/img/avatar-3.png" 
+                alt=""/>
                 Jenny Hess
               </div>
-              <div class="item" data-value="elliot">
+              <div className="item" data-value="elliot">
                 <img
-                  class="ui mini avatar image"
+                  className="ui mini avatar image"
                   src="/images/avatar/small/elliot.jpg"
+                  alt=""
                 />
                 Elliot Fu
               </div>
-              <div class="item" data-value="stevie">
+              <div className="item" data-value="stevie">
                 <img
-                  class="ui mini avatar image"
+                  className="ui mini avatar image"
                   src="/images/avatar/small/stevie.jpg"
+                  alt=""
                 />
                 Stevie Feliciano
               </div>
-              <div class="item" data-value="christian">
+              <div className="item" data-value="christian">
                 <img
-                  class="ui mini avatar image"
+                  className="ui mini avatar image"
                   src="/images/avatar/small/christian.jpg"
+                  alt=""
                 />
                 Christian
               </div>
-              <div class="item" data-value="matt">
+              <div className="item" data-value="matt">
                 <img
-                  class="ui mini avatar image"
+                  className="ui mini avatar image"
                   src="/images/avatar/small/matt.jpg"
+                  alt=""
                 />
                 Matt
               </div>
-              <div class="item" data-value="justen">
+              <div className="item" data-value="justen">
                 <img
-                  class="ui mini avatar image"
+                  className="ui mini avatar image"
                   src="/images/avatar/small/justen.jpg"
+                  alt=""
                 />
                 Justen Kitsune
               </div>
@@ -181,7 +187,7 @@ export default class DropDownPage extends Component {
               >
                 <DropDown.Menu>
                   <div
-                    class="item"
+                    className="item"
                     onClick={e => {
                       e.cancelBubble = true;
                       e.stopPropagation();
@@ -191,8 +197,8 @@ export default class DropDownPage extends Component {
                     New
                   </div>
 
-                  <div class="divider" />
-                  <div class="item">Download As...</div>
+                  <div className="divider" />
+                  <div className="item">Download As...</div>
                   <DropDown
                     text="File"
                     open={["focus", "mouseover"]}
@@ -201,7 +207,7 @@ export default class DropDownPage extends Component {
                   >
                     <DropDown.Menu right>
                       <div
-                        class="item"
+                        className="item"
                         onClick={e => {
                           e.cancelBubble = true;
                           e.stopPropagation();
@@ -211,31 +217,31 @@ export default class DropDownPage extends Component {
                         New
                       </div>
 
-                      <div class="divider" />
-                      <div class=" item">Download As...</div>
+                      <div className="divider" />
+                      <div className=" item">Download As...</div>
                     </DropDown.Menu>
                   </DropDown>
                 </DropDown.Menu>
               </DropDown>
-              <a class="item" href="">
-                <span class="description">ctrl + o</span>
+              <a className="item" href="">
+                <span className="description">ctrl + o</span>
                 Open...
               </a>
-              <div class="item">
-                <span class="description">ctrl + s</span>
+              <div className="item">
+                <span className="description">ctrl + s</span>
                 Save as...
               </div>
-              <div class="item">
-                <span class="description">ctrl + r</span>
+              <div className="item">
+                <span className="description">ctrl + r</span>
                 Rename
               </div>
-              <div class="item">Make a copy</div>
-              <div class="item">
-                <i class="folder icon" />
+              <div className="item">Make a copy</div>
+              <div className="item">
+                <i className="folder icon" />
                 Move to folder
               </div>
-              <div class="item">
-                <i class="trash icon" />
+              <div className="item">
+                <i className="trash icon" />
                 Move to trash
               </div>
               <DropDown
@@ -246,7 +252,7 @@ export default class DropDownPage extends Component {
               >
                 <DropDown.Menu left>
                   <div
-                    class="item"
+                    className="item"
                     onClick={e => {
                       e.cancelBubble = true;
                       e.stopPropagation();
@@ -256,8 +262,8 @@ export default class DropDownPage extends Component {
                     New
                   </div>
 
-                  <div class="divider" />
-                  <div class="item">Download As...</div>
+                  <div className="divider" />
+                  <div className="item">Download As...</div>
                   <DropDown
                     text="File"
                     open={["focus", "mouseover"]}
@@ -266,7 +272,7 @@ export default class DropDownPage extends Component {
                   >
                     <DropDown.Menu right>
                       <div
-                        class="item"
+                        className="item"
                         onClick={e => {
                           e.cancelBubble = true;
                           e.stopPropagation();
@@ -276,8 +282,8 @@ export default class DropDownPage extends Component {
                         New
                       </div>
 
-                      <div class="divider" />
-                      <div class="item">Download As...</div>
+                      <div className="divider" />
+                      <div className="item">Download As...</div>
                     </DropDown.Menu>
                   </DropDown>
                 </DropDown.Menu>

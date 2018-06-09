@@ -97,7 +97,7 @@ export default class DropDown extends Component {
       document.addEventListener("keyup", e => {
         // console.log(e);
         let code = e.keyCode ? e.keyCode : e.which;
-        if (code == 9 && document.activeElement === this.dropDown.current)
+        if (code === 9 && document.activeElement === this.dropDown.current)
           this.setState(({ active }) => ({ active: true }));
       });
 

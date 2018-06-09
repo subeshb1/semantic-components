@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import {
   BrowserRouter as Router,
   Route,
@@ -7,7 +6,7 @@ import {
   Redirect
 } from "react-router-dom";
 import Pages from "./pages";
-import { Container, Header, Menu, Display, Button, Icon } from "./components";
+import { Container, Header, Menu, Display, Icon } from "./components";
 import {
   DisplayList,
   mapPagesToRoutes,
@@ -21,7 +20,6 @@ const NoContent = () => (
   </Container>
 );
 
-console.log(PropTypes.checkPropTypes(NoContent));
 const Home = ({ match: { url } }) => (
   <DisplayList pages={Pages} url={url} name="App" />
 );
@@ -40,6 +38,19 @@ class NavBar extends React.Component {
     const { active } = this.state;
     return (
       <Display
+      rangeProps={{
+          range: { min: Display.Computer.min, max: Infinity },
+          props: {
+            secondary: true,
+            pointing: true,
+            size: "huge",
+            vertical: false,
+            fluid: false,
+            container: true,
+            inverted: false,
+            attached: undefined
+          }
+        }}
         computer={{
           secondary: true,
           pointing: true,
@@ -51,7 +62,14 @@ class NavBar extends React.Component {
           attached: undefined
         }}
       >
-        <Menu vertical inverted color="red" fluid size="huge" style={{borderRadius:0}}>
+        <Menu
+          vertical
+          inverted
+          color="red"
+          fluid
+          size="huge"
+          style={{ borderRadius: 0 }}
+        >
           <Display visibleRange={{ min: 0, max: Display.Tablet.max }}>
             <Menu.Item
               header

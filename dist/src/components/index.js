@@ -52,4 +52,16 @@ Object.keys(_modules).forEach(function (key) {
   });
 });
 
+var _addons = require("./addons");
+
+Object.keys(_addons).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _addons[key];
+    }
+  });
+});
+
 //# sourceMappingURL=index.js.map

@@ -4,16 +4,17 @@ export const Right = x => ({
   chain: f => f(x),
   map: f => Right(f(x)),
   fold: (f, g) => g(x),
-  inspect: () => `Right(${x})`
+  toString: () => `Right(${x})`
 });
 // Does not perform any action
 export const Left = x => ({
   chain: f => Left(x),
   map: f => Left(x),
   fold: (f, g) => f(x),
-  inspect: () => `Right(${x})`
+  toString: () => `Right(${x})`
 });
 
+export const head = ([x]) => x;
 export const fromNullable = x => (x != null ? Right(x) : Left(x));
 
 export const tryCatch = f => {

@@ -3,7 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.widthMapper = exports.widthArray = exports.size = exports.social = exports.wide = exports.colorDef = exports.color = exports.reactComponent = exports.simpleComponent = exports.curry = undefined;
+exports.widthMapper = exports.widthArray = exports.size = exports.social = exports.wide = exports.colorDef = exports.color = exports.reactComponent = exports.simpleComponent = exports.curry = exports.tryCatch = exports.fromNullable = exports.head = exports.Left = exports.Right = undefined;
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _react = require("react");
 
@@ -13,6 +15,57 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
+var Right = exports.Right = function Right(x) {
+  return {
+    chain: function chain(f) {
+      return f(x);
+    },
+    map: function map(f) {
+      return Right(f(x));
+    },
+    fold: function fold(f, g) {
+      return g(x);
+    },
+    toString: function toString() {
+      return "Right(" + x + ")";
+    }
+  };
+};
+// Does not perform any action
+var Left = exports.Left = function Left(x) {
+  return {
+    chain: function chain(f) {
+      return Left(x);
+    },
+    map: function map(f) {
+      return Left(x);
+    },
+    fold: function fold(f, g) {
+      return f(x);
+    },
+    toString: function toString() {
+      return "Right(" + x + ")";
+    }
+  };
+};
+
+var head = exports.head = function head(_ref) {
+  var _ref2 = _slicedToArray(_ref, 1),
+      x = _ref2[0];
+
+  return x;
+};
+var fromNullable = exports.fromNullable = function fromNullable(x) {
+  return x != null ? Right(x) : Left(x);
+};
+
+var tryCatch = exports.tryCatch = function tryCatch(f) {
+  try {
+    return Right(f());
+  } catch (e) {
+    return Left(e);
+  }
+};
 //Curry
 var curry = exports.curry = function curry(fn) {
   var resLength = fn.length;
@@ -37,10 +90,10 @@ var curry = exports.curry = function curry(fn) {
  */
 var simpleComponent = function simpleComponent(className) {
   var defaultAs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "div";
-  return function (_ref) {
-    var _ref$as = _ref.as,
-        as = _ref$as === undefined ? defaultAs : _ref$as,
-        otherProps = _objectWithoutProperties(_ref, ["as"]);
+  return function (_ref3) {
+    var _ref3$as = _ref3.as,
+        as = _ref3$as === undefined ? defaultAs : _ref3$as,
+        otherProps = _objectWithoutProperties(_ref3, ["as"]);
 
     return _react2.default.createElement(as, Object.assign({ className: className }, otherProps));
   };
@@ -48,8 +101,8 @@ var simpleComponent = function simpleComponent(className) {
 
 exports.simpleComponent = simpleComponent;
 var reactComponent = curry(function (as, props) {
-  return function (_ref2) {
-    var otherProps = _objectWithoutProperties(_ref2, []);
+  return function (_ref4) {
+    var otherProps = _objectWithoutProperties(_ref4, []);
 
     return _react2.default.createElement(as, Object.assign({}, props, otherProps));
   };

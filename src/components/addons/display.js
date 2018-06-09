@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Right, fromNullable } from "../lib/react-extras";
+import { Right, Left, fromNullable, head } from "../lib/react-extras";
 
 export const Mobile = {
   min: 0,
@@ -47,29 +47,54 @@ export const getInnerWidth = () =>
     : window.innerWidth;
 
 export const filterRanges = (ranges, res) =>
-  ranges.filter(x => inRange(x.range, res));
+  //check if array or object
+  fromNullable(ranges instanceof Array ? ranges : undefined)
+    //left object right array
+    .fold(x => [ranges], x => x)
+    //filter
+    .filter(x => inRange(x.range, res));
 
+const extractUnit = (ranges, res) =>
+  //checking if range is available
+  fromNullable(ranges)
+    //filtering range according to res
+    .map(x => filterRanges(x, res))
+    //Picking the last range
+    .map(x => x.slice(-1))
+    //extracting
+    .map(head)
+    //checking if undefined
+    .map(x => fromNullable(x))
+    //chaining Left or Right
+    .chain(x => x);
+
+const clone = (children, props) =>
+  React.Children.map(children, child =>
+    React.cloneElement(child, { ...props })
+  );
 export default class Display extends Component {
   state = {
     res: getInnerWidth()
   };
 
   static propTypes = {
+    //Main
     show: PropTypes.bool,
     visibleRange: PropTypes.shape({
       min: PropTypes.number.isRequired,
       max: PropTypes.number.isRequired
     }),
-    render: PropTypes.arrayOf(
-      PropTypes.shape({
-        range: PropTypes.shape({
-          min: PropTypes.number.isRequired,
-          max: PropTypes.number.isRequired
-        }).isRequired,
-        render: PropTypes.func.isRequired
-      })
-    ),
-    showRange: PropTypes.arrayOf(
+    //Array of secondary
+    showRange: PropTypes.oneOfType([
+      PropTypes.arrayOf(
+        PropTypes.shape({
+          range: PropTypes.shape({
+            min: PropTypes.number.isRequired,
+            max: PropTypes.number.isRequired
+          }).isRequired,
+          show: PropTypes.bool
+        })
+      ),
       PropTypes.shape({
         range: PropTypes.shape({
           min: PropTypes.number.isRequired,
@@ -77,7 +102,46 @@ export default class Display extends Component {
         }).isRequired,
         show: PropTypes.bool
       })
-    )
+    ]),
+
+    //different render in different ranges
+    render: PropTypes.oneOfType([
+      PropTypes.arrayOf(
+        PropTypes.shape({
+          range: PropTypes.shape({
+            min: PropTypes.number.isRequired,
+            max: PropTypes.number.isRequired
+          }).isRequired,
+          show: PropTypes.bool
+        })
+      ),
+      PropTypes.shape({
+        range: PropTypes.shape({
+          min: PropTypes.number.isRequired,
+          max: PropTypes.number.isRequired
+        }).isRequired,
+        show: PropTypes.bool
+      })
+    ]),
+    // Passing different props to children in different ranges
+    rangeProps: PropTypes.oneOfType([
+      PropTypes.arrayOf(
+        PropTypes.shape({
+          range: PropTypes.shape({
+            min: PropTypes.number.isRequired,
+            max: PropTypes.number.isRequired
+          }).isRequired,
+          show: PropTypes.bool
+        })
+      ),
+      PropTypes.shape({
+        range: PropTypes.shape({
+          min: PropTypes.number.isRequired,
+          max: PropTypes.number.isRequired
+        }).isRequired,
+        show: PropTypes.bool
+      })
+    ])
   };
   static defaultProps = {};
   static Mobile = Mobile;
@@ -100,32 +164,44 @@ export default class Display extends Component {
       show,
       visibleRange,
       showRange,
-      computer,
-      mobile
+      render,
+      rangeProps
     } = this.props;
     const { res } = this.state;
-    //checking nullable
+    // THe main Display
     const mainDisplay = { range: visibleRange, show };
+    //Filtering the available ranges
     const visibilityArray = fromNullable(showRange).fold(
+      //if undefined
       x => [mainDisplay],
+      //if defined
       x => [...filterRanges(x, res), mainDisplay]
     );
+
+    //Checking whether to display or not
     const display = visibilityArray.reduce(
       (acc, dis) => acc && shouldDisplay(dis.show, dis.range, res),
       true
     );
-    if (display) {
-      let newChild = children;
-      if (computer && inRange({ min: Computer.min, max: Infinity }, res))
-        newChild = React.Children.map(children, child => {
-          return React.cloneElement(child, { ...computer });
-        });
-      if (mobile && inRange(Mobile, res))
-        newChild = React.Children.map(children, child => {
-          return React.cloneElement(child, { ...mobile });
-        });
-      return newChild;
-    }
-    return "";
+
+    return display
+      ? //checking if render available
+        extractUnit(render, res)
+          //Left if  render, Right if no render
+          .fold(x => Right(rangeProps), x => Left(x.render(children, res)))
+          //Maps if no render
+          .map(x =>
+            //Same as above but for rangeProps
+            extractUnit(x, res).fold(
+              //if no range Props return child or null
+              x => children || null,
+              //return proper range props
+              x => clone(children, x.props)
+            )
+          )
+          //simple folding
+          .fold(x => x, x => x)
+      : //If none of above satisfies
+        null;
   }
 }

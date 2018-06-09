@@ -55,7 +55,7 @@ var GridColumn = exports.GridColumn = (_temp = _class = function (_Component) {
           computer = _props.computer,
           otherProps = _objectWithoutProperties(_props, ["as", "children", "color", "width", "float", "extra", "visibility", "textAlign", "mobile", "tablet", "computer"]);
 
-      var className = ("\n    " + color + "\n    " + (width ? width + " wide" : "") + "\n    " + (float ? float + " floated" : "") + "\n    " + (visibility ? visibility + " only" : "") + "\n    " + (mobile ? (0, _reactExtras.widthMapper)(mobile) + " wide mobile" : "") + "\n    " + (tablet ? (0, _reactExtras.widthMapper)(tablet) + " wide tablet" : "") + "\n    " + (computer ? (0, _reactExtras.widthMapper)(computer) + " wide computer" : "") + "\n    " + (textAlign ? textAlign + (textAlign !== "justified" ? " aligned" : "") : "") + "\n    " + extra + "\n    column\n    ").replace(/\s+/g, " ");
+      var className = ("\n    " + (color ? color : "") + "\n    " + (width ? width + " wide" : "") + "\n    " + (float ? float + " floated" : "") + "\n    " + (visibility ? visibility + " only" : "") + "\n    " + (mobile ? (0, _reactExtras.widthMapper)(mobile) + " wide mobile" : "") + "\n    " + (tablet ? (0, _reactExtras.widthMapper)(tablet) + " wide tablet" : "") + "\n    " + (computer ? (0, _reactExtras.widthMapper)(computer) + " wide computer" : "") + "\n    " + (textAlign ? textAlign + (textAlign !== "justified" ? " aligned" : "") : "") + "\n    " + extra + "\n    column\n    ").replace(/\s+/g, " ");
 
       var renderElement = _react2.default.createElement(as, Object.assign({ className: className }, otherProps), children);
       return renderElement;
@@ -103,7 +103,7 @@ var GridRow = exports.GridRow = (_temp2 = _class2 = function (_Component2) {
           visibility = _props2.visibility,
           otherProps = _objectWithoutProperties(_props2, ["as", "children", "color", "column", "stretched", "verticalAlign", "centered", "extra", "textAlign", "visibility"]);
 
-      var className = ("\n    " + color + "\n    " + (stretched ? "stretched" : "") + "\n    " + (column ? (0, _reactExtras.widthMapper)(column) + " column" : "") + "\n    " + (verticalAlign ? verticalAlign + " aligned" : "") + "\n    " + (centered ? "centered" : "") + "\n    " + (visibility ? visibility + " only" : "") + "\n    " + (textAlign ? textAlign + (textAlign !== "justified" ? " aligned" : "") : "") + "\n    " + extra + "\n    row\n    ").replace(/\s+/g, " ");
+      var className = ("\n    " + (color ? color : "") + "\n    " + (stretched ? "stretched" : "") + "\n    " + (column ? (0, _reactExtras.widthMapper)(column) + " column" : "") + "\n    " + (verticalAlign ? verticalAlign + " aligned" : "") + "\n    " + (centered ? "centered" : "") + "\n    " + (visibility ? visibility + " only" : "") + "\n    " + (textAlign ? textAlign + (textAlign !== "justified" ? " aligned" : "") : "") + "\n    " + extra + "\n    row\n    ").replace(/\s+/g, " ");
 
       var renderElement = _react2.default.createElement(as, Object.assign({ className: className }, otherProps), children);
       return renderElement;
@@ -122,7 +122,8 @@ var GridRow = exports.GridRow = (_temp2 = _class2 = function (_Component2) {
   visibility: _propTypes2.default.oneOf(["large screen", "computer", "mobile", "tablet"]),
   extra: _propTypes2.default.string
 }, _class2.defaultProps = {
-  as: "div"
+  as: "div",
+  extra: ""
 }, _temp2);
 var Grid = (_temp3 = _class3 = function (_Component3) {
   _inherits(Grid, _Component3);
@@ -182,7 +183,8 @@ var Grid = (_temp3 = _class3 = function (_Component3) {
   container: _propTypes2.default.bool,
   extra: _propTypes2.default.string
 }, _class3.defaultProps = {
-  as: "div"
+  as: "div",
+  extra: ""
 }, _class3.Column = GridColumn, _class3.Row = GridRow, _temp3);
 exports.default = Grid;
 

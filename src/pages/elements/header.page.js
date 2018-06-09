@@ -1,6 +1,6 @@
 import React from "react";
 // eslint-disable-next-line
-import {Button,Container,Divider,Flag,Header,Icon,Image,Input,Label,List,Loader,Reveal,Segment} from '../../components';
+import { Container, Divider, Header, Icon } from "../../components";
 
 export default class HeaderPage extends React.Component {
   render() {
@@ -23,7 +23,7 @@ export default class HeaderPage extends React.Component {
         <Header icon>
           <Icon name="settings" />
           Account Settings
-          <Header sub>
+          <Header sub as="div">
             {" "}
             Manage your account settings and set e-mail preferences.
           </Header>
@@ -31,27 +31,39 @@ export default class HeaderPage extends React.Component {
         {/* SubHeaders Headers */}
         <Header as="h1">
           H1
-          <Header sub>Sub Header </Header>
+          <Header sub as="div">
+            Sub Header{" "}
+          </Header>
         </Header>
         <Header as="h2">
           H2
-          <Header sub>Sub Header </Header>
+          <Header sub as="div">
+            Sub Header{" "}
+          </Header>
         </Header>
         <Header as="h3">
           H3
-          <Header sub>Sub Header </Header>
+          <Header sub as="div">
+            Sub Header{" "}
+          </Header>
         </Header>
         <Header as="h4">
           H4
-          <Header sub>Sub Header </Header>
+          <Header sub as="div">
+            Sub Header{" "}
+          </Header>
         </Header>
         <Header as="h5">
           H5
-          <Header sub>Sub Header </Header>
+          <Header sub as="div">
+            Sub Header{" "}
+          </Header>
         </Header>
         <Header as="h6">
           H6
-          <Header sub>Sub Header </Header>
+          <Header sub as="div">
+            Sub Header{" "}
+          </Header>
         </Header>
         <Header sub as="h2">
           Proce{" "}

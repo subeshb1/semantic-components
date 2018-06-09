@@ -1,4 +1,6 @@
-import {
+
+const Display = require("./components/addons/display");
+const {
   filterRanges,
   checkRange,
   shouldDisplay,
@@ -8,7 +10,7 @@ import {
   LargeScreen,
   Mobile,
   Tablet
-} from "./components/addons/display";
+} = Display;
 
 describe("Testing Inrange", () => {
   it("should return true", () => {

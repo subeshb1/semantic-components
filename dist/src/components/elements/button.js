@@ -65,7 +65,7 @@ var ButtonGroup = exports.ButtonGroup = (_temp = _class = function (_Component) 
           items = _props.items,
           otherProps = _objectWithoutProperties(_props, ["as", "size", "labeled", "color", "basic", "children", "icon", "compact", "float", "attached", "fluid", "vertical", "width", "extra", "items"]);
 
-      var className = ("\n    " + width + "  \n    " + size + "\n    ui\n    " + (vertical ? "vertical" : "") + "\n    " + (attached ? attached + " attached" : "s") + "\n    " + (compact ? "compact" : "") + "\n    " + (basic ? "basic" : "") + "\n    " + color + "\n    " + (fluid ? "fluid" : "") + "\n    " + (float ? float + " floated" : "") + "\n    " + (labeled ? "labeled" : "") + "\n    " + (icon ? "icon" : "") + "\n    " + extra + "\n    buttons\n    ").replace(/\s+/g, " ");
+      var className = ("\n    " + width + "  \n    " + size + "\n    ui\n    " + (vertical ? "vertical" : "") + "\n    " + (attached ? attached + " attached" : "") + "\n    " + (compact ? "compact" : "") + "\n    " + (basic ? "basic" : "") + "\n    " + color + "\n    " + (fluid ? "fluid" : "") + "\n    " + (float ? float + " floated" : "") + "\n    " + (labeled ? "labeled" : "") + "\n    " + (icon ? "icon" : "") + "\n    " + extra + "\n    buttons\n    ").replace(/\s+/g, " ");
 
       return _react2.default.createElement(as, Object.assign({ className: className }, otherProps), children, items && items.map(function (_ref, index) {
         var key = _ref.key,
@@ -106,7 +106,8 @@ var ButtonGroup = exports.ButtonGroup = (_temp = _class = function (_Component) 
   fluid: false,
   attached: "",
   vertical: false,
-  width: ""
+  width: "",
+  extra: ""
 }, _temp);
 var ButtonHidden = exports.ButtonHidden = function ButtonHidden(_ref2) {
   var children = _ref2.children,

@@ -129,7 +129,7 @@ var DropDown = (_temp = _class = function (_Component) {
 
       if (this.dropDown.current) {
         document.addEventListener("click", function (e) {
-          if (!_this2.dropDown.current.contains(e.target) && !_this2.dropDown.current !== e.target) _this2.setState(function (_ref2) {
+          if (_this2.dropDown.current && !_this2.dropDown.current.contains(e.target) && !_this2.dropDown.current !== e.target) _this2.setState(function (_ref2) {
             var active = _ref2.active;
             return { active: false };
           });
@@ -138,7 +138,7 @@ var DropDown = (_temp = _class = function (_Component) {
         document.addEventListener("keyup", function (e) {
           // console.log(e);
           var code = e.keyCode ? e.keyCode : e.which;
-          if (code == 9 && document.activeElement === _this2.dropDown.current) _this2.setState(function (_ref3) {
+          if (code === 9 && document.activeElement === _this2.dropDown.current) _this2.setState(function (_ref3) {
             var active = _ref3.active;
             return { active: true };
           });

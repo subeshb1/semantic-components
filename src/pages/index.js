@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM, { render } from "react-dom";
+// import ReactDOM, { render } from "react-dom";
 
 import { Route, NavLink } from "react-router-dom";
 import * as Pages from "./pages";
@@ -16,17 +16,22 @@ class NavBar extends React.Component {
     stick: false
   };
   ref = React.createRef();
+  scrollHandler = e => {
+    if (window.scrollY > 180) {
+      this.setState({ stick: true });
+    } else {
+      this.setState({ stick: false });
+    }
+    // console.log(1);
+  };
   componentDidMount() {
-    console.log(ReactDOM.findDOMNode(this));
-    window.addEventListener("scroll", e => {
-      if (window.scrollY > 180) {
-        this.setState({ stick: true });
-      } else {
-        this.setState({ stick: false });
-      }
-      console.log(1);
-    });
+    // console.log(ReactDOM.findDOMNode(this));
+    window.addEventListener("scroll", this.scrollHandler, true);
   }
+
+  componentWillUnmount = () => {
+    window.removeEventListener("scroll", this.scrollHandler, true);
+  };
 
   render() {
     const { pages, url } = this.props;
@@ -49,7 +54,7 @@ class NavBar extends React.Component {
             padding: 5
           }}
           items={mapPagesToLinks(pages, url, NavLink, {
-            style: { transition: "all 0.3s ease-in" },
+            style: { transition: "all 0.3s ease-in" }
           })}
           color="red"
         />
@@ -92,11 +97,28 @@ const NavMenu = Object.entries(Pages).reduce((acc, item, index) => {
       return (
         <React.Fragment>
           <Container fluid>
-            <NavBar pages={item[1]} url={url} key={"#1"}/>
-            <Segment attached="bottom" compact>
+            <NavBar pages={item[1]} url={url} key={"#1"} />
+            <Display
+              render={[
+                {
+                  range: Display.Mobile,
+                  render: children => (
+                    <React.Fragment>{children}</React.Fragment>
+                  )
+                },
+                {
+                  range: { min: Display.Tablet.min - 100, max: Infinity },
+                  render: children => (
+                    <Segment attached="bottom" compact>
+                      {children}{" "}
+                    </Segment>
+                  )
+                }
+              ]}
+            >
               <Route exact path={path} component={View} />
               {mapPagesToRoutes(item[1], path)}
-            </Segment>
+            </Display>
           </Container>
         </React.Fragment>
       );
