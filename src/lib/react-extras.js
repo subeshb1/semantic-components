@@ -71,8 +71,7 @@ export const wide = [
   "thirteen",
   "fourteen",
   "fifteen",
-  "sixteen",
-  
+  "sixteen"
 ];
 export const social = [
   "facebook",
@@ -95,9 +94,19 @@ export const size = [
   "massive"
 ];
 
-const splitUpper = compose(split(/(?=[A-Z])/g), replace(/Page/gi, ""));
-const toUrlSlug = compose(toLower, join("-"), splitUpper);
-const toDisplay = compose(join(" "), splitUpper);
+const splitUpper = compose(
+  split(/(?=[A-Z])/g),
+  replace(/Page/gi, "")
+);
+const toUrlSlug = compose(
+  toLower,
+  join("-"),
+  splitUpper
+);
+const toDisplay = compose(
+  join(" "),
+  splitUpper
+);
 export const mapPagesToRoutes = (pages, path) =>
   Object.entries(pages)
     .filter(x => x[0] !== "default")
@@ -109,16 +118,14 @@ export const mapPagesToRoutes = (pages, path) =>
       />
     ));
 
-export const mapPagesToLinks = (pages, url,as=Link,extraProps={}) =>
+export const mapPagesToLinks = (pages, url, as = Link, extraProps = {}) =>
   Object.keys(pages)
     .filter(x => x !== "default")
     .map((page, index) => ({
-      
       as,
       to: `${url}/${toUrlSlug(page)}`.replace(/\/\//, "/"),
       children: toDisplay(page),
       ...extraProps
-
     }));
 
 export const DisplayList = ({ pages, url, name }) => {
@@ -141,7 +148,6 @@ export const DisplayList = ({ pages, url, name }) => {
     </Container>
   );
 };
-
 
 export const widthArray = [
   1,

@@ -13,7 +13,8 @@ import { Menu, Segment, Display, Container } from "../components";
 class NavBar extends React.Component {
   state = {
     pos: undefined,
-    stick: false
+    stick: false,
+    dis: false
   };
   ref = React.createRef();
   scrollHandler = e => {
@@ -27,15 +28,29 @@ class NavBar extends React.Component {
   componentDidMount() {
     // console.log(ReactDOM.findDOMNode(this));
     window.addEventListener("scroll", this.scrollHandler, true);
+    let prev = 0;
+    this.translate = e => {
+      if (window.scrollY > 1000) {
+        if (window.scrollY < prev) {
+          this.setState(({ dis }) => ({ dis: false }));
+        } else {
+          this.setState(({ dis }) => ({ dis: true }));
+        }
+        prev = window.scrollY;
+        // console.log(this.state.dis, prev);
+      }
+    };
+    window.addEventListener("scroll", this.translate, true);
   }
 
   componentWillUnmount = () => {
     window.removeEventListener("scroll", this.scrollHandler, true);
+    window.removeEventListener("scroll", this.translate, true);
   };
 
   render() {
     const { pages, url } = this.props;
-    const { stick } = this.state;
+    const { stick, dis } = this.state;
     return (
       <Display>
         <Menu
@@ -50,7 +65,8 @@ class NavBar extends React.Component {
             overflowY: "hidden",
             background: "white",
             zindex: 10,
-            // transition: "all 0.3s ease-in",
+            transition: "all 0.1s ease-in",
+            transform: stick && dis ? "translateY(-100%)" : "",
             padding: 5
           }}
           items={mapPagesToLinks(pages, url, NavLink, {
@@ -73,7 +89,7 @@ class NavBar extends React.Component {
               padding: 5
             }}
             items={mapPagesToLinks(pages, url, NavLink, {
-              style: { transition: "all 0.3s ease-in" }
+              style: { transition: "all 0.2s ease" }
             })}
             color="red"
           />
@@ -110,7 +126,7 @@ const NavMenu = Object.entries(Pages).reduce((acc, item, index) => {
                   range: { min: Display.Tablet.min - 100, max: Infinity },
                   render: children => (
                     <Segment attached="bottom" compact>
-                      {children}{" "}
+                      {children}
                     </Segment>
                   )
                 }

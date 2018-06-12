@@ -32,19 +32,109 @@ import {
   // eslint-disable-next-line
   Display,
   // eslint-disable-next-line
-  Menu
+  Menu,
+  Transition2
 } from "../../components";
 // eslint-disable-next-line
 import { colorDef } from "../../lib/react-extras";
 
 export default class TestPage extends Component {
   state = {
-    toggle: true
+    toggle: true,
+    value: "",
+    data: ["Subesh", "Bhanfa"]
   };
+  anima = undefined;
+  ref = React.createRef();
   render() {
     return (
       <Container>
-        
+        <Transition2
+          mapEvents={[
+            {
+              event: "click",
+              transition: [
+                {
+                  style: {
+                    transform: "translateY(-100%)",
+                    transition: "all 1s ease"
+                  },
+                  duration: 1000,
+                  delay: 1000
+                },
+                {
+                  style: {
+                    transform: "translate(-100%,-100%)",
+                    transition: "all 1s ease"
+                  },
+                  duration: 1000
+                },
+                {
+                  style: {
+                    transform: "translate(-100%,0%)",
+                    transition: "all 1s ease"
+                  },
+                  duration: 1000
+                },
+                {
+                  style: {
+                    transform: "translate(0%,0%)",
+                    transition: "all 1s ease"
+                  },
+                  duration: 1000
+                },
+                {
+                  style: {
+                    transform: "scale(2)",
+                    transition: "all 1s ease"
+                  },
+                  duration: 1000
+                },
+                {
+                  style: {
+                    transform: "scale(-1)",
+                    transition: "all 1s ease"
+                  },
+                  duration: 1000
+                },
+                {
+                  style: {
+                    transform: "scale(1)",
+                    transition: "all 1s ease"
+                  },
+                  duration: 1000
+                },
+                {
+                  default: true
+                }
+              ]
+            },
+            {
+              event: "mouseover",
+              transition: [
+                {
+                  style: {
+                    transform: "scale(2)",
+                    transition: "all 1s ease"
+                  }
+                }
+              ]
+            },
+            {
+              event: "mouseout",
+              transition: [
+                {
+                  style: {
+                    transform: "scale(1)",
+                    transition: "all 1s ease"
+                  }
+                }
+              ]
+            }
+          ]}
+        >
+          <Segment color="grey">Subesh</Segment>
+        </Transition2>
       </Container>
     );
   }
