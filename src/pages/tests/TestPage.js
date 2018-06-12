@@ -42,11 +42,13 @@ export default class TestPage extends Component {
   state = {
     toggle: true,
     value: "",
+    animate: false,
     data: ["Subesh", "Bhanfa"]
   };
   anima = undefined;
   ref = React.createRef();
   render() {
+    const { animate } = this.state;
     return (
       <Container>
         <Transition2
@@ -133,8 +135,155 @@ export default class TestPage extends Component {
             }
           ]}
         >
-          <Segment color="grey">Subesh</Segment>
+          <Segment color="grey" compact float="right">
+            Subesh
+          </Segment>
         </Transition2>
+        <Transition2
+          onEnter={[
+            {
+              style: {
+                transform: "translateY(-100%)",
+                opacity: 0
+              }
+            },
+            {
+              style: {
+                transition: "all 1s ease",
+                transform: "",
+                opacity: 1
+              },
+              delay: 1000,
+              duration: 1000
+            }
+          ]}
+          mapEvents={[
+            {
+              event: "mouseover",
+              transition: [
+                {
+                  style: {
+                    transform: "rotate(20deg)",
+                    transition: "all 0.2s ease"
+                  }
+                },
+                {
+                  style: {
+                    transition: "all 0.2s ease",
+                    transform: "rotate(-20deg)"
+                  },
+                  delay: 200,
+                  duration: 200
+                },
+                {
+                  style: {
+                    transition: "all 0.2s ease",
+                    transform: ""
+                  }
+                }
+              ]
+            }
+          ]}
+        >
+          <Segment color="blue" compact>
+            Subesh
+          </Segment>
+        </Transition2>
+        <Transition2
+          mapEvents={[
+            {
+              event: "mouseover",
+              transition: [
+                {
+                  style: {
+                    transform: "scale(1,0.5)",
+                    transition: "all 0.5s ease-in"
+                  }
+                },
+                {
+                  style: {
+                    transition: "all 0.2s ease",
+                    transform: "scale(1,1.2)"
+                  },
+                  delay: 500,
+                  duration: 200
+                },
+                {
+                  style: {
+                    transition: "all 0.2s ease",
+                    transform: "scale(1,0.75)"
+                  },
+                  duration: 200
+                },
+                {
+                  style: {
+                    transition: "all 0.2s ease",
+                    transform: ""
+                  }
+                }
+              ]
+            }
+          ]}
+        >
+          <Image src="/img/5.png" size="small" />
+        </Transition2>
+        <div
+          style={{
+            // overflow: "hidden",
+            // width: "500px",
+            // height: "500px"
+          }}
+        >
+          <Transition2
+            mapEvents={[
+              {
+                event: "click",
+                transition: [
+                  {
+                    style: {
+                      transform: "translateX(-100%)",
+                      transition: "all 0.9s ease",
+                      opacity: 1
+                    }
+                  }
+                ]
+              }
+            ]}
+          >
+            <Image
+              src="/img/avatar1.png"
+              wrapped
+              fluid
+              onClick={() => this.setState({ animate: true })}
+            />
+          </Transition2>
+          <Transition2
+            mapEvents={[
+              {
+                event: "click",
+                transition: [
+                  {
+                    style: {
+                      transform: "translateX(-200%)",
+                      transition: "all 0.9s ease"
+                    }
+                  }
+                ]
+              }
+            ]}
+            transition={[
+              {
+                style: {
+                  transform: "translateX(-100%)",
+                  transition: "all 0.9s ease"
+                }
+              }
+            ]}
+            animate={animate}
+          >
+            <Image src="/img/avatar2.png" wrapped fluid />
+          </Transition2>
+        </div>
       </Container>
     );
   }

@@ -11,26 +11,30 @@ const mapStyles = (node, style) => {
 
 const clearTimers = arr => arr.forEach(clearInterval);
 export default class Transition2 extends Component {
+
   static propTypes = {
     transition: PropTypes.arrayOf(
       PropTypes.shape({
-        style: PropTypes.object.isRequired,
+        style: PropTypes.object,
         duration: PropTypes.number,
-        delay: PropTypes.number
+        delay: PropTypes.number,
+        default: PropTypes.bool
       })
     ),
     onEnter: PropTypes.arrayOf(
       PropTypes.shape({
-        style: PropTypes.object.isRequired,
+        style: PropTypes.object,
         duration: PropTypes.number,
-        delay: PropTypes.number
+        delay: PropTypes.number,
+        default: PropTypes.bool
       })
     ),
     onRemove: PropTypes.arrayOf(
       PropTypes.shape({
-        style: PropTypes.object.isRequired,
+        style: PropTypes.object,
         duration: PropTypes.number,
-        delay: PropTypes.number
+        delay: PropTypes.number,
+        default: PropTypes.bool
       })
     ),
     remove: PropTypes.bool,
@@ -47,13 +51,20 @@ export default class Transition2 extends Component {
           })
         )
       })
-    ).isRequired
+    )
   };
   timeouts = {};
+
+  shouldComponentUpdate(nextProps, prevState) {
+    if (nextProps.animate && nextProps.transition ) {
+      return this.transition(nextProps.transition, "animate");
+    }
+    return true;
+  }
   componentDidMount() {
     this.node = ReactDOM.findDOMNode(this);
 
-    const { mapEvents } = this.props;
+    const { mapEvents, onEnter } = this.props;
     const handler = curry((node, action) => {
       node.addEventListener(action.event, () => {
         this.transition(action.transition, action.event);
@@ -69,14 +80,20 @@ export default class Transition2 extends Component {
       .map(filter(x => x.event))
       .map(map(handler(this.node)))
       .fold(x => x, x => x);
+
+    fromNullable(onEnter)
+      .chain(x => LazyBox(() => x))
+      .map(x => this.transition(x, "onEnter"))
+      .fold(x => x, x => x);
   }
   //the magic happens
   transition(transitions, event) {
+    if (!this.node) return true;
     this.timeouts[event] = fromNullable(this.timeouts[event])
       .map(clearTimers)
       .map(() => mapStyles(this.node, this.default))
       .fold(x => [], x => []);
-
+    const last = transitions.length - 1;
     transitions.reduce((acc, trans, i) => {
       const delay = trans.delay || 0;
       const duration = trans.duration || 0;
@@ -87,6 +104,7 @@ export default class Transition2 extends Component {
             this.node,
             trans.default ? { ...this.default, ...trans.style } : trans.style
           );
+          if (last === i) this.timeouts[event] = undefined;
         }, timeout)
       );
 

@@ -267,7 +267,7 @@ export default class Button extends Component {
     const className = `
     ${size}
     ui
-    ${attached ? attached + " attached" : "s"}
+    ${attached ? attached + " attached" : ""}
     ${compact ? "compact" : ""}
     ${inverted ? "inverted" : ""}
     ${basic ? "basic" : ""}
