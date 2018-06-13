@@ -38,7 +38,7 @@ class NavBar extends React.Component {
     const { active } = this.state;
     return (
       <Display
-      rangeProps={{
+        rangeProps={{
           range: { min: Display.Computer.min, max: Infinity },
           props: {
             secondary: true,
@@ -48,7 +48,9 @@ class NavBar extends React.Component {
             fluid: false,
             container: true,
             inverted: false,
-            attached: undefined
+            style: {
+              borderRadius: 0
+            }
           }
         }}
         computer={{
@@ -58,17 +60,23 @@ class NavBar extends React.Component {
           vertical: false,
           fluid: false,
           container: true,
-          inverted: false,
-          attached: undefined
+          inverted: false
         }}
       >
         <Menu
           vertical
           inverted
-          color="red"
+          
           fluid
           size="huge"
-          style={{ borderRadius: 0 }}
+          style={{
+            borderRadius: 0,
+            transition: "max-height 0.2s ease",
+            maxHeight: active ? 8 * 49 : 0,
+            overflow: "hidden",
+            background:
+              "linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%)"
+          }}
         >
           <Display visibleRange={{ min: 0, max: Display.Tablet.max }}>
             <Menu.Item
@@ -90,7 +98,7 @@ class NavBar extends React.Component {
             showRange={[
               {
                 range: { min: 0, max: Display.Tablet.max },
-                show: active
+                show: true
               },
               {
                 range: { min: Display.Tablet.max, max: Infinity },

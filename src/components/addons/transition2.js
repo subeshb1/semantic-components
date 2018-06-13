@@ -11,14 +11,15 @@ const mapStyles = (node, style) => {
 
 const clearTimers = arr => arr.forEach(clearInterval);
 export default class Transition2 extends Component {
-
   static propTypes = {
     transition: PropTypes.arrayOf(
       PropTypes.shape({
         style: PropTypes.object,
         duration: PropTypes.number,
         delay: PropTypes.number,
-        default: PropTypes.bool
+        default: PropTypes.bool,
+        timingFunction: PropTypes.string,
+        property: PropTypes.string
       })
     ),
     onEnter: PropTypes.arrayOf(
@@ -26,7 +27,9 @@ export default class Transition2 extends Component {
         style: PropTypes.object,
         duration: PropTypes.number,
         delay: PropTypes.number,
-        default: PropTypes.bool
+        default: PropTypes.bool,
+        timingFunction: PropTypes.string,
+        property: PropTypes.string
       })
     ),
     onRemove: PropTypes.arrayOf(
@@ -34,7 +37,9 @@ export default class Transition2 extends Component {
         style: PropTypes.object,
         duration: PropTypes.number,
         delay: PropTypes.number,
-        default: PropTypes.bool
+        default: PropTypes.bool,
+        timingFunction: PropTypes.string,
+        property: PropTypes.string
       })
     ),
     remove: PropTypes.bool,
@@ -47,7 +52,9 @@ export default class Transition2 extends Component {
             style: PropTypes.object,
             duration: PropTypes.number,
             delay: PropTypes.number,
-            default: PropTypes.bool
+            default: PropTypes.bool,
+            timingFunction: PropTypes.string,
+            property: PropTypes.string
           })
         )
       })
@@ -56,8 +63,10 @@ export default class Transition2 extends Component {
   timeouts = {};
 
   shouldComponentUpdate(nextProps, prevState) {
-    if (nextProps.animate && nextProps.transition ) {
-      return this.transition(nextProps.transition, "animate");
+    if (nextProps.animate && nextProps.transition) {
+      Boolean(this.transition(nextProps.transition, "animate"));
+    } else if (nextProps.remove && nextProps.onRemove) {
+      Boolean(this.transition(nextProps.onRemove, "remove"));
     }
     return true;
   }
@@ -96,13 +105,23 @@ export default class Transition2 extends Component {
     const last = transitions.length - 1;
     transitions.reduce((acc, trans, i) => {
       const delay = trans.delay || 0;
-      const duration = trans.duration || 0;
+      const duration = trans.duration || 10;
       const timeout = acc + delay;
+      const transition = {
+        transition: `
+      ${trans.property || "all"}
+      ${duration / 1000}s
+      ${trans.timingFunction || "ease"}
+      ${delay / 1000}s
+      `.replace(/\s+/g, " ")
+      };
       this.timeouts[event].push(
         setTimeout(() => {
           mapStyles(
             this.node,
-            trans.default ? { ...this.default, ...trans.style } : trans.style
+            trans.default
+              ? { ...transition, ...this.default, ...trans.style }
+              : { ...transition, ...trans.style }
           );
           if (last === i) this.timeouts[event] = undefined;
         }, timeout)

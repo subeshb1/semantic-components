@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { NavLink } from "react-router-dom";
 
 // eslint-disable-next-line
 import {
@@ -43,12 +42,11 @@ export default class TestPage extends Component {
     toggle: true,
     value: "",
     animate: false,
-    data: ["Subesh", "Bhanfa"]
+    data: ["Subesh", "Bhanfa"],
+    remove: false
   };
-  anima = undefined;
-  ref = React.createRef();
   render() {
-    const { animate } = this.state;
+    const { animate, remove } = this.state;
     return (
       <Container>
         <Transition2
@@ -229,9 +227,10 @@ export default class TestPage extends Component {
         </Transition2>
         <div
           style={{
-            // overflow: "hidden",
-            // width: "500px",
-            // height: "500px"
+            overflow: "hidden",
+            width: "100px",
+            height: "100px",
+            display: "block"
           }}
         >
           <Transition2
@@ -284,6 +283,120 @@ export default class TestPage extends Component {
             <Image src="/img/avatar2.png" wrapped fluid />
           </Transition2>
         </div>
+
+        <Transition2
+          onRemove={[
+            {
+              style: {
+                opacity: 0,
+                transition: "all 1s ease"
+              }
+            }
+          ]}
+          remove={remove}
+        >
+          <Button onClick={() => this.setState({ remove: true })}>
+            Click Me and I'll Disappear.
+          </Button>
+        </Transition2>
+        <Transition2
+          mapEvents={[
+            {
+              event: "click",
+              transition: [
+                {
+                  style: {
+                    transform: "scale(1.2)",
+                    transition: "all 0.1s ease",
+                    background:
+                      "linear-gradient(to right, rgba(222,48,17,1) 0%, rgba(250,76,53,1) 10%, rgba(248,81,59,1) 13%, rgba(240,102,84,1) 25%, rgba(230,106,92,1) 36%, rgba(235,20,0,1) 57%, rgba(235,20,0,1) 100%)"
+                  }
+                },
+                {
+                  style: {
+                    transform: "scale(1)",
+                    transition: "all 0.1s ease",
+                    background:
+                      "linear-gradient(to right, rgba(222,48,17,1) 0%, rgba(233,59,32,1) 13%, rgba(250,76,53,1) 32%, rgba(240,102,84,1) 51%, rgba(230,106,92,1) 71%, rgba(235,20,0,1) 100%)"
+                  },
+
+                  delay: 100,
+                  duration: 200
+                }
+              ]
+            }
+          ]}
+        >
+          <Button>Click Me and I'll Grow.</Button>
+        </Transition2>
+        <Transition2
+          mapEvents={[
+            {
+              event: "click",
+              transition: [
+                {
+                  style: {
+                    transform: "scale(1.2)",
+                    background:
+                      "linear-gradient(to right, rgba(222,48,17,1) 0%, rgba(250,76,53,1) 10%, rgba(248,81,59,1) 13%, rgba(240,102,84,1) 25%, rgba(230,106,92,1) 36%, rgba(235,20,0,1) 57%, rgba(235,20,0,1) 100%)"
+                  },
+                  duration: 100
+                },
+                {
+                  style: {
+                    transform: "scale(1)",
+                    background:
+                      "linear-gradient(to right, rgba(222,48,17,1) 0%, rgba(233,59,32,1) 13%, rgba(250,76,53,1) 32%, rgba(240,102,84,1) 51%, rgba(230,106,92,1) 71%, rgba(235,20,0,1) 100%)"
+                  },
+                  duration: 200
+                }
+              ]
+            }
+          ]}
+          // remove={remove}
+        >
+          <Button>I work he Same Way</Button>
+        </Transition2>
+        <Segment
+          style={{
+            position: "relative",
+            overflow: "hidden"
+          }}
+        >
+          <Transition2
+            mapEvents={[
+              {
+                event: "click",
+                transition: [
+                  {
+                    style: {
+                      transform: "translateY(-100%)"
+                    },
+                    
+                  },
+                  {
+                    style: {
+                      transform: "translateY(0%)"
+                    },
+                    delay:100,
+                    duration: 400
+                  }
+                ]
+              }
+            ]}
+          >
+            <Segment inverted color="red" extra="text container">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum
+              corrupti id, voluptatum, perferendis nobis eligendi velit dolorum
+              optio nemo eius aperiam beatae pariatur exercitationem ut
+              excepturi error architecto sequi consequatur. Lorem ipsum dolor
+              sit amet consectetur adipisicing elit. Et nihil reprehenderit
+              praesentium recusandae nobis. Nesciunt illo sit, tempora
+              recusandae iure doloribus, nisi similique, aliquam quas ex unde in
+              voluptate numquam.
+            </Segment>
+          </Transition2>
+        </Segment>
       </Container>
     );
   }
