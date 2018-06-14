@@ -77,7 +77,7 @@ export default class Transition2 extends Component {
     const handler = curry((node, action) => {
       node.addEventListener(action.event, () => {
         this.transition(action.transition, action.event);
-      });
+      },false);
       return action;
     });
 

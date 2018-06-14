@@ -53,26 +53,16 @@ class NavBar extends React.Component {
             }
           }
         }}
-        computer={{
-          secondary: true,
-          pointing: true,
-          size: "huge",
-          vertical: false,
-          fluid: false,
-          container: true,
-          inverted: false
-        }}
       >
         <Menu
           vertical
           inverted
-          
           fluid
           size="huge"
           style={{
             borderRadius: 0,
             transition: "max-height 0.2s ease",
-            maxHeight: active ? 8 * 49 : 0,
+            maxHeight: active ? 9 * 49 : 0,
             overflow: "hidden",
             background:
               "linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%)"
@@ -94,29 +84,13 @@ class NavBar extends React.Component {
               />
             </Menu.Item>
           </Display>
-          <Display
-            showRange={[
-              {
-                range: { min: 0, max: Display.Tablet.max },
-                show: true
-              },
-              {
-                range: { min: Display.Tablet.max, max: Infinity },
-                show: true
-              }
-            ]}
-            computer={{
-              style: { transition: "all 0.3s ease-in", padding: 30 }
-            }}
-          >
-            <Menu.Item as={NavLink} exact to="/" onClick={this.close}>
-              Home
-            </Menu.Item>
-            {mapPagesToLinks(Pages, "/", NavLink, {
-              // style: { transition: "all 0.3s ease-in", padding: 30 },
-              onClick: this.close
-            }).map((props, i) => <Menu.Item key={i} {...props} />)}
-          </Display>
+
+          <Menu.Item as={NavLink} exact to="/" onClick={this.close}>
+            Home
+          </Menu.Item>
+          {mapPagesToLinks(Pages, "/", NavLink, {
+            onClick: this.close
+          }).map((props, i) => <Menu.Item key={i} {...props} />)}
         </Menu>
       </Display>
     );
