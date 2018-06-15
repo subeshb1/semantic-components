@@ -30,6 +30,10 @@ export const LazyBox = g => ({
   map: f => LazyBox(() => f(g()))
 });
 
+export const min = arr => arr.reduce((acc, e) => (e < acc ? e : acc), Infinity);
+export const max = arr =>
+  arr.reduce((acc, e) => (e > acc ? e : acc), -Infinity);
+
 //Curry
 export const curry = fn => {
   const resLength = fn.length;
