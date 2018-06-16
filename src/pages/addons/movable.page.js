@@ -102,7 +102,7 @@ class MovableGroup extends Component {
       active,
       data,
       dragY,
-      mouseIn,
+      mouseIn
     } = this.state;
     const dragPos = { x: x - ox, y: y - oy };
     return (
@@ -152,10 +152,10 @@ class MovableGroup extends Component {
 class MovablePage extends Component {
   render() {
     return (
-      <React.Fragment>
+      <Container>
         <MovableGroup right />
         <MovableGroup />
-      </React.Fragment>
+      </Container>
     );
   }
 }

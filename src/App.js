@@ -6,7 +6,14 @@ import {
   Redirect
 } from "react-router-dom";
 import Pages from "./pages";
-import { Container, Header, Menu, Display, Icon } from "./components";
+import {
+  Container,
+  Header,
+  Menu,
+  Display,
+  Icon,
+  Transition2
+} from "./components";
 import {
   DisplayList,
   mapPagesToRoutes,
@@ -107,15 +114,47 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <React.Fragment>
-          <NavBar />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/home" component={() => <Redirect to="/" />} />
-            {mapPagesToRoutes(Pages, "")}
-            <Route component={NoContent} />
-          </Switch>
-        </React.Fragment>
+        <Route
+          render={({ location }) => (
+            <React.Fragment>
+              <NavBar />
+              <Transition2
+                key={location.key}
+                onEnter={[
+                  {
+                    style: {
+                      opacity: 0
+                    },
+                    start: true
+                  },
+                  {
+                    style: {
+                      opacity: 1
+                    },
+                    duration: 500
+                  },
+                  {
+                    style: {
+                      opacity: 1
+                    },
+                    default: true
+                  }
+                ]}
+              >
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route
+                    exact
+                    path="/home"
+                    component={() => <Redirect to="/" />}
+                  />
+                  {mapPagesToRoutes(Pages, "")}
+                  <Route component={NoContent} />
+                </Switch>
+              </Transition2>
+            </React.Fragment>
+          )}
+        />
       </Router>
     );
   }

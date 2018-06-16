@@ -1,14 +1,14 @@
 import React from "react";
 // import ReactDOM, { render } from "react-dom";
 
-import { Route, NavLink } from "react-router-dom";
+import { Route, NavLink, Switch } from "react-router-dom";
 import * as Pages from "./pages";
 import {
   DisplayList,
   mapPagesToLinks,
   mapPagesToRoutes
 } from "../lib/react-extras";
-import { Menu } from "../components";
+import { Menu, Transition2 } from "../components";
 
 class NavBar extends React.Component {
   state = {
@@ -77,12 +77,32 @@ const NavMenu = Object.entries(Pages).reduce((acc, item) => {
   );
   return {
     ...acc,
-    [item[0]]: ({ match: { path, url } }) => {
+    [item[0]]: ({ match: { path, url }, location }) => {
       return (
         <React.Fragment>
           <NavBar pages={item[1]} url={url} key={"#1"} />
-          <Route exact path={path} component={View} />
-          {mapPagesToRoutes(item[1], path)}
+          <Transition2
+            key={location.key}
+            onEnter={[
+              {
+                style: {
+                  opacity: 0
+                },
+                start: true
+              },
+              {
+                style: {
+                  opacity: 1
+                },
+                duration: 500
+              }
+            ]}
+          >
+            <Switch>
+              <Route exact path={path} component={View} />
+              {mapPagesToRoutes(item[1], path)}
+            </Switch>
+          </Transition2>
         </React.Fragment>
       );
     }

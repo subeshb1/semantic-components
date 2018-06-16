@@ -64,9 +64,9 @@ export default class Transition2 extends Component {
 
   shouldComponentUpdate(nextProps, prevState) {
     if (nextProps.animate && nextProps.transition) {
-      Boolean(this.transition(nextProps.transition, "animate"));
+      this.transition(nextProps.transition, "animate");
     } else if (nextProps.remove && nextProps.onRemove) {
-      Boolean(this.transition(nextProps.onRemove, "remove"));
+      this.transition(nextProps.onRemove, "remove");
     }
     return true;
   }
@@ -75,9 +75,13 @@ export default class Transition2 extends Component {
 
     const { mapEvents, onEnter } = this.props;
     const handler = curry((node, action) => {
-      node.addEventListener(action.event, () => {
-        this.transition(action.transition, action.event);
-      },false);
+      node.addEventListener(
+        action.event,
+        () => {
+          this.transition(action.transition, action.event);
+        },
+        false
+      );
       return action;
     });
 
@@ -104,6 +108,10 @@ export default class Transition2 extends Component {
       .fold(x => [], x => []);
     const last = transitions.length - 1;
     transitions.reduce((acc, trans, i) => {
+      if (trans.start === true) {
+        mapStyles(this.node, trans.style);
+        return acc;
+      }
       const delay = trans.delay || 0;
       const duration = trans.duration || 10;
       const timeout = acc + delay;

@@ -144,7 +144,7 @@ export const DisplayList = ({ pages, url, name }) => {
             items={mapPagesToLinks(pages, url).map(
               ({ children, ...props }) => ({
                 ...props,
-                children: <Header  color="grey" text={children} />
+                children: <Header color="grey" text={children} />
               })
             )}
           />
