@@ -52,7 +52,8 @@ export default class InputPage extends React.Component {
         <Input
           action="left"
           frontChildren={
-            <Button color="teal" labeledIcon ficon="cart">
+            <Button color="teal" labeled icon >
+              <Icon name="cart"/>
               Checkout
             </Button>
           }

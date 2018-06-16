@@ -8,7 +8,7 @@ import {
   simpleComponent,
   size
 } from "../lib/react-extras";
-
+import '../css/menu.css';
 const Header = simpleComponent("header");
 Header.displayName = "Menu.Header";
 const Item = props => {

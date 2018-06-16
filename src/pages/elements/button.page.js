@@ -323,7 +323,7 @@ export default class extends Component {
           <Button>Button 3</Button>
         </Button.Group>
         <Header>Size Button Group</Header>
-        <Button.Group size="massive">
+        <Button.Group size="tiny">
           <Button>Button 1</Button>
           <Button>Button 2</Button>
           <Button>Button 3</Button>
@@ -336,9 +336,9 @@ export default class extends Component {
         </Button.Group>
         <Header>Fluid Button Group</Header>
         <Button.Group fluid>
-          <Button>But 1</Button>
-          <Button>Button 2</Button>
-          <Button>Button 3 long long long long</Button>
+          <Button>1</Button>
+          <Button>2</Button>
+          <Button>Button 3</Button>
         </Button.Group>
         <Header>Small Icon Basic Button Group</Header>
         <Button.Group size="small" icon basic>
@@ -369,7 +369,7 @@ export default class extends Component {
         </Button.Group>
 
         <Header>Extra</Header>
-        <Button.Group>
+        <Button.Group vertical>
           <Button labeled>
             <Button animated color="red">
               <Button.Visible text="Like" />

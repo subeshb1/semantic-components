@@ -1,0 +1,6 @@
+
+.ui.menu::-webkit-scrollbar {
+    -webkit-appearance: none;
+    height: 0;
+  }
+  

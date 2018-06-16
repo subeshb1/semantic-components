@@ -332,7 +332,7 @@ export default class componentName extends Component {
             </Reveal>
           </div>
           <div className="four wide colum">
-            <Reveal animation="rotate " instant show={this.state.active}>
+            <Reveal animation="rotate" instant show={this.state.active}>
               <Reveal.Visible>
                 <Image src="/img/avatar1.png" size="small" alt="Avatar" />
               </Reveal.Visible>

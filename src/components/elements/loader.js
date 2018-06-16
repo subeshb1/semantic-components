@@ -8,6 +8,7 @@ export default class Loader extends Component {
     inverted: false,
     indeterminate:false,
     extra:"",
+    as:"div"
   };
   render() {
     const {
@@ -19,6 +20,7 @@ export default class Loader extends Component {
       children,
       indeterminate,
       extra,
+      as,
       ...otherProps,      
     } = this.props;
     const className = `
@@ -32,12 +34,7 @@ export default class Loader extends Component {
         ${content||children ? "text":""}
         loader
     `.replace(/\s+/g, " ");
-
-    return (
-      <div className={className} {...otherProps}>
-        {content}
-        {children}
-      </div>
-    );
+    return React.createElement(as,{className,...otherProps},content,children);
+   
   }
 }

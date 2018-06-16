@@ -44,6 +44,7 @@ class NavBar extends React.Component {
             secondary: true,
             pointing: true,
             size: "huge",
+            color: undefined,
             vertical: false,
             fluid: false,
             container: true,
@@ -57,6 +58,10 @@ class NavBar extends React.Component {
         <Menu
           vertical
           inverted
+          pointing
+          secondary
+          color="red"
+          stackable
           fluid
           size="huge"
           style={{
@@ -65,7 +70,9 @@ class NavBar extends React.Component {
             maxHeight: active ? 9 * 49 : 0,
             overflow: "hidden",
             background:
-              "linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%)"
+              "linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%)",
+            boxShadow: " 0px 0px 10px",
+            border: "0px"
           }}
         >
           <Display visibleRange={{ min: 0, max: Display.Tablet.max }}>

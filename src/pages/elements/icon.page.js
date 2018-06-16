@@ -1,6 +1,10 @@
 import React from "react";
 // eslint-disable-next-line
-import {Button,Container,Divider,Flag,Header,Icon,Image,Input,Label,List,Loader,Reveal,Segment} from '../../components';
+import {
+  Button,
+  Container,
+  Flag,
+  Icon} from "../../components";
 export default class InputPage extends React.Component {
   render() {
     return (
@@ -27,7 +31,7 @@ export default class InputPage extends React.Component {
 
         <Container>
           <Icon.Group size="huge">
-            <Icon name="dont" color="red"  size="big" />
+            <Icon name="dont" color="red" size="big" />
             <Icon name="user" color="black" />
           </Icon.Group>
           <Icon.Group size="huge">
@@ -39,13 +43,13 @@ export default class InputPage extends React.Component {
             <Icon name="add" corner inverted />
           </Icon.Group>
           <Icon name="ad" />
-          <Button micon state="active" color="red">
+          <Button icon state="active" color="red">
             <Icon.Group size="big">
               <Icon name="twitter" />
               <Icon name="add" corner inverted />
             </Icon.Group>
           </Button>
-          <Button micon>
+          <Button icon>
             <Flag name="np" />
           </Button>
         </Container>

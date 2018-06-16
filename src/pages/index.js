@@ -18,41 +18,25 @@ class NavBar extends React.Component {
   };
   ref = React.createRef();
   scrollHandler = e => {
-    if (window.scrollY > 180) {
+    if (window.scrollY > 61) {
       this.setState({ stick: true });
     } else {
       this.setState({ stick: false });
     }
-    // console.log(1);
   };
   componentDidMount() {
-    // console.log(ReactDOM.findDOMNode(this));
-    window.addEventListener("scroll", this.scrollHandler, true);
-    let prev = 0;
-    this.translate = e => {
-      if (window.scrollY > 1000) {
-        if (window.scrollY < prev) {
-          this.setState(({ dis }) => ({ dis: false }));
-        } else {
-          this.setState(({ dis }) => ({ dis: true }));
-        }
-        prev = window.scrollY;
-        // console.log(this.state.dis, prev);
-      }
-    };
-    window.addEventListener("scroll", this.translate, true);
+    window.addEventListener("scroll", this.scrollHandler, false);
   }
 
   componentWillUnmount = () => {
-    window.removeEventListener("scroll", this.scrollHandler, true);
-    window.removeEventListener("scroll", this.translate, true);
+    window.removeEventListener("scroll", this.scrollHandler, false);
   };
 
   render() {
     const { pages, url } = this.props;
-    const { stick, dis } = this.state;
+    const { stick } = this.state;
     return (
-      <Display>
+      <React.Fragment>
         <Menu
           key="#1"
           container
@@ -61,42 +45,26 @@ class NavBar extends React.Component {
           fixed={stick ? "top" : undefined}
           size="huge"
           style={{
-            overflowX: "auto",
-            overflowY: "hidden",
-            background: "white",
-            zindex: 10,
-            transition: "all 0.1s ease-in",
-            transform: stick && dis ? "translateY(-100%)" : "",
-            padding: 5
+            overflowX: "scroll",
+            zIndex: 10000,
+            transition: "background 0.8s ease",
+            ...(stick
+              ? {
+                  padding: 2,
+                  background: "rgb(22, 114, 160)",
+                  boxShadow: "rgb(164, 183, 207) 0px 4px 4px 0px",
+                  borderBottom: "0px"
+                }
+              : {})
           }}
           items={mapPagesToLinks(pages, url, NavLink, {
-            style: { transition: "all 0.3s ease-in" }
+            style: { transition: "all 0.3s ease" }
           })}
-          color="red"
+          color={!stick ? "red" : undefined}
+          inverted={stick}
         />
-        {stick ? (
-          <Menu
-            container
-            pointing
-            secondary
-            size="huge"
-            style={{
-              overflowX: "auto",
-              overflowY: "hidden",
-              background: "white",
-              zindex: 10,
-              // transition: "all 0.3s ease-in",
-              padding: 5
-            }}
-            items={mapPagesToLinks(pages, url, NavLink, {
-              style: { transition: "all 0.2s ease" }
-            })}
-            color="red"
-          />
-        ) : (
-          ""
-        )}
-      </Display>
+        {stick ? <div style={{ height: "60px" }} /> : ""}
+      </React.Fragment>
     );
   }
 }
@@ -112,8 +80,8 @@ const NavMenu = Object.entries(Pages).reduce((acc, item, index) => {
     [item[0]]: ({ match: { path, url } }) => {
       return (
         <React.Fragment>
+          <NavBar pages={item[1]} url={url} key={"#1"} />
           <Container fluid>
-            <NavBar pages={item[1]} url={url} key={"#1"} />
             <Display
               render={[
                 {

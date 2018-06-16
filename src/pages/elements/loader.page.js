@@ -1,6 +1,6 @@
 import React from "react";
 // eslint-disable-next-line
-import {Button,Container,Divider,Flag,Header,Icon,Image,Input,Label,List,Loader,Reveal,Segment} from '../../components';
+import { Container, Header, Loader } from "../../components";
 export default class LoaderPage extends React.Component {
   render() {
     return (
@@ -53,7 +53,7 @@ export default class LoaderPage extends React.Component {
         <Header as="h4">Inline</Header>
         <div className="ui segment">
           <p>
-            <Loader inline state="active" size="small" />
+            <Loader as="span" inline state="active" size="small" />
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
             voluptate aspernatur accusantium optio voluptas rerum, quam dolore
             placeat corrupti, provident magnam itaque suscipit debitis eius
@@ -65,7 +65,7 @@ export default class LoaderPage extends React.Component {
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
             voluptate aspernatur accusantium optio voluptas rerum, quam dolore
-            <Loader inline="centered" state="active" size="small" />
+            <Loader as="span" inline="centered" state="active" size="small" />
             placeat corrupti, provident magnam itaque suscipit debitis eius
             necessitatibus iure consequatur repudiandae commodi!
           </p>

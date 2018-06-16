@@ -53,7 +53,7 @@ export default class ImagePage extends React.Component {
         <Image src={"/img/snake.jpg"} size="tiny" verticalAlign="bottom" />{" "}
         <span>Bottom Aligned</span>
         <Header>Spaced</Header>
-        <div class="ui segment">
+        <div className="ui segment">
           <p>
             Te eum doming eirmod, nominati pertinacia<Image
               src={"/img/flower1.jpg"}
@@ -67,7 +67,7 @@ export default class ImagePage extends React.Component {
           </p>
         </div>
         <Header>Floated</Header>
-        <div class="ui segment">
+        <div className="ui segment">
           <Image src={"/img/flower1.jpg"} size="small" float="right" />
           <p>
             Te eum doming eirmod, nominati pertinacia argumentum ad his. Ex eam
@@ -142,7 +142,6 @@ export default class ImagePage extends React.Component {
           <Image src="/img/flower2.jpg" alt="Snake" />
         </Image.Group>
         <Header as="h2">End</Header>
-        <Image />
       </Container>
     );
   }
