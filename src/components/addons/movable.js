@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
-import { fromNullable, LazyBox, Left, Right } from "../lib/react-extras";
+import { fromNullable, Left, Right } from "../lib/react-extras";
 
 const offsetCalculator = e => {
   const client = {
@@ -26,18 +26,20 @@ const getTransition = (pos, node, add) =>
     .map(x => (x ? Right(x) : Left(x)))
     .chain(x => x)
     .map(
-      x =>
-        pos.x < pos.y
-          ? {
-              transform: "translateY(-100%)",
-              transition: "transform 0.3s ease"
-            }
-          : { transform: "translateY(100%)", transition: "transform 0.3s ease" }
+      () => pos.x < pos.y
+        ? {
+          transform: "translateY(-100%)",
+          transition: "transform 0.2s ease"
+        }
+        : {
+          transform: "translateY(100%)",
+          transition: "transform 0.2s ease-out"
+        }
     )
     .fold(
-      x => {
+      () => {
         add(false);
-        return { transition: "transform 0.3s ease" };
+        return { transition: "transform 0.2s ease" };
       },
       x => {
         add(true);
@@ -58,8 +60,6 @@ export default class Movable extends Component {
   node = undefined;
   componentDidMount() {
     this.node = ReactDOM.findDOMNode(this);
-    // this.props.report(this.node.offsetTop);
-    console.log("Yo");
   }
 
   render() {
@@ -78,7 +78,7 @@ export default class Movable extends Component {
     const onMouseDown = e => onDrag(...offsetCalculator(e));
     const onTouchStart = e => onDrag(...offsetCalculator(e));
 
-    const movableChild = React.Children.map(children, (child, index) => {
+    const movableChild = React.Children.map(children, (child) => {
       return drag && dragPos
         ? React.cloneElement(child, {
             style: {
@@ -103,7 +103,8 @@ export default class Movable extends Component {
             style: {
               ...(child.props.style || {}),
               cursor: "move",
-
+              // pointerEvents: "none",
+              userSelect: "none",
               ...(pos ? getTransition(pos, this.node, add) : {})
             }
           });
