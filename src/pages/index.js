@@ -8,7 +8,7 @@ import {
   mapPagesToLinks,
   mapPagesToRoutes
 } from "../lib/react-extras";
-import { Menu, Segment, Display, Container } from "../components";
+import { Menu } from "../components";
 
 class NavBar extends React.Component {
   state = {
@@ -17,7 +17,7 @@ class NavBar extends React.Component {
     dis: false
   };
   ref = React.createRef();
-  scrollHandler = e => {
+  scrollHandler = () => {
     if (window.scrollY > 61) {
       this.setState({ stick: true });
     } else {
@@ -60,7 +60,7 @@ class NavBar extends React.Component {
           items={mapPagesToLinks(pages, url, NavLink, {
             style: { transition: "all 0.3s ease" }
           })}
-          color={!stick ? "red" : undefined}
+          color={!stick ? "purple" : undefined}
           inverted={stick}
         />
         {stick ? <div style={{ height: "60px" }} /> : ""}
@@ -69,7 +69,7 @@ class NavBar extends React.Component {
   }
 }
 
-const NavMenu = Object.entries(Pages).reduce((acc, item, index) => {
+const NavMenu = Object.entries(Pages).reduce((acc, item) => {
   const View = ({ match: { url } }) => (
     <React.Fragment>
       <DisplayList pages={item[1]} url={url} name={item[0]} />
@@ -81,29 +81,8 @@ const NavMenu = Object.entries(Pages).reduce((acc, item, index) => {
       return (
         <React.Fragment>
           <NavBar pages={item[1]} url={url} key={"#1"} />
-          <Container fluid>
-            <Display
-              render={[
-                {
-                  range: Display.Mobile,
-                  render: children => (
-                    <React.Fragment>{children}</React.Fragment>
-                  )
-                },
-                {
-                  range: { min: Display.Tablet.min - 100, max: Infinity },
-                  render: children => (
-                    <Segment attached="bottom" compact>
-                      {children}
-                    </Segment>
-                  )
-                }
-              ]}
-            >
-              <Route exact path={path} component={View} />
-              {mapPagesToRoutes(item[1], path)}
-            </Display>
-          </Container>
+          <Route exact path={path} component={View} />
+          {mapPagesToRoutes(item[1], path)}
         </React.Fragment>
       );
     }

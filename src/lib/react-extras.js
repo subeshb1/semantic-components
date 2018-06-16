@@ -131,17 +131,22 @@ export const mapPagesToLinks = (pages, url, as = Link, extraProps = {}) =>
 export const DisplayList = ({ pages, url, name }) => {
   return (
     <Container>
-      <Segment.Group>
-        <Segment color="yellow">
-          <Header as="h1">{splitUpper(name)} Lists</Header>
+      <Segment.Group raised>
+        <Segment color="violet">
+          <Header as="h1">{splitUpper(name)} List</Header>
         </Segment>
 
-        <Segment color="red">
+        <Segment>
           <List
             animated
             selection
             relaxed="very"
-            items={mapPagesToLinks(pages, url)}
+            items={mapPagesToLinks(pages, url).map(
+              ({ children, ...props }) => ({
+                ...props,
+                children: <Header  color="grey" text={children} />
+              })
+            )}
           />
         </Segment>
       </Segment.Group>

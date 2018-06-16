@@ -44,13 +44,14 @@ class NavBar extends React.Component {
             secondary: true,
             pointing: true,
             size: "huge",
-            color: undefined,
+            color: "red",
             vertical: false,
             fluid: false,
             container: true,
-            inverted: false,
+
             style: {
-              borderRadius: 0
+              borderRadius: 0,
+              background: "rebeccapurple"
             }
           }
         }}
@@ -60,17 +61,16 @@ class NavBar extends React.Component {
           inverted
           pointing
           secondary
-          color="red"
+          color="purple"
           stackable
           fluid
           size="huge"
           style={{
             borderRadius: 0,
             transition: "max-height 0.2s ease",
-            maxHeight: active ? 9 * 49 : 0,
+            maxHeight: active ? 9 * 46 : 0,
             overflow: "hidden",
-            background:
-              "linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%)",
+            background: "rebeccapurple",
             boxShadow: " 0px 0px 10px",
             border: "0px"
           }}
