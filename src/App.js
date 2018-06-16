@@ -119,7 +119,7 @@ class App extends Component {
             <React.Fragment>
               <NavBar />
               <Transition2
-                key={location.key}
+                // key={location.key}
                 onEnter={[
                   {
                     style: {
