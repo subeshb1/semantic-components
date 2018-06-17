@@ -115,7 +115,7 @@ class App extends Component {
     return (
       <Router>
         <Route
-          render={({ location }) => (
+          render={() => (
             <React.Fragment>
               <NavBar />
               <Transition2

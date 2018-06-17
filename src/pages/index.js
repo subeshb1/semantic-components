@@ -82,7 +82,7 @@ const NavMenu = Object.entries(Pages).reduce((acc, item) => {
         <React.Fragment>
           <NavBar pages={item[1]} url={url} key={"#1"} />
           <Transition2
-            key={location.key}
+            key={location.pathname}
             onEnter={[
               {
                 style: {
@@ -98,7 +98,7 @@ const NavMenu = Object.entries(Pages).reduce((acc, item) => {
               }
             ]}
           >
-            <Switch>
+            <Switch location={location}>
               <Route exact path={path} component={View} />
               {mapPagesToRoutes(item[1], path)}
             </Switch>
