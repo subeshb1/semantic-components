@@ -92,9 +92,14 @@ const NavMenu = Object.entries(Pages).reduce((acc, item) => {
               },
               {
                 style: {
-                  opacity: 1
+                  opacity: 1,
+                  transform: ""
                 },
-                duration: 500
+                duration: 1000
+              },
+              {
+                style: {},
+                default: true
               }
             ]}
           >

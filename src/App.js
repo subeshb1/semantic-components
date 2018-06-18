@@ -51,7 +51,7 @@ class NavBar extends React.Component {
             secondary: true,
             pointing: true,
             size: "huge",
-            color: "red",
+            color: undefined,
             vertical: false,
             fluid: false,
             container: true,
@@ -66,16 +66,13 @@ class NavBar extends React.Component {
         <Menu
           vertical
           inverted
-          pointing
-          secondary
           color="purple"
-          stackable
           fluid
           size="huge"
           style={{
             borderRadius: 0,
             transition: "max-height 0.2s ease",
-            maxHeight: active ? 9 * 46 : 0,
+            maxHeight: active ? 10 * 49 : 0,
             overflow: "hidden",
             background: "rebeccapurple",
             boxShadow: " 0px 0px 10px",
@@ -119,7 +116,6 @@ class App extends Component {
             <React.Fragment>
               <NavBar />
               <Transition2
-                // key={location.key}
                 onEnter={[
                   {
                     style: {
@@ -131,14 +127,9 @@ class App extends Component {
                     style: {
                       opacity: 1
                     },
+                    property:'opacity',
                     duration: 500
                   },
-                  {
-                    style: {
-                      opacity: 1
-                    },
-                    default: true
-                  }
                 ]}
               >
                 <Switch>

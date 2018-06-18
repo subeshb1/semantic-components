@@ -1,6 +1,13 @@
 import React from "react";
 // eslint-disable-next-line
-import {Button,Container,Divider,Flag,Header,Icon,Image,Input,Label,List,Loader,Reveal,Segment} from '../../components';
+import {
+  Button,
+  Container,
+  Header,
+  Icon,
+  Input,
+  Label
+} from "../../components";
 
 const data = {
   value: ""
@@ -12,11 +19,11 @@ export default class InputPage extends React.Component {
         <Header as="h1">Input</Header>
         <Header as="h2">States</Header>
         <Header>Simple Input</Header>
-        <Input placeholder="Name" tabIndex="1"/>
+        <Input placeholder="Name" tabIndex="1" />
         <Header>Custom Warning Input</Header>
-        <Input placeholder="Name" state="warning" tabIndex="3"/>
+        <Input placeholder="Name" state="warning" tabIndex="3" />
         <Header>Custom Success Input</Header>
-        <Input placeholder="Name" state="success" tabIndex="2"/>
+        <Input placeholder="Name" state="success" tabIndex="2" />
         <Header>Default Error Input</Header>
         <Input placeholder="Name" state="error" />
         <Header>Disabled Input</Header>
@@ -39,7 +46,7 @@ export default class InputPage extends React.Component {
         <Input placeholder="Name" icon="users" size="small" />
         <Input placeholder="Name" icon="users" size="medium" />
         <Input placeholder="Name" icon="users" size="big" />
-        <Input placeholder="Name" icon="users" size="massive" />
+        <Input placeholder="Name" fluid icon="users" size="massive" />
         <Header>Transparent</Header>
         <Input placeholder="Name" icon="users" size="massive" transparent />
         <Header>Fluid</Header>
@@ -52,8 +59,8 @@ export default class InputPage extends React.Component {
         <Input
           action="left"
           frontChildren={
-            <Button color="teal" labeled icon >
-              <Icon name="cart"/>
+            <Button color="teal" labeled icon>
+              <Icon name="cart" />
               Checkout
             </Button>
           }

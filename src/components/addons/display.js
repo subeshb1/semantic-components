@@ -54,7 +54,7 @@ export const filterRanges = (ranges, res) =>
     //filter
     .filter(x => inRange(x.range, res));
 
-const extractUnit = (ranges, res) =>
+export const extractUnit = (ranges, res) =>
   //checking if range is available
   fromNullable(ranges)
     //filtering range according to res
