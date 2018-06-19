@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.widthMapper = exports.widthArray = exports.size = exports.social = exports.wide = exports.colorDef = exports.color = exports.reactComponent = exports.simpleComponent = exports.curry = exports.tryCatch = exports.fromNullable = exports.head = exports.Left = exports.Right = undefined;
+exports.widthMapper = exports.widthArray = exports.size = exports.social = exports.wide = exports.colorDef = exports.color = exports.reactComponent = exports.simpleComponent = exports.reduce = exports.map = exports.filter = exports.match = exports.replace = exports.trace = exports.split = exports.join = exports.curry = exports.max = exports.min = exports.LazyBox = exports.tryCatch = exports.fromNullable = exports.head = exports.Left = exports.Right = undefined;
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
@@ -66,6 +66,31 @@ var tryCatch = exports.tryCatch = function tryCatch(f) {
     return Left(e);
   }
 };
+
+var LazyBox = exports.LazyBox = function LazyBox(g) {
+  return {
+    fold: function fold(f) {
+      return f(g());
+    },
+    map: function map(f) {
+      return LazyBox(function () {
+        return f(g());
+      });
+    }
+  };
+};
+
+var min = exports.min = function min(arr) {
+  return arr.reduce(function (acc, e) {
+    return e < acc ? e : acc;
+  }, Infinity);
+};
+var max = exports.max = function max(arr) {
+  return arr.reduce(function (acc, e) {
+    return e > acc ? e : acc;
+  }, -Infinity);
+};
+
 //Curry
 var curry = exports.curry = function curry(fn) {
   var resLength = fn.length;
@@ -77,6 +102,32 @@ var curry = exports.curry = function curry(fn) {
     return args.length < resLength ? $curry.bind.apply($curry, [null].concat(args)) : fn.call.apply(fn, [null].concat(args));
   };
 };
+var join = exports.join = curry(function (delim, arr) {
+  return arr.join(delim);
+});
+var split = exports.split = curry(function (delim, str) {
+  return str.split(delim);
+});
+var trace = exports.trace = curry(function (tag, x) {
+  console.log(tag, x);
+  return x;
+});
+var replace = exports.replace = curry(function (what, repStr, str) {
+  return str.replace(what, repStr);
+});
+var match = exports.match = curry(function (what, str) {
+  return str.match(what);
+});
+var filter = exports.filter = curry(function (f, arr) {
+  return arr.filter(f);
+});
+var map = exports.map = curry(function (f, arr) {
+  return arr.map(f);
+});
+var reduce = exports.reduce = curry(function (f, start, arr) {
+  return arr.reduce(f, start);
+});
+
 /** This function returns a function that makes a simple React Component
 
  *

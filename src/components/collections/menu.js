@@ -8,7 +8,7 @@ import {
   simpleComponent,
   size
 } from "../lib/react-extras";
-import '../css/menu.css';
+import "../css/menu.css";
 const Header = simpleComponent("header");
 Header.displayName = "Menu.Header";
 const Item = props => {
@@ -87,7 +87,7 @@ export default class Menu extends Component {
     pagination: PropTypes.bool,
     //Variations
     fixed: PropTypes.oneOf(["top", "bottom", "left", "right"]),
-    attached: PropTypes.oneOf(["top", "bottom", "left", "right",true]),
+    attached: PropTypes.oneOf(["top", "bottom", "left", "right", true]),
     color: PropTypes.oneOf(colorDef),
     inverted: PropTypes.bool,
     stackable: PropTypes.bool,
@@ -106,7 +106,8 @@ export default class Menu extends Component {
         ]).isRequired
       }).isRequired
     ),
-    container: PropTypes.bool
+    container: PropTypes.bool,
+    vertical: PropTypes.bool
   };
   static defaultProps = {
     as: "div",
@@ -180,11 +181,20 @@ export default class Menu extends Component {
       });
     let child;
     if (container) {
-      child = [<Container>{children}{mappedItems}</Container>];
+      child = [
+        <Container>
+          {children}
+          {mappedItems}
+        </Container>
+      ];
     } else {
-      child = [children,mappedItems]
+      child = [children, mappedItems];
     }
-    const renderElement = React.createElement(as, { className, ...otherProps },...child);
+    const renderElement = React.createElement(
+      as,
+      { className, ...otherProps },
+      ...child
+    );
     return renderElement;
   }
 }

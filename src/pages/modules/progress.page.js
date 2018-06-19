@@ -18,12 +18,18 @@ function getScrollPercent() {
   return ((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100;
 }
 
+
 export default class ProgressPage extends Component {
+  scrollProgress = () =>
+      this.setState({ scrollPercent: getScrollPercent() });
   componentDidMount() {
-    this.setState({ scrollPercent: getScrollPercent() });
-    window.addEventListener("scroll", () =>
-      this.setState({ scrollPercent: getScrollPercent() })
-    );
+    
+    this.scrollProgress();
+    window.addEventListener("scroll", this.scrollProgress);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.scrollProgress);
   }
 
   state = {

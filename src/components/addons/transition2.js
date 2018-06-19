@@ -63,7 +63,11 @@ export default class Transition2 extends Component {
   timeouts = {};
 
   shouldComponentUpdate(nextProps, prevState) {
-    if (nextProps.animate && nextProps.transition) {
+    if (
+      nextProps.animate &&
+      nextProps.animate != this.props.animate &&
+      nextProps.transition
+    ) {
       this.transition(nextProps.transition, "animate");
     } else if (nextProps.remove && nextProps.onRemove) {
       this.transition(nextProps.onRemove, "remove");
@@ -72,7 +76,8 @@ export default class Transition2 extends Component {
   }
   componentDidMount() {
     this.node = ReactDOM.findDOMNode(this);
-
+    this.copy = { offsetHeight: this.node.offsetHeight };
+    console.log(this.copy, Object.entries(this.node));
     const { mapEvents, onEnter } = this.props;
     const handler = curry((node, action) => {
       node.addEventListener(
@@ -108,8 +113,13 @@ export default class Transition2 extends Component {
       .fold(x => [], x => []);
     const last = transitions.length - 1;
     transitions.reduce((acc, trans, i) => {
+      const style =
+        typeof trans.style === "function"
+          ? trans.style(this.default, this.copy, this.node.scrollHeight)
+          : trans.style;
+
       if (trans.start === true) {
-        mapStyles(this.node, trans.style);
+        mapStyles(this.node, style);
         return acc;
       }
       const delay = trans.delay || 0;
@@ -128,8 +138,8 @@ export default class Transition2 extends Component {
           mapStyles(
             this.node,
             trans.default
-              ? { ...transition, ...this.default, ...trans.style }
-              : { ...transition, ...trans.style }
+              ? { ...transition, ...this.default, ...style }
+              : { ...transition, ...style }
           );
           if (last === i) this.timeouts[event] = undefined;
         }, timeout)

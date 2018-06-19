@@ -44,16 +44,11 @@ var Loader = (_temp = _class = function (_Component) {
           children = _props.children,
           indeterminate = _props.indeterminate,
           extra = _props.extra,
-          otherProps = _objectWithoutProperties(_props, ["state", "size", "inline", "inverted", "content", "children", "indeterminate", "extra"]);
+          as = _props.as,
+          otherProps = _objectWithoutProperties(_props, ["state", "size", "inline", "inverted", "content", "children", "indeterminate", "extra", "as"]);
 
       var className = ("\n        ui \n        " + extra + " \n        " + size + "\n        " + (inline ? (typeof inline === "string" ? inline : "") + " inline" : "") + "\n        " + (inverted ? "inverted" : "") + "\n        " + (indeterminate ? "indeterminate" : "") + "\n        " + state + "\n        " + (content || children ? "text" : "") + "\n        loader\n    ").replace(/\s+/g, " ");
-
-      return _react2.default.createElement(
-        "div",
-        Object.assign({ className: className }, otherProps),
-        content,
-        children
-      );
+      return _react2.default.createElement(as, Object.assign({ className: className }, otherProps), content, children);
     }
   }]);
 
@@ -64,7 +59,8 @@ var Loader = (_temp = _class = function (_Component) {
   inline: "",
   inverted: false,
   indeterminate: false,
-  extra: ""
+  extra: "",
+  as: "div"
 }, _temp);
 exports.default = Loader;
 

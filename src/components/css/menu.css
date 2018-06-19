@@ -1,6 +1,10 @@
-
 .ui.menu::-webkit-scrollbar {
-    -webkit-appearance: none;
-    height: 0;
-  }
-  
+  -webkit-appearance: none;
+  height: 0;
+  width: 0;
+}
+
+.ui.menu {
+  overflow: scroll;
+
+}
