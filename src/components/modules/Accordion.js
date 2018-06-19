@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Transition2 } from "..";
 
-
 const Item = ({ children, active, onClick }) => {
   return React.Children.map(children, child => {
     return React.cloneElement(child, {
@@ -19,6 +18,7 @@ const Title = ({ as = "div", children, active, ...otherProps }) => {
     children
   );
 };
+
 const Content = ({ as = "div", children, active, ...otherProps }) => {
   return (
     // <Display show={active}>
@@ -29,29 +29,32 @@ const Content = ({ as = "div", children, active, ...otherProps }) => {
             opacity: 0,
             maxHeight: 0,
             overflow: "hidden",
+            paddingTop: "0px",
+            paddingBottom: "0px",
             display: "block"
           },
           start: true
         },
         {
-          style: ({ height }, node, n) => {
+          style: (x, node, n) => {
             return {
-              maxHeight: n + "px",
+              maxHeight: 30 + n + "px",
               opacity: 1,
-              paddingTop: "6.9px",
-              paddingBottom: "30.7px"
+              paddingTop: "7px",
+              paddingBottom: "20.7px"
             };
           },
-          duration: 200
+          duration: 300
         },
         {
-          style: { display: "block" },
-          default: true
+          style: {
+            maxHeight: ""
+          }
         }
       ]}
       onRemove={[
         {
-          style: (x, { offsetHeight }, n) => ({
+          style: (x, y, n) => ({
             maxHeight: n + "px"
           }),
           start: true
@@ -64,19 +67,13 @@ const Content = ({ as = "div", children, active, ...otherProps }) => {
             paddingBottom: "0",
             overflow: "hidden"
           },
-          duration: 200
-        },
-        {
-          style: {},
-          default: true
+          duration: 300
         }
       ]}
       onEnter={[
         {
           style: {
-            maxHeight: "0px",
-            opacity: 0,
-            overflow: "hidden"
+            display: active ? "block" : "none"
           },
           start: true
         }
@@ -108,31 +105,44 @@ export default class Accordion extends Component {
     ]),
     styled: PropTypes.bool,
     inverted: PropTypes.bool,
-    fluid: PropTypes.bool
+    fluid: PropTypes.bool,
+    extra: PropTypes.string
   };
   static defaultProps = {
     as: "div",
-    styled: true,
-    inverted: false,
-    fluid: false
+    extra: ""
   };
   static Item = Item;
   static Title = Title;
   static Content = Content;
 
   render() {
-    const { as, children, styled, sub, inverted } = this.props;
+    const {
+      as,
+      children,
+      styled,
+      sub,
+      inverted,
+      fluid,
+      extra,
+      menu,
+      ...otherProps
+    } = this.props;
     const className = `
     ${sub ? "" : "ui"}
     ${styled ? "styled" : ""}
     ${inverted ? "inverted" : ""}
+    ${fluid ? "fluid" : ""}
+    ${extra}
     accordion
+    ${menu ? " vertical menu" : ""}
     `.replace(/\s+/g, " ");
 
     const renderElement = React.createElement(
       as,
       {
-        className
+        className,
+        ...otherProps
       },
       children
     );

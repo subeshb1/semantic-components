@@ -14,7 +14,7 @@ export default class Transition2 extends Component {
   static propTypes = {
     transition: PropTypes.arrayOf(
       PropTypes.shape({
-        style: PropTypes.object,
+        style: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
         duration: PropTypes.number,
         delay: PropTypes.number,
         default: PropTypes.bool,
@@ -24,7 +24,7 @@ export default class Transition2 extends Component {
     ),
     onEnter: PropTypes.arrayOf(
       PropTypes.shape({
-        style: PropTypes.object,
+        style: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
         duration: PropTypes.number,
         delay: PropTypes.number,
         default: PropTypes.bool,
@@ -34,7 +34,7 @@ export default class Transition2 extends Component {
     ),
     onRemove: PropTypes.arrayOf(
       PropTypes.shape({
-        style: PropTypes.object,
+        style: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
         duration: PropTypes.number,
         delay: PropTypes.number,
         default: PropTypes.bool,
@@ -49,7 +49,7 @@ export default class Transition2 extends Component {
         event: PropTypes.string.isRequired,
         transition: PropTypes.arrayOf(
           PropTypes.shape({
-            style: PropTypes.object,
+            style: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
             duration: PropTypes.number,
             delay: PropTypes.number,
             default: PropTypes.bool,
@@ -65,11 +65,15 @@ export default class Transition2 extends Component {
   shouldComponentUpdate(nextProps, prevState) {
     if (
       nextProps.animate &&
-      nextProps.animate != this.props.animate &&
+      nextProps.animate !== this.props.animate &&
       nextProps.transition
     ) {
       this.transition(nextProps.transition, "animate");
-    } else if (nextProps.remove && nextProps.onRemove) {
+    } else if (
+      nextProps.remove &&
+      nextProps.remove !== this.props.remove &&
+      nextProps.onRemove
+    ) {
       this.transition(nextProps.onRemove, "remove");
     }
     return true;
@@ -77,7 +81,6 @@ export default class Transition2 extends Component {
   componentDidMount() {
     this.node = ReactDOM.findDOMNode(this);
     this.copy = { offsetHeight: this.node.offsetHeight };
-    console.log(this.copy, Object.entries(this.node));
     const { mapEvents, onEnter } = this.props;
     const handler = curry((node, action) => {
       node.addEventListener(
@@ -123,7 +126,7 @@ export default class Transition2 extends Component {
         return acc;
       }
       const delay = trans.delay || 0;
-      const duration = trans.duration || 10;
+      const duration = trans.duration || 1;
       const timeout = acc + delay;
       const transition = {
         transition: `
