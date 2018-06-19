@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Display } from "..";
 import { Transition2 } from "../addons";
-import { ButtonHidden } from "../elements/button";
 
 const Item = ({ children, active, onClick }) => {
   return React.Children.map(children, child => {
