@@ -31,6 +31,24 @@ Object.defineProperty(exports, "Progress", {
   }
 });
 
+var _slider = require("./slider");
+
+Object.defineProperty(exports, "Slider", {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_slider).default;
+  }
+});
+
+var _Accordion = require("./Accordion");
+
+Object.defineProperty(exports, "Accordion", {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Accordion).default;
+  }
+});
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //# sourceMappingURL=index.js.map

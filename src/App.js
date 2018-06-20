@@ -71,7 +71,7 @@ class NavBar extends React.Component {
           size="huge"
           style={{
             borderRadius: 0,
-            transition: "max-height 0.2s ease",
+            transition: "max-height 0.5s ease",
             maxHeight: active ? 10 * 49 : 0,
             overflow: "hidden",
             background: "rebeccapurple",
@@ -127,9 +127,9 @@ class App extends Component {
                     style: {
                       opacity: 1
                     },
-                    property:'opacity',
+                    property: "opacity",
                     duration: 500
-                  },
+                  }
                 ]}
               >
                 <Switch>

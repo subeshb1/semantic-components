@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.AccordionContent = exports.AccordionTitle = exports.AccordionItem = exports.default = undefined;
+exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -17,6 +17,8 @@ var _propTypes = require("prop-types");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _ = require("..");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25,11 +27,104 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var Item = function Item(_ref) {
+  var children = _ref.children,
+      active = _ref.active,
+      onClick = _ref.onClick;
+
+  return _react2.default.Children.map(children, function (child) {
+    return _react2.default.cloneElement(child, Object.assign({
+      active: active
+    }, child.type === Title ? { onClick: onClick } : {}));
+  });
+};
+
+var Title = function Title(_ref2) {
+  var _ref2$as = _ref2.as,
+      as = _ref2$as === undefined ? "div" : _ref2$as,
+      children = _ref2.children,
+      active = _ref2.active,
+      otherProps = _objectWithoutProperties(_ref2, ["as", "children", "active"]);
+
+  return _react2.default.createElement(as, Object.assign({ className: (active ? "active " : "") + " title" }, otherProps), children);
+};
+
+var Content = function Content(_ref3) {
+  var _ref3$as = _ref3.as,
+      as = _ref3$as === undefined ? "div" : _ref3$as,
+      children = _ref3.children,
+      active = _ref3.active,
+      otherProps = _objectWithoutProperties(_ref3, ["as", "children", "active"]);
+
+  return (
+    // <Display show={active}>
+    _react2.default.createElement(
+      _.Transition2,
+      {
+        transition: [{
+          style: {
+            maxHeight: 0,
+            overflow: "hidden",
+            paddingTop: "0px",
+            paddingBottom: "0px",
+            display: "block"
+          },
+          start: true
+        }, {
+          style: function style(x, node, n) {
+            return {
+              maxHeight: 30 + n + "px",
+              paddingTop: "7px",
+              paddingBottom: "20.7px"
+            };
+          },
+          duration: 300
+        }, {
+          style: {
+            maxHeight: "",
+            paddingBottom: "s"
+          }
+        }],
+        onRemove: [{
+          style: function style(x, y, n) {
+            return {
+              maxHeight: n + "px"
+            };
+          },
+          start: true
+        }, {
+          style: {
+            maxHeight: 0 + "px",
+            paddingTop: "0",
+            paddingBottom: "0",
+            overflow: "hidden"
+          },
+          duration: 300
+        }],
+        onEnter: [{
+          style: {
+            display: active ? "block" : "none"
+          },
+          start: true
+        }],
+        animate: active,
+        remove: !active
+      },
+      _react2.default.createElement(as, Object.assign({
+        className: "  content"
+      }, otherProps), children)
+    )
+    // </Display>
+
+  );
+};
 var Accordion = (_temp2 = _class = function (_Component) {
   _inherits(Accordion, _Component);
 
   function Accordion() {
-    var _ref;
+    var _ref4;
 
     var _temp, _this, _ret;
 
@@ -39,7 +134,7 @@ var Accordion = (_temp2 = _class = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Accordion.__proto__ || Object.getPrototypeOf(Accordion)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref4 = Accordion.__proto__ || Object.getPrototypeOf(Accordion)).call.apply(_ref4, [this].concat(args))), _this), _this.state = {
       active: -1
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -47,72 +142,37 @@ var Accordion = (_temp2 = _class = function (_Component) {
   _createClass(Accordion, [{
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       var _props = this.props,
           as = _props.as,
           children = _props.children,
           styled = _props.styled,
-          inverted = _props.inverted;
+          sub = _props.sub,
+          inverted = _props.inverted,
+          fluid = _props.fluid,
+          extra = _props.extra,
+          menu = _props.menu,
+          otherProps = _objectWithoutProperties(_props, ["as", "children", "styled", "sub", "inverted", "fluid", "extra", "menu"]);
 
-      var className = ("\n    ui\n    " + (styled ? "styled" : "") + "\n    " + (inverted ? "inverted" : "") + "\n    accordion\n    ").replace(/\s+/g, " ");
+      var className = ("\n    " + (sub ? "" : "ui") + "\n    " + (styled ? "styled" : "") + "\n    " + (inverted ? "inverted" : "") + "\n    " + (fluid ? "fluid" : "") + "\n    " + extra + "\n    accordion\n    " + (menu ? " vertical menu" : "") + "\n    ").replace(/\s+/g, " ");
 
-      var renderElement = _react2.default.createElement(as, {
+      var renderElement = _react2.default.createElement(as, Object.assign({
         className: className
-      }, _react2.default.Children.map(children, function (child, index) {
-        return _react2.default.cloneElement(child, {
-          onClick: function onClick() {
-            var ind = index;
-            if (_this2.state.active === index) ind = -1;
-            _this2.setState({ active: ind });
-          },
-          isActive: _this2.state.active === index,
-          id: index
-        });
-      }));
+      }, otherProps), children);
       return renderElement;
     }
   }]);
 
   return Accordion;
 }(_react.Component), _class.propTypes = {
-  as: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.element]),
+  as: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.element, _propTypes2.default.func]),
   styled: _propTypes2.default.bool,
   inverted: _propTypes2.default.bool,
-  fluid: _propTypes2.default.bool
+  fluid: _propTypes2.default.bool,
+  extra: _propTypes2.default.string
 }, _class.defaultProps = {
   as: "div",
-  styled: true,
-  inverted: false,
-  fluid: false
-}, _temp2);
+  extra: ""
+}, _class.Item = Item, _class.Title = Title, _class.Content = Content, _temp2);
 exports.default = Accordion;
-var AccordionItem = exports.AccordionItem = function AccordionItem(_ref2) {
-  var children = _ref2.children,
-      onClick = _ref2.onClick,
-      isActive = _ref2.isActive,
-      id = _ref2.id;
-
-  return _react2.default.Children.map(children, function (child) {
-    return _react2.default.cloneElement(child, { onClick: onClick, id: id, isActive: isActive });
-  });
-};
-
-var AccordionTitle = exports.AccordionTitle = function AccordionTitle(_ref3) {
-  var children = _ref3.children,
-      onClick = _ref3.onClick,
-      id = _ref3.id,
-      isActive = _ref3.isActive;
-
-  return _react2.default.createElement("div", { onClick: onClick, className: "" + (isActive ? "active title" : "title") }, children);
-};
-var AccordionContent = exports.AccordionContent = function AccordionContent(_ref4) {
-  var children = _ref4.children,
-      isActive = _ref4.isActive;
-
-  return _react2.default.createElement("div", {
-    className: "" + (isActive ? "active content fade" : "fade content")
-  }, children);
-};
 
 //# sourceMappingURL=Accordion.js.map

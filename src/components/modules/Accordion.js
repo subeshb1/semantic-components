@@ -26,7 +26,6 @@ const Content = ({ as = "div", children, active, ...otherProps }) => {
       transition={[
         {
           style: {
-            opacity: 0,
             maxHeight: 0,
             overflow: "hidden",
             paddingTop: "0px",
@@ -39,7 +38,6 @@ const Content = ({ as = "div", children, active, ...otherProps }) => {
           style: (x, node, n) => {
             return {
               maxHeight: 30 + n + "px",
-              opacity: 1,
               paddingTop: "7px",
               paddingBottom: "20.7px"
             };
@@ -48,7 +46,8 @@ const Content = ({ as = "div", children, active, ...otherProps }) => {
         },
         {
           style: {
-            maxHeight: ""
+            maxHeight: "",
+            paddingBottom: "s"
           }
         }
       ]}
@@ -62,7 +61,6 @@ const Content = ({ as = "div", children, active, ...otherProps }) => {
         {
           style: {
             maxHeight: 0 + "px",
-            opacity: 0,
             paddingTop: "0",
             paddingBottom: "0",
             overflow: "hidden"

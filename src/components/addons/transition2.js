@@ -74,7 +74,7 @@ export default class Transition2 extends Component {
       nextProps.remove !== this.props.remove &&
       nextProps.onRemove
     ) {
-      this.transition(nextProps.onRemove, "remove");
+      this.transition(nextProps.onRemove, "animate");
     }
     return true;
   }

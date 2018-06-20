@@ -167,7 +167,8 @@ var Menu = (_temp = _class = function (_Component) {
   items: _propTypes2.default.arrayOf(_propTypes2.default.shape({
     as: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.element, _propTypes2.default.func]).isRequired
   }).isRequired),
-  container: _propTypes2.default.bool
+  container: _propTypes2.default.bool,
+  vertical: _propTypes2.default.bool
 }, _class.defaultProps = {
   as: "div",
   extra: ""
